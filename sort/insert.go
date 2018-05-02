@@ -5,10 +5,10 @@ func InsertSort(arr []int) []int {
 	if arr == nil || len(arr) < 2 {
 		return arr
 	}
-
+	var tmp int
 	for i := 1; i < len(arr); i++ {
 		if arr[i] < arr[i-1] {
-			tmp := arr[i]
+			tmp = arr[i]
 			j := i - 1
 			// move backward
 			for ; 0 <= j && tmp < arr[j]; j-- {
