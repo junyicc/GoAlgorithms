@@ -1,7 +1,7 @@
 package search
 
 import (
-	"algorithm/game"
+	"algorithm/datastructure"
 )
 
 // FibSearch uses Fibonacci sequence to search element e in the array
@@ -15,7 +15,7 @@ func FibSearch(arr []int, e int) (int, bool) {
 
 	lo, hi := 0, len(arr)
 	var k int
-	var f game.Fib
+	var f datastructure.Fib
 	for lo < hi {
 		var fib = f.New()
 		for hi-lo < fib() {
