@@ -19,14 +19,14 @@ func TestAppend(t *testing.T) {
 		t.Errorf("list should not be empty")
 	}
 
-	if size := ll.Length(); size != 1 {
+	if size := ll.Len(); size != 1 {
 		t.Errorf("wrong count, expected 1 and got %d", size)
 	}
 
 	ll.Append("second")
 	ll.Append("third")
 
-	if size := ll.Length(); size != 3 {
+	if size := ll.Len(); size != 3 {
 		t.Errorf("wrong count, expected 3 and got %d", size)
 	}
 }
@@ -37,7 +37,7 @@ func TestRemove(t *testing.T) {
 		t.Errorf("unexpected error %s", err)
 	}
 
-	if size := ll.Length(); size != 2 {
+	if size := ll.Len(); size != 2 {
 		t.Errorf("wrong count, expected 2 and got %d", size)
 	}
 }
@@ -48,7 +48,7 @@ func TestInsert(t *testing.T) {
 	if err != nil {
 		t.Errorf("unexpected error %s", err)
 	}
-	if size := ll.Length(); size != 3 {
+	if size := ll.Len(); size != 3 {
 		t.Errorf("wrong count, expected 3 and got %d", size)
 	}
 
@@ -75,7 +75,7 @@ func TestString(t *testing.T) {
 }
 
 func TestGet(t *testing.T) {
-	if size := ll.Length(); size != 3 {
+	if size := ll.Len(); size != 3 {
 		t.Errorf("wrong count, expected 2 and got %d", size)
 	}
 	if e, _ := ll.Get(3); *e != "third" {

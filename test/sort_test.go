@@ -225,7 +225,7 @@ func BenchmarkMergeSort(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		data[i] = rand.Intn(b.N)
 	}
-	sort.MergeSortRecur(data)
+	sort.MergeSort(data)
 }
 
 func BenchmarkQuickSort(b *testing.B) {

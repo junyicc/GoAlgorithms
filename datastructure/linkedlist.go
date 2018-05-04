@@ -136,8 +136,8 @@ func (l *LinkedList) IsEmpty() bool {
 	return false
 }
 
-// Length of the linked list
-func (l *LinkedList) Length() int {
+// Len of the linked list
+func (l *LinkedList) Len() int {
 	l.lock.RLock()
 	defer l.lock.RUnlock()
 	return l.length
@@ -150,7 +150,7 @@ func (l *LinkedList) String() string {
 	node := l.head
 	var b bytes.Buffer
 	for node.next != nil {
-		b.WriteString(node.Data.(string))
+		b.WriteString(fmt.Sprintf("%v", node.Data))
 		b.WriteString("->")
 		node = node.next
 	}

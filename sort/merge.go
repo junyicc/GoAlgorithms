@@ -43,12 +43,12 @@ func MergeSort(arr []int) []int {
 
 func mergePass(source, target []int, k, n int) {
 	var i int
-	for i <= n-2*k+1 {
+	for i <= n-2*k {
 		merge(source, target, i, i+k, i+2*k)
 		i = i + 2*k
 	}
-
-	if i < n-k+1 {
+	// merge the last pair
+	if i < n-k {
 		merge(source, target, i, i+k, n)
 	} else {
 		for j := i; j < n; j++ {

@@ -39,7 +39,7 @@ func (s *Stack) Push(e Elem) error {
 // Pop an element from stack
 func (s *Stack) Pop() (Elem, error) {
 	if s.top == -1 {
-		return 0, fmt.Errorf("stack is empty")
+		return nil, fmt.Errorf("stack is empty")
 	}
 	n := len(s.data)
 	s.lock.Lock()
@@ -66,8 +66,8 @@ func (s *Stack) GetTop() Elem {
 	return s.data[s.top]
 }
 
-// Length of stack: element number
-func (s *Stack) Length() int {
+// Len of stack: element number
+func (s *Stack) Len() int {
 	s.lock.RLock()
 	defer s.lock.RUnlock()
 	return len(s.data)
