@@ -1,9 +1,10 @@
 package test
 
 import (
-	"algorithm/sort"
 	"math/rand"
 	"testing"
+
+	"github.com/CAIJUNYI/GoAlgorithms/sort"
 )
 
 // TestQuickSort tests QuickSort algorithm

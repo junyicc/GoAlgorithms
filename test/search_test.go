@@ -3,7 +3,7 @@ package test
 import (
 	"testing"
 
-	"algorithm/search"
+	"github.com/CAIJUNYI/GoAlgorithms/search"
 )
 
 // TestLinearSearch tests linear search algorithm

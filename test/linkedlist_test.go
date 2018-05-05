@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"algorithm/datastructure"
+	"github.com/CAIJUNYI/GoAlgorithms/datastructure"
 )
 
 var ll datastructure.LinkedList

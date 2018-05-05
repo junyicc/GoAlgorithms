@@ -1,8 +1,9 @@
 package test
 
 import (
-	"algorithm/datastructure"
 	"testing"
+
+	"github.com/CAIJUNYI/GoAlgorithms/datastructure"
 )
 
 var stack = datastructure.Stack{}

@@ -1,7 +1,7 @@
 package search
 
 import (
-	"algorithm/datastructure"
+	"github.com/CAIJUNYI/GoAlgorithms/datastructure"
 )
 
 // FibSearch uses Fibonacci sequence to search element e in the array
