@@ -32,11 +32,11 @@ func (f Fib) Get(n int) int {
 	if n < 2 {
 		return n
 	}
-	fib := f.Generate()
-	for i := 0; i < n-1; i++ {
-		fib()
+	a, b := 0, 1
+	for i := 2; i <= n; i++ {
+		a, b = b, a+b
 	}
-	return fib()
+	return b
 }
 
 // GetSeq returns fibonacci sequence
