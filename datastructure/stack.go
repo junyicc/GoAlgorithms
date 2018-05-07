@@ -84,3 +84,50 @@ func (s *Stack) Clear() error {
 	}
 	return nil
 }
+
+// InfStack without limited size
+type InfStack struct {
+	data []Elem
+	lock sync.RWMutex
+}
+
+// New an infinite stack
+func (s *InfStack) New() *InfStack {
+	s.data = []Elem{}
+	return s
+}
+
+// Push an element into stack
+func (s *InfStack) Push(e Elem) {
+	s.lock.Lock()
+	s.data = append(s.data, e)
+	s.lock.Unlock()
+}
+
+// Pop an element from stack
+func (s *InfStack) Pop() *Elem {
+	s.lock.Lock()
+	n := len(s.data)
+	e := s.data[n-1]
+	s.data = s.data[:n-1]
+	defer s.lock.Unlock()
+	return &e
+}
+
+// IsEmpty returns true if the stack is empty
+func (s *InfStack) IsEmpty() bool {
+	return len(s.data) == 0
+}
+
+// GetTop of the stack
+func (s *InfStack) GetTop() *Elem {
+	if s.IsEmpty() {
+		return nil
+	}
+	return &s.data[len(s.data)-1]
+}
+
+// Len returns the number of elements in the stack
+func (s *InfStack) Len() int {
+	return len(s.data)
+}

@@ -42,8 +42,8 @@ func (q *Queue) IsEmpty() bool {
 	return false
 }
 
-// EnQueue an element
-func (q *Queue) EnQueue(e Elem) error {
+// Enqueue an element
+func (q *Queue) Enqueue(e Elem) error {
 	q.lock.Lock()
 	defer q.lock.Unlock()
 	if (q.rear+1)%(cap(q.data)) == q.front {
@@ -54,8 +54,8 @@ func (q *Queue) EnQueue(e Elem) error {
 	return nil
 }
 
-// DeQueue an element
-func (q *Queue) DeQueue() (Elem, error) {
+// Dequeue an element
+func (q *Queue) Dequeue() (Elem, error) {
 	if q.IsEmpty() {
 		return 0, fmt.Errorf("queue is empty")
 	}
@@ -73,4 +73,50 @@ func (q *Queue) Front() Elem {
 
 	e := q.data[q.front]
 	return e
+}
+
+// InfQueue without limited size
+type InfQueue struct {
+	data []Elem
+	lock sync.RWMutex
+}
+
+// New an infinite queue
+func (q *InfQueue) New() *InfQueue {
+	q.data = []Elem{}
+	return q
+}
+
+// Enqueue an element at rear
+func (q *InfQueue) Enqueue(e Elem) {
+	q.lock.Lock()
+	q.data = append(q.data, e)
+	q.lock.Unlock()
+}
+
+// Dequeue an element at front
+func (q *InfQueue) Dequeue() *Elem {
+	q.lock.Lock()
+	e := q.data[0]
+	q.data = q.data[1:]
+	q.lock.Unlock()
+	return &e
+}
+
+// Front of queue
+func (q *InfQueue) Front() *Elem {
+	q.lock.RLock()
+	e := q.data[0]
+	q.lock.RUnlock()
+	return &e
+}
+
+// IsEmpty returns true if the queue is empty
+func (q *InfQueue) IsEmpty() bool {
+	return len(q.data) == 0
+}
+
+// Len returns the number of elements in the queue
+func (q *InfQueue) Len() int {
+	return len(q.data)
 }
