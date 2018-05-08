@@ -3,6 +3,7 @@ package test
 import (
 	"testing"
 
+	"github.com/CAIJUNYI/GoAlgorithms/datastructure"
 	"github.com/CAIJUNYI/GoAlgorithms/interviews"
 )
 
@@ -27,4 +28,14 @@ func Test04ReplaceBlank(t *testing.T) {
 	if r3 != exp3 {
 		t.Errorf("expected %v and got %v", exp3, r3)
 	}
+}
+
+func Test05PrintLinkedList(t *testing.T) {
+	var ll datastructure.LinkedList
+	ll.Append("1")
+	ll.Append("2")
+	ll.Append("3")
+	ll.Append("4")
+
+	interviews.PrintLinkedlistReversely(&ll)
 }

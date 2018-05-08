@@ -9,7 +9,7 @@ import (
 // Node of linkedlist
 type Node struct {
 	Data Elem
-	next *Node
+	Next *Node
 }
 
 // LinkedList struct
@@ -28,10 +28,10 @@ func (l *LinkedList) Append(e Elem) {
 		l.head = &node
 	} else {
 		last := l.head
-		for last.next != nil {
-			last = last.next
+		for last.Next != nil {
+			last = last.Next
 		}
-		last.next = &node
+		last.Next = &node
 	}
 	l.length++
 }
@@ -47,16 +47,16 @@ func (l *LinkedList) Insert(k int, e Elem) error {
 
 	node := Node{e, nil}
 	if k == 0 {
-		node.next = l.head
+		node.Next = l.head
 		l.head = &node
 		return nil
 	}
 	last := l.head
 	for i := 0; i < k-1; i++ {
-		last = last.next
+		last = last.Next
 	}
-	node.next = last.next
-	last.next = &node
+	node.Next = last.Next
+	last.Next = &node
 	l.length++
 	return nil
 }
@@ -72,10 +72,10 @@ func (l *LinkedList) Remove(k int) (*Elem, error) {
 
 	last := l.head
 	for i := 0; i < k-1; i++ {
-		last = last.next
+		last = last.Next
 	}
-	node := last.next
-	last.next = node.next
+	node := last.Next
+	last.Next = node.Next
 	l.length--
 	return &node.Data, nil
 }
@@ -86,8 +86,8 @@ func (l *LinkedList) Clear() {
 	defer l.lock.Unlock()
 
 	last := l.head
-	for last.next != nil {
-		last.next = last.next.next
+	for last.Next != nil {
+		last.Next = last.Next.Next
 	}
 	l.head = nil
 	l.length = 0
@@ -104,7 +104,7 @@ func (l *LinkedList) Get(k int) (*Elem, bool) {
 
 	last := l.head
 	for i := 0; i < k && last != nil; i++ {
-		last = last.next
+		last = last.Next
 	}
 	if last == nil {
 		return nil, false
@@ -121,7 +121,7 @@ func (l *LinkedList) IndexOf(e Elem) (int, bool) {
 		if last.Data == e {
 			return i, true
 		}
-		last = last.next
+		last = last.Next
 	}
 	return -1, false
 }
@@ -149,10 +149,10 @@ func (l *LinkedList) String() string {
 
 	node := l.head
 	var b bytes.Buffer
-	for node.next != nil {
+	for node.Next != nil {
 		b.WriteString(fmt.Sprintf("%v", node.Data))
 		b.WriteString("->")
-		node = node.next
+		node = node.Next
 	}
 	b.WriteString(node.Data.(string))
 	return b.String()
