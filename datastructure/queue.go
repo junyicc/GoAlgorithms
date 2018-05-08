@@ -75,27 +75,27 @@ func (q *Queue) Front() Elem {
 	return e
 }
 
-// InfQueue without limited size
-type InfQueue struct {
+// DynamicQueue without limited size
+type DynamicQueue struct {
 	data []Elem
 	lock sync.RWMutex
 }
 
 // New an infinite queue
-func (q *InfQueue) New() *InfQueue {
+func (q *DynamicQueue) New() *DynamicQueue {
 	q.data = []Elem{}
 	return q
 }
 
 // Enqueue an element at rear
-func (q *InfQueue) Enqueue(e Elem) {
+func (q *DynamicQueue) Enqueue(e Elem) {
 	q.lock.Lock()
 	q.data = append(q.data, e)
 	q.lock.Unlock()
 }
 
 // Dequeue an element at front
-func (q *InfQueue) Dequeue() *Elem {
+func (q *DynamicQueue) Dequeue() *Elem {
 	q.lock.Lock()
 	e := q.data[0]
 	q.data = q.data[1:]
@@ -104,7 +104,7 @@ func (q *InfQueue) Dequeue() *Elem {
 }
 
 // Front of queue
-func (q *InfQueue) Front() *Elem {
+func (q *DynamicQueue) Front() *Elem {
 	q.lock.RLock()
 	e := q.data[0]
 	q.lock.RUnlock()
@@ -112,11 +112,11 @@ func (q *InfQueue) Front() *Elem {
 }
 
 // IsEmpty returns true if the queue is empty
-func (q *InfQueue) IsEmpty() bool {
+func (q *DynamicQueue) IsEmpty() bool {
 	return len(q.data) == 0
 }
 
 // Len returns the number of elements in the queue
-func (q *InfQueue) Len() int {
+func (q *DynamicQueue) Len() int {
 	return len(q.data)
 }

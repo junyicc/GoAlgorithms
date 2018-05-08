@@ -6,7 +6,7 @@ import (
 	"github.com/CAIJUNYI/GoAlgorithms/interviews"
 )
 
-func TestReplaceBlank(t *testing.T) {
+func Test04ReplaceBlank(t *testing.T) {
 	s1 := " abc def  g  "
 	r1 := interviews.ReplaceBlank(s1)
 	exp1 := "%20abc%20def%20%20g%20%20"

@@ -174,7 +174,7 @@ func preOrderTraverseIter(root *TreeNode, f func(Elem)) {
 	if root == nil {
 		return
 	}
-	stack := &InfStack{}
+	stack := &DynamicStack{}
 	stack = stack.New()
 	stack.Push(root)
 
@@ -184,7 +184,7 @@ func preOrderTraverseIter(root *TreeNode, f func(Elem)) {
 	}
 }
 
-func visitAlongLeft(stack *InfStack, node *TreeNode, f func(Elem)) {
+func visitAlongLeft(stack *DynamicStack, node *TreeNode, f func(Elem)) {
 	for node != nil {
 		f(node.data)
 		stack.Push(node.rchild)
@@ -203,7 +203,7 @@ func inOrderTraverseIter(root *TreeNode, f func(Elem)) {
 	if root == nil {
 		return
 	}
-	stack := &InfStack{}
+	stack := &DynamicStack{}
 	stack = stack.New()
 	goAlongLeft(stack, root)
 
@@ -216,7 +216,7 @@ func inOrderTraverseIter(root *TreeNode, f func(Elem)) {
 	}
 }
 
-func goAlongLeft(stack *InfStack, node *TreeNode) {
+func goAlongLeft(stack *DynamicStack, node *TreeNode) {
 	for node != nil {
 		stack.Push(node)
 		node = node.lchild
@@ -235,7 +235,7 @@ func postOrderTraverseIter(root *TreeNode, f func(Elem)) {
 		return
 	}
 
-	stack := &InfStack{}
+	stack := &DynamicStack{}
 	stack = stack.New()
 	stack.Push(root)
 	var pre *TreeNode
@@ -280,7 +280,7 @@ func levelTraverse(root *TreeNode, f func(Elem)) {
 		return
 	}
 
-	var queue = &InfQueue{}
+	var queue = &DynamicQueue{}
 	queue = queue.New()
 	queue.Enqueue(root)
 
