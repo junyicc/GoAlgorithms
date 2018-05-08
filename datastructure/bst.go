@@ -6,15 +6,15 @@ import (
 
 // TreeNode struct
 type TreeNode struct {
-	key    int
-	data   Elem
-	lchild *TreeNode
-	rchild *TreeNode
+	Key    int
+	Data   Elem
+	LChild *TreeNode
+	RChild *TreeNode
 }
 
 // BST is a binary search tree strcut
 type BST struct {
-	root *TreeNode
+	Root *TreeNode
 	lock sync.RWMutex
 }
 
@@ -24,26 +24,26 @@ func (bst *BST) Insert(key int, data Elem) {
 	defer bst.lock.Unlock()
 
 	node := &TreeNode{key, data, nil, nil}
-	if bst.root == nil {
+	if bst.Root == nil {
 		// change root
-		bst.root = node
+		bst.Root = node
 	} else {
-		insertTreeNode(bst.root, node)
+		insertTreeNode(bst.Root, node)
 	}
 }
 
 func insertTreeNode(root, node *TreeNode) {
-	if node.key <= root.key {
-		if root.lchild == nil {
-			root.lchild = node
+	if node.Key <= root.Key {
+		if root.LChild == nil {
+			root.LChild = node
 		} else {
-			insertTreeNode(root.lchild, node)
+			insertTreeNode(root.LChild, node)
 		}
 	} else {
-		if root.rchild == nil {
-			root.rchild = node
+		if root.RChild == nil {
+			root.RChild = node
 		} else {
-			insertTreeNode(root.rchild, node)
+			insertTreeNode(root.RChild, node)
 		}
 	}
 }
@@ -52,20 +52,20 @@ func insertTreeNode(root, node *TreeNode) {
 func (bst *BST) Search(key int) (*Elem, bool) {
 	bst.lock.RLock()
 	defer bst.lock.RUnlock()
-	return search(bst.root, key)
+	return search(bst.Root, key)
 }
 
 func search(node *TreeNode, key int) (*Elem, bool) {
 	if node == nil {
 		return nil, false
 	}
-	if key < node.key {
-		return search(node.lchild, key)
-	} else if key > node.key {
-		return search(node.rchild, key)
+	if key < node.Key {
+		return search(node.LChild, key)
+	} else if key > node.Key {
+		return search(node.RChild, key)
 	}
 
-	return &node.data, true
+	return &node.Data, true
 }
 
 // Remove node
@@ -73,43 +73,43 @@ func (bst *BST) Remove(key int) (*Elem, bool) {
 	bst.lock.Lock()
 	defer bst.lock.Unlock()
 
-	return remove(bst.root, key)
+	return remove(bst.Root, key)
 }
 
 func remove(node *TreeNode, key int) (*Elem, bool) {
 	if node == nil {
 		return nil, false
 	}
-	if key < node.key {
-		return remove(node.lchild, key)
-	} else if key > node.key {
-		return remove(node.rchild, key)
+	if key < node.Key {
+		return remove(node.LChild, key)
+	} else if key > node.Key {
+		return remove(node.RChild, key)
 	}
 
-	e := node.data // key == node.key
+	e := node.Data // key == node.Key
 	// remove node
-	if node.lchild == nil && node.rchild == nil {
+	if node.LChild == nil && node.RChild == nil {
 		node = nil
 		return &e, true
 	}
 
-	if node.lchild == nil {
-		node = node.rchild
-	} else if node.rchild == nil {
-		node = node.lchild
+	if node.LChild == nil {
+		node = node.RChild
+	} else if node.RChild == nil {
+		node = node.LChild
 	} else {
-		r := node.lchild
+		r := node.LChild
 		p := node
-		for r.rchild != nil {
+		for r.RChild != nil {
 			p = r
-			r = r.rchild
+			r = r.RChild
 		}
-		node.key = r.key
-		node.data = r.data
+		node.Key = r.Key
+		node.Data = r.Data
 		if p != node {
-			p.rchild = r.lchild
+			p.RChild = r.LChild
 		} else {
-			p.lchild = r.lchild
+			p.LChild = r.LChild
 		}
 	}
 	return &e, true
@@ -120,14 +120,14 @@ func (bst *BST) PreOrderTraverseRecur(f func(Elem)) {
 	bst.lock.RLock()
 	bst.lock.RUnlock()
 
-	preOrderTraverseRecur(bst.root, f)
+	preOrderTraverseRecur(bst.Root, f)
 }
 
 func preOrderTraverseRecur(node *TreeNode, f func(Elem)) {
 	if node != nil {
-		f(node.data)
-		preOrderTraverseRecur(node.lchild, f)
-		preOrderTraverseRecur(node.rchild, f)
+		f(node.Data)
+		preOrderTraverseRecur(node.LChild, f)
+		preOrderTraverseRecur(node.RChild, f)
 	}
 }
 
@@ -136,14 +136,14 @@ func (bst *BST) InOrderTraverseRecur(f func(Elem)) {
 	bst.lock.RLock()
 	bst.lock.RUnlock()
 
-	inOrderTraverseRecur(bst.root, f)
+	inOrderTraverseRecur(bst.Root, f)
 }
 
 func inOrderTraverseRecur(node *TreeNode, f func(Elem)) {
 	if node != nil {
-		inOrderTraverseRecur(node.lchild, f)
-		f(node.data)
-		inOrderTraverseRecur(node.rchild, f)
+		inOrderTraverseRecur(node.LChild, f)
+		f(node.Data)
+		inOrderTraverseRecur(node.RChild, f)
 	}
 }
 
@@ -152,14 +152,14 @@ func (bst *BST) PostOrderTraverseRecur(f func(Elem)) {
 	bst.lock.RLock()
 	bst.lock.RUnlock()
 
-	postOrderTraverseRecur(bst.root, f)
+	postOrderTraverseRecur(bst.Root, f)
 }
 
 func postOrderTraverseRecur(node *TreeNode, f func(Elem)) {
 	if node != nil {
-		postOrderTraverseRecur(node.lchild, f)
-		postOrderTraverseRecur(node.rchild, f)
-		f(node.data)
+		postOrderTraverseRecur(node.LChild, f)
+		postOrderTraverseRecur(node.RChild, f)
+		f(node.Data)
 	}
 }
 
@@ -167,7 +167,7 @@ func postOrderTraverseRecur(node *TreeNode, f func(Elem)) {
 func (bst *BST) PreOrderTraverseIter(f func(Elem)) {
 	bst.lock.RLock()
 	defer bst.lock.RUnlock()
-	preOrderTraverseIter(bst.root, f)
+	preOrderTraverseIter(bst.Root, f)
 }
 
 func preOrderTraverseIter(root *TreeNode, f func(Elem)) {
@@ -186,9 +186,9 @@ func preOrderTraverseIter(root *TreeNode, f func(Elem)) {
 
 func visitAlongLeft(stack *DynamicStack, node *TreeNode, f func(Elem)) {
 	for node != nil {
-		f(node.data)
-		stack.Push(node.rchild)
-		node = node.lchild
+		f(node.Data)
+		stack.Push(node.RChild)
+		node = node.LChild
 	}
 }
 
@@ -196,7 +196,7 @@ func visitAlongLeft(stack *DynamicStack, node *TreeNode, f func(Elem)) {
 func (bst *BST) InOrderTraverseIter(f func(Elem)) {
 	bst.lock.RLock()
 	defer bst.lock.RUnlock()
-	inOrderTraverseIter(bst.root, f)
+	inOrderTraverseIter(bst.Root, f)
 }
 
 func inOrderTraverseIter(root *TreeNode, f func(Elem)) {
@@ -209,9 +209,9 @@ func inOrderTraverseIter(root *TreeNode, f func(Elem)) {
 
 	for !stack.IsEmpty() {
 		node := (*stack.Pop()).(*TreeNode)
-		f(node.data)
+		f(node.Data)
 
-		node = node.rchild
+		node = node.RChild
 		goAlongLeft(stack, node)
 	}
 }
@@ -219,7 +219,7 @@ func inOrderTraverseIter(root *TreeNode, f func(Elem)) {
 func goAlongLeft(stack *DynamicStack, node *TreeNode) {
 	for node != nil {
 		stack.Push(node)
-		node = node.lchild
+		node = node.LChild
 	}
 }
 
@@ -227,7 +227,7 @@ func goAlongLeft(stack *DynamicStack, node *TreeNode) {
 func (bst *BST) PostOrderTraverseIter(f func(Elem)) {
 	bst.lock.RLock()
 	defer bst.lock.RUnlock()
-	postOrderTraverseIter(bst.root, f)
+	postOrderTraverseIter(bst.Root, f)
 }
 
 func postOrderTraverseIter(root *TreeNode, f func(Elem)) {
@@ -242,27 +242,27 @@ func postOrderTraverseIter(root *TreeNode, f func(Elem)) {
 	for !stack.IsEmpty() {
 		cur := (*stack.GetTop()).(*TreeNode)
 		// traversing down the tree
-		if pre == nil || pre.lchild == cur || pre.rchild == cur {
-			if cur.lchild != nil {
-				stack.Push(cur.lchild)
-			} else if cur.rchild != nil {
-				stack.Push(cur.rchild)
+		if pre == nil || pre.LChild == cur || pre.RChild == cur {
+			if cur.LChild != nil {
+				stack.Push(cur.LChild)
+			} else if cur.RChild != nil {
+				stack.Push(cur.RChild)
 			} else {
 				stack.Pop()
-				f(cur.data)
+				f(cur.Data)
 			}
-		} else if cur.lchild == pre {
+		} else if cur.LChild == pre {
 			// traversing up the tree from the left
-			if cur.rchild != nil {
-				stack.Push(cur.rchild)
+			if cur.RChild != nil {
+				stack.Push(cur.RChild)
 			} else {
 				stack.Pop()
-				f(cur.data)
+				f(cur.Data)
 			}
-		} else if cur.rchild == pre {
+		} else if cur.RChild == pre {
 			// traversing up the tree from the right
 			stack.Pop()
-			f(cur.data)
+			f(cur.Data)
 		}
 		pre = cur
 	}
@@ -272,7 +272,7 @@ func postOrderTraverseIter(root *TreeNode, f func(Elem)) {
 func (bst *BST) LevelTraverse(f func(Elem)) {
 	bst.lock.RLock()
 	defer bst.lock.RUnlock()
-	levelTraverse(bst.root, f)
+	levelTraverse(bst.Root, f)
 }
 
 func levelTraverse(root *TreeNode, f func(Elem)) {
@@ -286,13 +286,13 @@ func levelTraverse(root *TreeNode, f func(Elem)) {
 
 	for !queue.IsEmpty() {
 		node := (*queue.Dequeue()).(*TreeNode)
-		f(node.data)
+		f(node.Data)
 
-		if node.lchild != nil {
-			queue.Enqueue(node.lchild)
+		if node.LChild != nil {
+			queue.Enqueue(node.LChild)
 		}
-		if node.rchild != nil {
-			queue.Enqueue(node.rchild)
+		if node.RChild != nil {
+			queue.Enqueue(node.RChild)
 		}
 	}
 }

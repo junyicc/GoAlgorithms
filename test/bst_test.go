@@ -23,16 +23,6 @@ func TestBSTInsert(t *testing.T) {
 }
 
 func TestBSTSearch(t *testing.T) {
-	bst.Insert(8, "8")
-	bst.Insert(4, "4")
-	bst.Insert(10, "10")
-	bst.Insert(2, "2")
-	bst.Insert(6, "6")
-	bst.Insert(1, "1")
-	bst.Insert(3, "3")
-	bst.Insert(5, "5")
-	bst.Insert(7, "7")
-	bst.Insert(9, "9")
 
 	if e, ok := bst.Search(9); !ok || (*e).(string) != "9" {
 		t.Errorf("expected (true, 9) and got (%v, %v)", ok, *e)
@@ -42,38 +32,7 @@ func TestBSTSearch(t *testing.T) {
 	}
 }
 
-func TestBSTRemove(t *testing.T) {
-	bst.Insert(8, "8")
-	bst.Insert(4, "4")
-	bst.Insert(10, "10")
-	bst.Insert(2, "2")
-	bst.Insert(6, "6")
-	bst.Insert(1, "1")
-	bst.Insert(3, "3")
-	bst.Insert(5, "5")
-	bst.Insert(7, "7")
-	bst.Insert(9, "9")
-
-	if e, ok := bst.Remove(4); !ok || (*e).(string) != "4" {
-		t.Errorf("expected (true, 4) and got (%v, %v)", ok, *e)
-	}
-
-	if e, ok := bst.Search(4); ok || e != nil {
-		t.Errorf("expected (false, nil) and got (%v, %v)", ok, *e)
-	}
-}
-
 func TestBSTPreOrderTraverse(t *testing.T) {
-	bst.Insert(8, "8")
-	bst.Insert(4, "4")
-	bst.Insert(10, "10")
-	bst.Insert(2, "2")
-	bst.Insert(6, "6")
-	bst.Insert(1, "1")
-	bst.Insert(3, "3")
-	bst.Insert(5, "5")
-	bst.Insert(7, "7")
-	bst.Insert(9, "9")
 	var result []string
 	expPreOrder := []string{"8", "4", "2", "1", "3", "6", "5", "7", "10", "9"}
 
@@ -104,16 +63,6 @@ func TestBSTPreOrderTraverse(t *testing.T) {
 }
 
 func TestBSTInOrderTraverse(t *testing.T) {
-	bst.Insert(8, "8")
-	bst.Insert(4, "4")
-	bst.Insert(10, "10")
-	bst.Insert(2, "2")
-	bst.Insert(6, "6")
-	bst.Insert(1, "1")
-	bst.Insert(3, "3")
-	bst.Insert(5, "5")
-	bst.Insert(7, "7")
-	bst.Insert(9, "9")
 	var result []string
 	expInOrder := []string{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}
 
@@ -144,16 +93,6 @@ func TestBSTInOrderTraverse(t *testing.T) {
 }
 
 func TestBSTPostOrderTraverse(t *testing.T) {
-	bst.Insert(8, "8")
-	bst.Insert(4, "4")
-	bst.Insert(10, "10")
-	bst.Insert(2, "2")
-	bst.Insert(6, "6")
-	bst.Insert(1, "1")
-	bst.Insert(3, "3")
-	bst.Insert(5, "5")
-	bst.Insert(7, "7")
-	bst.Insert(9, "9")
 	var result []string
 	expPostOrder := []string{"1", "3", "2", "5", "7", "6", "4", "9", "10", "8"}
 
@@ -184,16 +123,6 @@ func TestBSTPostOrderTraverse(t *testing.T) {
 }
 
 func TestBSTLevelTraverse(t *testing.T) {
-	bst.Insert(8, "8")
-	bst.Insert(4, "4")
-	bst.Insert(10, "10")
-	bst.Insert(2, "2")
-	bst.Insert(6, "6")
-	bst.Insert(1, "1")
-	bst.Insert(3, "3")
-	bst.Insert(5, "5")
-	bst.Insert(7, "7")
-	bst.Insert(9, "9")
 	var result []string
 	expLevelOrder := []string{"8", "4", "10", "2", "6", "9", "1", "3", "5", "7"}
 
@@ -210,5 +139,14 @@ func TestBSTLevelTraverse(t *testing.T) {
 			t.Errorf("expected %v and got %v", expLevelOrder[i], e)
 		}
 	}
+}
+func TestBSTRemove(t *testing.T) {
 
+	if e, ok := bst.Remove(4); !ok || (*e).(string) != "4" {
+		t.Errorf("expected (true, 4) and got (%v, %v)", ok, *e)
+	}
+
+	if e, ok := bst.Search(4); ok || e != nil {
+		t.Errorf("expected (false, nil) and got (%v, %v)", ok, *e)
+	}
 }

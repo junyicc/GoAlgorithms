@@ -1,6 +1,7 @@
 package test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/CAIJUNYI/GoAlgorithms/datastructure"
@@ -38,4 +39,27 @@ func Test05PrintLinkedList(t *testing.T) {
 	ll.Append("4")
 
 	interviews.PrintLinkedlistReversely(&ll)
+}
+
+func Test06ReconstructTree(t *testing.T) {
+	preorder := []int{8, 4, 2, 1, 3, 6, 5, 7, 10, 9}
+	inorder := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+	tree := interviews.ReConstructTree(preorder, inorder)
+	var result []string
+	expPostOrder := []string{"1", "3", "2", "5", "7", "6", "4", "9", "10", "8"}
+
+	visit := func(e datastructure.Elem) {
+		result = append(result, fmt.Sprintf("%v", e))
+	}
+
+	tree.PostOrderTraverseIter(visit)
+	if len(result) == 0 {
+		t.Errorf("expected %v\n got %v", expPostOrder, result)
+	}
+	for i, e := range result {
+		if expPostOrder[i] != e {
+			t.Errorf("expected %v and got %v", expPostOrder[i], e)
+		}
+	}
 }
