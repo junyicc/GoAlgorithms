@@ -53,7 +53,7 @@ func Test06ReconstructTree(t *testing.T) {
 		result = append(result, fmt.Sprintf("%v", e))
 	}
 
-	tree.PostOrderTraverseIter(visit)
+	tree.PostOrderTraverseIter(tree.Root, visit)
 	if len(result) == 0 {
 		t.Errorf("expected %v\n got %v", expPostOrder, result)
 	}
