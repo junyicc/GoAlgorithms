@@ -161,3 +161,7 @@ func Test11Power(t *testing.T) {
 		t.Errorf("expected 0.25 and got %v", n4)
 	}
 }
+
+func Test12Print1ToMax(t *testing.T) {
+	interviews.Print1ToMaxOfNDigits(3)
+}
