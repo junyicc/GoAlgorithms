@@ -4,8 +4,8 @@ import (
 	"github.com/CAIJUNYI/GoAlgorithms/datastructure"
 )
 
-// ReConstructTree using pre-order and in-order sequence
-func ReConstructTree(preorder, inorder []int) *datastructure.BST {
+// ReConstructBiTree using pre-order and in-order sequence
+func ReConstructBiTree(preorder, inorder []int) *datastructure.BST {
 	if preorder == nil || inorder == nil || len(preorder) < 1 || len(inorder) < 1 {
 		return nil
 	}
