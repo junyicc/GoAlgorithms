@@ -76,6 +76,9 @@ func (l *LinkedList) Remove(k int) (*Elem, error) {
 	}
 	node := last.Next
 	last.Next = node.Next
+	// delete node
+	node.Next = nil
+	node = nil
 	l.length--
 	return &node.Data, nil
 }

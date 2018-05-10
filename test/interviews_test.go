@@ -165,3 +165,28 @@ func Test11Power(t *testing.T) {
 func Test12Print1ToMax(t *testing.T) {
 	interviews.Print1ToMaxOfNDigits(3)
 }
+
+func Test13DeleteNode(t *testing.T) {
+	l1 := datastructure.Node{1, nil}
+	lP := &l1
+	d1 := interviews.DeleteNode(&lP, lP)
+	if *d1 != 1 || lP != nil {
+		t.Errorf("expected 1 and got %v", *d1)
+	}
+
+	n3 := datastructure.Node{3, nil}
+	n2 := datastructure.Node{2, &n3}
+	n1 := datastructure.Node{1, &n2}
+	n1P := &n1
+	if d2 := interviews.DeleteNode(&n1P, &n1); *d2 != 1 || n1P.Data != 2 {
+		t.Errorf("expected 1 and got %v", *d2)
+	}
+	if d3 := interviews.DeleteNode(&n1P, &n3); *d3 != 3 || n1P.Data != 2 {
+		t.Errorf("expected 3 and got %v", *d3)
+	}
+
+	if d := interviews.DeleteNode(nil, nil); d != nil {
+		t.Errorf("expected nil and got %v", d)
+	}
+
+}
