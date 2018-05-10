@@ -188,5 +188,30 @@ func Test13DeleteNode(t *testing.T) {
 	if d := interviews.DeleteNode(nil, nil); d != nil {
 		t.Errorf("expected nil and got %v", d)
 	}
+}
+
+func Test15FindKthToTail(t *testing.T) {
+	n5 := datastructure.Node{5, nil}
+	n4 := datastructure.Node{4, &n5}
+	n3 := datastructure.Node{3, &n4}
+	n2 := datastructure.Node{2, &n3}
+	n1 := datastructure.Node{1, &n2}
+
+	if n := interviews.FindKthToTail(&n1, 1); (*n).Data != 5 {
+		t.Errorf("expected 5 and got %v", (*n).Data)
+	}
+	if n := interviews.FindKthToTail(&n1, 5); (*n).Data != 1 {
+		t.Errorf("expected 1 and got %v", (*n).Data)
+	}
+	if n := interviews.FindKthToTail(&n1, 0); n != nil {
+		t.Errorf("expected nil and got %v", n)
+	}
+
+	if n := interviews.FindKthToTail(&n1, 6); n != nil {
+		t.Errorf("expected nil and got %v", n)
+	}
+	if n := interviews.FindKthToTail(nil, 0); n != nil {
+		t.Errorf("expected nil and got %v", n)
+	}
 
 }
