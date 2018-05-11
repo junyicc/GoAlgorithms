@@ -25,9 +25,9 @@ func NumOfChangingBits(m, n int) int {
 }
 
 // IsOdd return true if n is an odd number
-func IsOdd(n uint) bool {
-	if n == 0 {
+func IsOdd(n int) bool {
+	if n <= 0 {
 		return false
 	}
-	return n&1 == 1
+	return uint(n)&1 == 1
 }

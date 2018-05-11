@@ -33,7 +33,7 @@ func power(base float64, exponent uint) float64 {
 
 	result := power(base, exponent>>1)
 	result *= result
-	if IsOdd(exponent) {
+	if IsOdd(int(exponent)) {
 		result *= base
 	}
 

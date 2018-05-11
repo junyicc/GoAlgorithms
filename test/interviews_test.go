@@ -167,16 +167,16 @@ func Test12Print1ToMax(t *testing.T) {
 }
 
 func Test13DeleteNode(t *testing.T) {
-	l1 := datastructure.Node{1, nil}
+	l1 := datastructure.Node{Data: 1, Next: nil}
 	lP := &l1
 	d1 := interviews.DeleteNode(&lP, lP)
 	if *d1 != 1 || lP != nil {
 		t.Errorf("expected 1 and got %v", *d1)
 	}
 
-	n3 := datastructure.Node{3, nil}
-	n2 := datastructure.Node{2, &n3}
-	n1 := datastructure.Node{1, &n2}
+	n3 := datastructure.Node{Data: 3, Next: nil}
+	n2 := datastructure.Node{Data: 2, Next: &n3}
+	n1 := datastructure.Node{Data: 1, Next: &n2}
 	n1P := &n1
 	if d2 := interviews.DeleteNode(&n1P, &n1); *d2 != 1 || n1P.Data != 2 {
 		t.Errorf("expected 1 and got %v", *d2)
@@ -190,12 +190,23 @@ func Test13DeleteNode(t *testing.T) {
 	}
 }
 
+func Test14ReorderOddEven(t *testing.T) {
+	arr := []int{1, 2, 3, 4, 5}
+	seq := interviews.ReorderOddEven2(arr)
+	exp := []int{1, 5, 3, 4, 2}
+	for i, e := range seq {
+		if e != exp[i] {
+			t.Errorf("expected %v and got %v", exp[i], e)
+		}
+	}
+}
+
 func Test15FindKthToTail(t *testing.T) {
-	n5 := datastructure.Node{5, nil}
-	n4 := datastructure.Node{4, &n5}
-	n3 := datastructure.Node{3, &n4}
-	n2 := datastructure.Node{2, &n3}
-	n1 := datastructure.Node{1, &n2}
+	n5 := datastructure.Node{Data: 5, Next: nil}
+	n4 := datastructure.Node{Data: 4, Next: &n5}
+	n3 := datastructure.Node{Data: 3, Next: &n4}
+	n2 := datastructure.Node{Data: 2, Next: &n3}
+	n1 := datastructure.Node{Data: 1, Next: &n2}
 
 	if n := interviews.FindKthToTail(&n1, 1); (*n).Data != 5 {
 		t.Errorf("expected 5 and got %v", (*n).Data)
