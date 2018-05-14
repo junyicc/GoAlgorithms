@@ -14,11 +14,16 @@ type Heap struct {
 
 // Less comparison
 func (h *Heap) Less(i, j int) bool {
+	if i < 0 || j < 0 || i >= h.Len() || j >= h.Len() {
+		return false
+	}
 	switch h.data[0].(type) {
 	case nil:
 		return false
-	case int, int16, int32, int64:
+	case int, int8, int16, int32, int64:
 		return h.data[i].(int) < h.data[j].(int)
+	case uint, uint8, uint16, uint32, uint64:
+		return h.data[i].(uint) < h.data[j].(uint)
 	case float32, float64:
 		return h.data[i].(float64) < h.data[j].(float64)
 	case string:
