@@ -288,3 +288,40 @@ func Test17MergeLinkedlist(t *testing.T) {
 		t.Errorf("failed merging linkedlist")
 	}
 }
+
+func Test18HasSubtree(t *testing.T) {
+	var t1 datastructure.BST
+	t1.Insert(8, "8")
+	t1.Insert(4, "4")
+	t1.Insert(10, "10")
+	t1.Insert(2, "2")
+	t1.Insert(6, "6")
+	t1.Insert(1, "1")
+
+	var t2 datastructure.BST
+	t2.Insert(10, "10")
+	t2.Insert(2, "2")
+	t2.Insert(6, "6")
+	// t2 is a subtree of t1
+	if has := interviews.HasSubtree(t1.Root, t2.Root); !has {
+		t.Errorf("expected true and got %v", has)
+	}
+	// nil pointer
+	if has := interviews.HasSubtree(nil, nil); has {
+		t.Errorf("expected false and got %v", has)
+	}
+
+	var t3 datastructure.BST
+	t3.Insert(1, "1")
+	var t4 datastructure.BST
+	t4.Insert(1, "1")
+	// only one node
+	if has := interviews.HasSubtree(t3.Root, t4.Root); !has {
+		t.Errorf("expected true and got %v", has)
+	}
+	// t4 is not a subtree of t3
+	t4.Insert(2, "2")
+	if has := interviews.HasSubtree(t3.Root, t4.Root); has {
+		t.Errorf("expected false and got %v", has)
+	}
+}
