@@ -325,3 +325,16 @@ func Test18HasSubtree(t *testing.T) {
 		t.Errorf("expected false and got %v", has)
 	}
 }
+
+func Test19TreeMirror(t *testing.T) {
+	var bst datastructure.BST
+	bst.Insert(8, "8")
+	bst.Insert(4, "4")
+	bst.Insert(10, "10")
+	bst.Insert(2, "2")
+
+	interviews.BiTreeMirror(bst.Root)
+	if bst.Root.LChild.Key != 10 || bst.Root.RChild.Key != 4 || bst.Root.RChild.RChild.Key != 2 || bst.Root.RChild.LChild != nil {
+		t.Errorf("failed mirror binary tree")
+	}
+}
