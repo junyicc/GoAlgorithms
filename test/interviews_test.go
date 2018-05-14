@@ -338,3 +338,61 @@ func Test19TreeMirror(t *testing.T) {
 		t.Errorf("failed mirror binary tree")
 	}
 }
+
+func Test20VisitMatrixClockwisely(t *testing.T) {
+	m1 := [][]int{
+		{1, 2, 3, 4},
+		{5, 6, 7, 8},
+		{9, 10, 11, 12},
+		{13, 14, 15, 16},
+	}
+	result := []int{}
+	visit := func(e int) {
+		result = append(result, e)
+	}
+
+	interviews.VisitMatrixClockwisely(m1, 4, 4, visit)
+	exp1 := []int{1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10}
+	for i, e := range result {
+		if e != exp1[i] {
+			t.Errorf("expected %v and got %v", exp1[i], e)
+		}
+	}
+	// only one row
+	m2 := [][]int{
+		{1, 2, 3, 4},
+	}
+	result = []int{}
+	exp2 := []int{1, 2, 3, 4}
+	interviews.VisitMatrixClockwisely(m2, 1, 4, visit)
+	for i, e := range result {
+		if e != exp2[i] {
+			t.Errorf("expected %v and got %v", exp2[i], e)
+		}
+	}
+	// only one col
+	m3 := [][]int{
+		{1},
+		{4},
+		{3},
+		{2},
+	}
+	result = []int{}
+	exp3 := []int{1, 4, 3, 2}
+	interviews.VisitMatrixClockwisely(m3, 4, 1, visit)
+	for i, e := range result {
+		if e != exp3[i] {
+			t.Errorf("expected %v and got %v", exp3[i], e)
+		}
+	}
+	// only one entry
+	m4 := [][]int{{3}}
+	result = []int{}
+	exp4 := []int{3}
+	interviews.VisitMatrixClockwisely(m4, 1, 1, visit)
+	for i, e := range result {
+		if e != exp4[i] {
+			t.Errorf("expected %v and got %v", exp4[i], e)
+		}
+	}
+}
