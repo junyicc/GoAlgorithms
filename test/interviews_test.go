@@ -226,3 +226,36 @@ func Test15FindKthToTail(t *testing.T) {
 	}
 
 }
+func Test15FindMidNode(t *testing.T) {
+	n5 := datastructure.Node{Data: 5, Next: nil}
+	n4 := datastructure.Node{Data: 4, Next: &n5}
+	n3 := datastructure.Node{Data: 3, Next: &n4}
+	n2 := datastructure.Node{Data: 2, Next: &n3}
+	n1 := datastructure.Node{Data: 1, Next: &n2}
+
+	if n := interviews.FindMidNode(&n1); (*n).Data != 3 {
+		t.Errorf("expected 3 and got %v", (*n).Data)
+	}
+
+	n6 := datastructure.Node{Data: 6, Next: nil}
+	n5.Next = &n6
+	if n := interviews.FindMidNode(&n1); (*n).Data != 3 {
+		t.Errorf("expected 3 and got %v", (*n).Data)
+	}
+}
+
+func Test15IsLoop(t *testing.T) {
+	n5 := datastructure.Node{Data: 5, Next: nil}
+	n4 := datastructure.Node{Data: 4, Next: &n5}
+	n3 := datastructure.Node{Data: 3, Next: &n4}
+	n2 := datastructure.Node{Data: 2, Next: &n3}
+	n1 := datastructure.Node{Data: 1, Next: &n2}
+	if b := interviews.IsLoop(&n1); b {
+		t.Errorf("expected false and got %v", b)
+	}
+
+	n5.Next = &n1
+	if b := interviews.IsLoop(&n1); !b {
+		t.Errorf("expected true and got %v", b)
+	}
+}
