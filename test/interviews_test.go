@@ -277,3 +277,14 @@ func Test16ReverseLinkedlist(t *testing.T) {
 		t.Errorf("failed reversing linkedlist")
 	}
 }
+
+func Test17MergeLinkedlist(t *testing.T) {
+	n4 := datastructure.Node{Data: 5, Next: nil}
+	n3 := datastructure.Node{Data: 4, Next: nil}
+	n2 := datastructure.Node{Data: 3, Next: &n4}
+	n1 := datastructure.Node{Data: 2, Next: &n3}
+
+	if n := interviews.MergeLinkedlist(&n1, &n2); n != &n1 || n.Next != &n2 || n.Next.Next != &n3 || n.Next.Next.Next != &n4 {
+		t.Errorf("failed merging linkedlist")
+	}
+}

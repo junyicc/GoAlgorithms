@@ -12,6 +12,28 @@ type Node struct {
 	Next *Node
 }
 
+// Less comparison
+func (n *Node) Less(node *Node) bool {
+	if node == nil {
+		return false
+	}
+
+	switch node.Data.(type) {
+	case nil:
+		return false
+	case int, int8, int16, int32, int64:
+		return n.Data.(int) < node.Data.(int)
+	case uint, uint8, uint16, uint32, uint64:
+		return n.Data.(uint) < node.Data.(uint)
+	case float32, float64:
+		return n.Data.(float64) < node.Data.(float64)
+	case string:
+		return n.Data.(string) < node.Data.(string)
+	default:
+		return false
+	}
+}
+
 // LinkedList struct
 type LinkedList struct {
 	head   *Node
