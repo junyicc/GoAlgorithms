@@ -259,3 +259,21 @@ func Test15IsLoop(t *testing.T) {
 		t.Errorf("expected true and got %v", b)
 	}
 }
+
+func Test16ReverseLinkedlist(t *testing.T) {
+	n3 := datastructure.Node{Data: 3, Next: nil}
+	n2 := datastructure.Node{Data: 2, Next: &n3}
+	n1 := datastructure.Node{Data: 1, Next: &n2}
+
+	if n := interviews.ReverseLinkedlist(&n1); n != &n3 || n.Next != &n2 || n.Next.Next != &n1 {
+		t.Errorf("failed reversing linkedlist")
+	}
+
+	if n := interviews.ReverseLinkedlist(&n1); n != &n1 || n.Next != nil {
+		t.Errorf("failed reversing linkedlist")
+	}
+
+	if n := interviews.ReverseLinkedlist(nil); n != nil {
+		t.Errorf("failed reversing linkedlist")
+	}
+}
