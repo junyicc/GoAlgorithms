@@ -412,3 +412,12 @@ func Test21StackWithMin(t *testing.T) {
 		t.Errorf("expected 1 and got %v", m)
 	}
 }
+
+func Test22IsPopOrder(t *testing.T) {
+	pushOrder := []int{1, 2, 3, 4, 5}
+	popOrder := []int{3, 5, 4, 2, 1}
+
+	if order := interviews.IsPopOrder(pushOrder, popOrder); !order {
+		t.Errorf("expected true and got %v", order)
+	}
+}
