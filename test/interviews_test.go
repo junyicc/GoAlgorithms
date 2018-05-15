@@ -396,3 +396,19 @@ func Test20VisitMatrixClockwisely(t *testing.T) {
 		}
 	}
 }
+
+func Test21StackWithMin(t *testing.T) {
+	s := interviews.StackWithMin{}
+	s.Push(3)
+	s.Push(4)
+	s.Push(2)
+
+	if m := s.Min(); (*m).(int) != 2 {
+		t.Errorf("expected 2 and got %v", m)
+	}
+	s.Pop()
+	s.Push(1)
+	if m := s.Min(); (*m).(int) != 1 {
+		t.Errorf("expected 1 and got %v", m)
+	}
+}

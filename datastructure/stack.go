@@ -106,6 +106,9 @@ func (s *DynamicStack) Push(e Elem) {
 
 // Pop an element from stack
 func (s *DynamicStack) Pop() *Elem {
+	if s.IsEmpty() {
+		return nil
+	}
 	s.lock.Lock()
 	n := len(s.data)
 	e := s.data[n-1]
