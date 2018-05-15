@@ -421,3 +421,63 @@ func Test22IsPopOrder(t *testing.T) {
 		t.Errorf("expected true and got %v", order)
 	}
 }
+
+func Test24VerifyPostSeqOfBST(t *testing.T) {
+	arr1 := []int{5, 7, 6, 9, 11, 10, 8}
+	if b := interviews.VerifyPostSeqOfBST(arr1, 7); !b {
+		t.Errorf("expected true and got %v", b)
+	}
+
+	arr2 := []int{4, 5, 8, 8}
+	if b := interviews.VerifyPostSeqOfBST(arr2, 4); !b {
+		t.Errorf("expected true and got %v", b)
+	}
+
+	arr3 := []int{8, 9, 10}
+	if b := interviews.VerifyPostSeqOfBST(arr3, 3); !b {
+		t.Errorf("expected true and got %v", b)
+	}
+	arr4 := []int{8}
+	if b := interviews.VerifyPostSeqOfBST(arr4, 1); !b {
+		t.Errorf("expected true and got %v", b)
+	}
+
+	arr5 := []int{}
+	if b := interviews.VerifyPostSeqOfBST(arr5, 0); b {
+		t.Errorf("expected false and got %v", b)
+	}
+
+	if b := interviews.VerifyPostSeqOfBST(nil, 0); b {
+		t.Errorf("expected false and got %v", b)
+	}
+}
+
+func Test24VerifyPreSeqOfBST(t *testing.T) {
+	arr1 := []int{8, 6, 5, 7, 10, 9, 11}
+	if b := interviews.VerifyPreSeqOfBST(arr1, 7); !b {
+		t.Errorf("expected true and got %v", b)
+	}
+
+	arr2 := []int{8, 8, 5, 4}
+	if b := interviews.VerifyPreSeqOfBST(arr2, 4); !b {
+		t.Errorf("expected true and got %v", b)
+	}
+
+	arr3 := []int{8, 9, 10}
+	if b := interviews.VerifyPreSeqOfBST(arr3, 3); !b {
+		t.Errorf("expected true and got %v", b)
+	}
+	arr4 := []int{8}
+	if b := interviews.VerifyPreSeqOfBST(arr4, 1); !b {
+		t.Errorf("expected true and got %v", b)
+	}
+
+	arr5 := []int{}
+	if b := interviews.VerifyPreSeqOfBST(arr5, 0); b {
+		t.Errorf("expected false and got %v", b)
+	}
+
+	if b := interviews.VerifyPreSeqOfBST(nil, 0); b {
+		t.Errorf("expected false and got %v", b)
+	}
+}
