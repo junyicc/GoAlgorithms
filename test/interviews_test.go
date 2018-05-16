@@ -481,3 +481,15 @@ func Test24VerifyPreSeqOfBST(t *testing.T) {
 		t.Errorf("expected false and got %v", b)
 	}
 }
+
+func Test25FindPathOfTree(t *testing.T) {
+	var bst datastructure.BST
+	bst.Insert(10, "10")
+	bst.Insert(5, "5")
+	bst.Insert(4, "4")
+	bst.Insert(7, "7")
+	bst.Insert(12, "12")
+	interviews.FindPathofTree(bst.Root, 22)
+
+	t.Errorf("testing...")
+}
