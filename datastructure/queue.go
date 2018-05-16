@@ -1,6 +1,7 @@
 package datastructure
 
 import (
+	"bytes"
 	"fmt"
 	"sync"
 )
@@ -119,4 +120,15 @@ func (q *DynamicQueue) IsEmpty() bool {
 // Len returns the number of elements in the queue
 func (q *DynamicQueue) Len() int {
 	return len(q.data)
+}
+
+// String returns string that are composed of queue elements from front to rear
+func (q *DynamicQueue) String() string {
+	q.lock.RLock()
+	defer q.lock.RUnlock()
+	var b bytes.Buffer
+	for _, e := range q.data {
+		b.WriteString(fmt.Sprintf("%v ", e))
+	}
+	return b.String()
 }

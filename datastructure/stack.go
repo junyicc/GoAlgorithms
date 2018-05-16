@@ -1,6 +1,7 @@
 package datastructure
 
 import (
+	"bytes"
 	"fmt"
 	"sync"
 )
@@ -133,4 +134,15 @@ func (s *DynamicStack) GetTop() *Elem {
 // Len returns the number of elements in the stack
 func (s *DynamicStack) Len() int {
 	return len(s.data)
+}
+
+// String returns string that are composed of stack elements from bottom to top
+func (s *DynamicStack) String() string {
+	s.lock.RLock()
+	defer s.lock.RUnlock()
+	var b bytes.Buffer
+	for _, e := range s.data {
+		b.WriteString(fmt.Sprintf("%v ", e))
+	}
+	return b.String()
 }

@@ -179,7 +179,7 @@ func (l *LinkedList) String() string {
 		b.WriteString("->")
 		node = node.Next
 	}
-	b.WriteString(node.Data.(string))
+	b.WriteString(fmt.Sprintf("%v", node.Data))
 	return b.String()
 }
 
