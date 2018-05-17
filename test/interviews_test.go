@@ -504,7 +504,7 @@ func Test26CloneComplexLinkedlist(t *testing.T) {
 
 	clone := interviews.CloneComplexLinkedlist(&a)
 
-	for node := &a; clone.Next != nil && node.Next != nil; clone, node = clone.Next, node.Next {
+	for node := &a; clone != nil && node != nil; clone, node = clone.Next, node.Next {
 		if clone.Data != node.Data {
 			t.Errorf("expected %v and got %v", node.Data, clone.Data)
 		}

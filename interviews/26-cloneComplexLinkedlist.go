@@ -44,7 +44,7 @@ func divide(head *datastructure.ComplexListNode) *datastructure.ComplexListNode 
 	copyNode := head.Next
 	copyHead := copyNode
 
-	for copyNode.Next == nil {
+	for copyNode.Next != nil {
 		node.Next = copyNode.Next
 		copyNode.Next = node.Next.Next
 
