@@ -547,3 +547,47 @@ func Test26CloneComplexLinkedlist(t *testing.T) {
 		}
 	}
 }
+
+func Test27ConvertBSTToDoubleLinkedlist(t *testing.T) {
+	var bst datastructure.BST
+	bst.Insert(10, "10")
+	bst.Insert(6, "6")
+	bst.Insert(14, "14")
+	bst.Insert(4, "4")
+	bst.Insert(8, "8")
+	bst.Insert(12, "12")
+	bst.Insert(16, "16")
+
+	head := interviews.BSTToDoubleLinkedlist(bst.Root)
+	if head.Key != 4 || head.LChild != nil || head.RChild.Key != 6 {
+		t.Errorf("failed converting bst to double linkedlist")
+	}
+
+	var bst2 datastructure.BST
+	bst2.Insert(10, "10")
+	head = interviews.BSTToDoubleLinkedlist(bst2.Root)
+	if head.Key != 10 || head.LChild != nil || head.RChild != nil {
+		t.Errorf("failed converting bst to double linkedlist")
+	}
+
+	bst2.Insert(6, "6")
+	bst2.Insert(4, "4")
+	head = interviews.BSTToDoubleLinkedlist(bst2.Root)
+	if head.Key != 4 || head.LChild != nil || head.RChild.Key != 6 || head.RChild.RChild.Key != 10 {
+		t.Errorf("failed converting bst to double linkedlist")
+	}
+
+	var bst3 datastructure.BST
+	bst3.Insert(10, "10")
+	bst3.Insert(14, "14")
+	bst3.Insert(16, "16")
+	head = interviews.BSTToDoubleLinkedlist(bst3.Root)
+	if head.Key != 10 || head.LChild != nil || head.RChild.Key != 14 || head.RChild.RChild.Key != 16 {
+		t.Errorf("failed converting bst to double linkedlist")
+	}
+
+	head = interviews.BSTToDoubleLinkedlist(nil)
+	if head != nil {
+		t.Errorf("failed converting bst to double linkedlist")
+	}
+}
