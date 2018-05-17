@@ -508,5 +508,42 @@ func Test26CloneComplexLinkedlist(t *testing.T) {
 		if clone.Data != node.Data {
 			t.Errorf("expected %v and got %v", node.Data, clone.Data)
 		}
+		if node.Sibling != nil {
+			if clone.Sibling.Data != node.Sibling.Data {
+				t.Errorf("expected %v and got %v", node.Data, clone.Data)
+			}
+		}
+	}
+
+	a.Data, a.Next, a.Sibling = "A", &b, &c
+	b.Data, b.Next, b.Sibling = "B", &c, &e
+	c.Data, c.Next, c.Sibling = "C", &d, &c
+	d.Data, d.Next, d.Sibling = "D", &e, &b
+	e.Data, e.Next, e.Sibling = "E", nil, &b
+
+	clone = interviews.CloneComplexLinkedlist(&a)
+
+	for node := &a; clone != nil && node != nil; clone, node = clone.Next, node.Next {
+		if clone.Data != node.Data {
+			t.Errorf("expected %v and got %v", node.Data, clone.Data)
+		}
+		if node.Sibling != nil {
+			if clone.Sibling.Data != node.Sibling.Data {
+				t.Errorf("expected %v and got %v", node.Data, clone.Data)
+			}
+		}
+	}
+
+	o := datastructure.ComplexListNode{Data: "O", Next: nil, Sibling: nil}
+	clone = interviews.CloneComplexLinkedlist(&o)
+	for node := &o; clone != nil && node != nil; clone, node = clone.Next, node.Next {
+		if clone.Data != node.Data {
+			t.Errorf("expected %v and got %v", node.Data, clone.Data)
+		}
+		if node.Sibling != nil {
+			if clone.Sibling.Data != node.Sibling.Data {
+				t.Errorf("expected %v and got %v", node.Data, clone.Data)
+			}
+		}
 	}
 }
