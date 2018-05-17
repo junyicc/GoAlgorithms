@@ -493,3 +493,20 @@ func Test25FindPathOfTree(t *testing.T) {
 
 	t.Errorf("testing...")
 }
+
+func Test26CloneComplexLinkedlist(t *testing.T) {
+	var a, b, c, d, e datastructure.ComplexListNode
+	a.Data, a.Next, a.Sibling = "A", &b, &c
+	b.Data, b.Next, b.Sibling = "B", &c, &e
+	c.Data, c.Next, c.Sibling = "C", &d, nil
+	d.Data, d.Next, d.Sibling = "D", &e, &b
+	e.Data, e.Next, e.Sibling = "E", nil, nil
+
+	clone := interviews.CloneComplexLinkedlist(&a)
+
+	for node := &a; clone.Next != nil && node.Next != nil; clone, node = clone.Next, node.Next {
+		if clone.Data != node.Data {
+			t.Errorf("expected %v and got %v", node.Data, clone.Data)
+		}
+	}
+}

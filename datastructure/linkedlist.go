@@ -12,6 +12,13 @@ type Node struct {
 	Next *Node
 }
 
+// ComplexListNode of LinkedList
+type ComplexListNode struct {
+	Data    Elem
+	Next    *ComplexListNode
+	Sibling *ComplexListNode
+}
+
 // Less comparison
 func (n *Node) Less(node *Node) bool {
 	if node == nil {
