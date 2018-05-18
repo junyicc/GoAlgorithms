@@ -227,6 +227,7 @@ func (g *GraphAdjMatrix) InsertVertex(v *Vertex) {
 
 	// insert vertex
 	g.V = append(g.V, v)
+	g.E[len(g.V)-1][len(g.V)-1] = &Edge{From: v, To: v, Weight: 0}
 	g.lock.Unlock()
 }
 
@@ -255,6 +256,9 @@ func (g *GraphAdjMatrix) InsertEdge(i, j int, weight float64) error {
 	to := g.GetVertex(j)
 	if from == nil || to == nil {
 		return fmt.Errorf("InsertEdge: cannot insert the edge from %d to %d", i, j)
+	}
+	if i == j {
+		weight = 0
 	}
 
 	g.E[i][j] = &Edge{From: from, To: to, Weight: weight}
