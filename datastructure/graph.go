@@ -43,7 +43,7 @@ func (e Edge) New() *Edge {
 // GraphAdjList is an adjacency list strcut of graph
 type GraphAdjList struct {
 	V    []*Vertex
-	E    map[Vertex][]*Edge
+	E    map[*Vertex][]*Edge
 	lock sync.RWMutex
 }
 
@@ -64,7 +64,7 @@ func (g *GraphAdjList) GetEdge(from, to *Vertex) *Edge {
 		return nil
 	}
 
-	near, ok := g.E[*from]
+	near, ok := g.E[from]
 	if !ok {
 		return nil
 	}
@@ -90,7 +90,7 @@ func (g *GraphAdjList) RemoveVertex(k int) error {
 	}
 	g.lock.Lock()
 	vertex := g.V[k]
-	edge := g.E[*vertex]
+	edge := g.E[vertex]
 	// remove vertex
 	g.V = append(g.V[:k], g.V[k+1:]...)
 	// remove edge
@@ -98,7 +98,7 @@ func (g *GraphAdjList) RemoveVertex(k int) error {
 		g.RemoveEdge(vertex, e.To)
 		g.RemoveEdge(e.To, vertex)
 	}
-	delete(g.E, *vertex)
+	delete(g.E, vertex)
 	g.lock.Unlock()
 
 	return nil
@@ -108,17 +108,17 @@ func (g *GraphAdjList) RemoveVertex(k int) error {
 func (g *GraphAdjList) InsertEdge(from, to *Vertex, weight float64) {
 	g.lock.Lock()
 	if g.E == nil {
-		g.E = make(map[Vertex][]*Edge)
+		g.E = make(map[*Vertex][]*Edge)
 	}
-
-	g.E[*from] = append(g.E[*from], &Edge{From: from, To: to, Weight: weight})
+	e := Edge{From: from, To: to, Weight: weight}
+	g.E[from] = append(g.E[from], &e)
 	(*to).In++
 	g.lock.Unlock()
 }
 
 // RemoveEdge removes an edge
 func (g *GraphAdjList) RemoveEdge(from, to *Vertex) error {
-	edge, ok := g.E[*from]
+	edge, ok := g.E[from]
 	if !ok {
 		return fmt.Errorf("RemoveEdge: does not exist vertex %v", from)
 	}
@@ -126,7 +126,7 @@ func (g *GraphAdjList) RemoveEdge(from, to *Vertex) error {
 	g.lock.Lock()
 	for i, e := range edge {
 		if to == e.To {
-			g.E[*from] = append(g.E[*from][:i], g.E[*from][i+1:]...)
+			g.E[from] = append(g.E[from][:i], g.E[from][i+1:]...)
 			e.To.In--
 			break
 		}
@@ -151,7 +151,7 @@ func (g *GraphAdjList) BFS(v *Vertex, f func(*Vertex)) {
 	for !q.IsEmpty() {
 		v := (*q.Dequeue()).(*Vertex)
 		f(v)
-		near := g.E[*v]
+		near := g.E[v]
 		for _, e := range near {
 			if !discovered[e.To] {
 				q.Enqueue(e.To)
@@ -178,7 +178,7 @@ func (g *GraphAdjList) DFS(v *Vertex, f func(*Vertex)) {
 	for !s.IsEmpty() {
 		v := (*s.Pop()).(*Vertex)
 		f(v)
-		near := g.E[*v]
+		near := g.E[v]
 		for _, e := range near {
 			if !discovered[e.To] {
 				s.Push(e.To)

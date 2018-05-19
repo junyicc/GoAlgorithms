@@ -437,5 +437,68 @@ func TestFloyd(t *testing.T) {
 	if len(result) != 0 {
 		t.Errorf("expected nil path and got %v\n", result)
 	}
+}
 
+func TestTopoSort(t *testing.T) {
+	var gl datastructure.GraphAdjList
+	v0 := datastructure.Vertex{Value: "0"}
+	v1 := datastructure.Vertex{Value: "1"}
+	v2 := datastructure.Vertex{Value: "2"}
+	v3 := datastructure.Vertex{Value: "3"}
+	v4 := datastructure.Vertex{Value: "4"}
+	v5 := datastructure.Vertex{Value: "5"}
+	v6 := datastructure.Vertex{Value: "6"}
+	v7 := datastructure.Vertex{Value: "7"}
+	v8 := datastructure.Vertex{Value: "8"}
+	v9 := datastructure.Vertex{Value: "9"}
+	v10 := datastructure.Vertex{Value: "10"}
+	v11 := datastructure.Vertex{Value: "11"}
+	v12 := datastructure.Vertex{Value: "12"}
+	v13 := datastructure.Vertex{Value: "13"}
+
+	gl.InsertVertex(&v0)
+	gl.InsertVertex(&v1)
+	gl.InsertVertex(&v2)
+	gl.InsertVertex(&v3)
+	gl.InsertVertex(&v4)
+	gl.InsertVertex(&v5)
+	gl.InsertVertex(&v6)
+	gl.InsertVertex(&v7)
+	gl.InsertVertex(&v8)
+	gl.InsertVertex(&v9)
+	gl.InsertVertex(&v10)
+	gl.InsertVertex(&v11)
+	gl.InsertVertex(&v12)
+	gl.InsertVertex(&v13)
+
+	gl.InsertEdge(&v0, &v4, 1)
+	gl.InsertEdge(&v0, &v5, 1)
+	gl.InsertEdge(&v0, &v11, 1)
+	gl.InsertEdge(&v1, &v2, 1)
+	gl.InsertEdge(&v1, &v4, 1)
+	gl.InsertEdge(&v1, &v8, 1)
+	gl.InsertEdge(&v2, &v5, 1)
+	gl.InsertEdge(&v2, &v6, 1)
+	gl.InsertEdge(&v2, &v9, 1)
+	gl.InsertEdge(&v3, &v2, 1)
+	gl.InsertEdge(&v3, &v13, 1)
+	gl.InsertEdge(&v4, &v7, 1)
+	gl.InsertEdge(&v5, &v8, 1)
+	gl.InsertEdge(&v5, &v12, 1)
+	gl.InsertEdge(&v6, &v5, 1)
+	gl.InsertEdge(&v8, &v7, 1)
+	gl.InsertEdge(&v9, &v10, 1)
+	gl.InsertEdge(&v9, &v11, 1)
+	gl.InsertEdge(&v10, &v13, 1)
+	gl.InsertEdge(&v12, &v9, 1)
+
+	var result []*datastructure.Vertex
+	visit := func(e *datastructure.Vertex) {
+		result = append(result, e)
+	}
+
+	ok := graph.TopoSort(&gl, visit)
+	if !ok {
+		t.Errorf("expected true and got %v", ok)
+	}
 }
