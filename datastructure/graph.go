@@ -16,6 +16,7 @@ func isInf(f float64) bool {
 // Vertex of Graph
 type Vertex struct {
 	Value Elem
+	In    int // in degree
 }
 
 func (v Vertex) String() string {
@@ -111,6 +112,7 @@ func (g *GraphAdjList) InsertEdge(from, to *Vertex, weight float64) {
 	}
 
 	g.E[*from] = append(g.E[*from], &Edge{From: from, To: to, Weight: weight})
+	(*to).In++
 	g.lock.Unlock()
 }
 
@@ -125,6 +127,7 @@ func (g *GraphAdjList) RemoveEdge(from, to *Vertex) error {
 	for i, e := range edge {
 		if to == e.To {
 			g.E[*from] = append(g.E[*from][:i], g.E[*from][i+1:]...)
+			e.To.In--
 			break
 		}
 	}
@@ -266,6 +269,7 @@ func (g *GraphAdjMatrix) InsertEdge(i, j int, weight float64) error {
 	}
 
 	g.E[i][j] = &Edge{From: from, To: to, Weight: weight}
+	to.In++
 	g.EdgeNum++
 	return nil
 }
@@ -277,6 +281,7 @@ func (g *GraphAdjMatrix) RemoveEdge(i, j int) (*Edge, error) {
 	}
 
 	e := *g.E[i][j]
+	g.E[i][j].To.In--
 	g.E[i][j] = nil
 	g.EdgeNum--
 	return &e, nil

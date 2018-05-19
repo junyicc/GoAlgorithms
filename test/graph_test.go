@@ -10,12 +10,12 @@ import (
 var gl datastructure.GraphAdjList
 
 func initGraphAdjList() {
-	nA := datastructure.Vertex{"A"}
-	nB := datastructure.Vertex{"B"}
-	nC := datastructure.Vertex{"C"}
-	nD := datastructure.Vertex{"D"}
-	nE := datastructure.Vertex{"E"}
-	nF := datastructure.Vertex{"F"}
+	nA := datastructure.Vertex{Value: "A"}
+	nB := datastructure.Vertex{Value: "B"}
+	nC := datastructure.Vertex{Value: "C"}
+	nD := datastructure.Vertex{Value: "D"}
+	nE := datastructure.Vertex{Value: "E"}
+	nF := datastructure.Vertex{Value: "F"}
 	gl.InsertVertex(&nA)
 	gl.InsertVertex(&nB)
 	gl.InsertVertex(&nC)
@@ -29,6 +29,13 @@ func initGraphAdjList() {
 	gl.InsertEdge(&nC, &nE, 1)
 	gl.InsertEdge(&nE, &nF, 1)
 	gl.InsertEdge(&nD, &nA, 1)
+}
+
+func TestGraphAdjList(t *testing.T) {
+	initGraphAdjList()
+	if i := gl.GetVertex(4).In; i != 2 {
+		t.Errorf("expected 2 and got %d", i)
+	}
 }
 
 func TestGraphAdjListBFS(t *testing.T) {
@@ -76,12 +83,12 @@ func TestGraphAdjListDFS(t *testing.T) {
 var gm datastructure.GraphAdjMatrix
 
 func initGraphAdjMatrix() {
-	nA := datastructure.Vertex{"A"}
-	nB := datastructure.Vertex{"B"}
-	nC := datastructure.Vertex{"C"}
-	nD := datastructure.Vertex{"D"}
-	nE := datastructure.Vertex{"E"}
-	nF := datastructure.Vertex{"F"}
+	nA := datastructure.Vertex{Value: "A"}
+	nB := datastructure.Vertex{Value: "B"}
+	nC := datastructure.Vertex{Value: "C"}
+	nD := datastructure.Vertex{Value: "D"}
+	nE := datastructure.Vertex{Value: "E"}
+	nF := datastructure.Vertex{Value: "F"}
 	gm.InsertVertex(&nA)
 	gm.InsertVertex(&nB)
 	gm.InsertVertex(&nC)
@@ -156,15 +163,15 @@ func TestGraphAdjMatrixDFS(t *testing.T) {
 func TestPrim(t *testing.T) {
 	var gm datastructure.GraphAdjMatrix
 
-	v0 := datastructure.Vertex{"0"}
-	v1 := datastructure.Vertex{"1"}
-	v2 := datastructure.Vertex{"2"}
-	v3 := datastructure.Vertex{"3"}
-	v4 := datastructure.Vertex{"4"}
-	v5 := datastructure.Vertex{"5"}
-	v6 := datastructure.Vertex{"6"}
-	v7 := datastructure.Vertex{"7"}
-	v8 := datastructure.Vertex{"8"}
+	v0 := datastructure.Vertex{Value: "0"}
+	v1 := datastructure.Vertex{Value: "1"}
+	v2 := datastructure.Vertex{Value: "2"}
+	v3 := datastructure.Vertex{Value: "3"}
+	v4 := datastructure.Vertex{Value: "4"}
+	v5 := datastructure.Vertex{Value: "5"}
+	v6 := datastructure.Vertex{Value: "6"}
+	v7 := datastructure.Vertex{Value: "7"}
+	v8 := datastructure.Vertex{Value: "8"}
 
 	gm.InsertVertex(&v0)
 	gm.InsertVertex(&v1)
@@ -235,15 +242,15 @@ func TestPrim(t *testing.T) {
 func TestKruskal(t *testing.T) {
 	var gm datastructure.GraphAdjMatrix
 
-	v0 := datastructure.Vertex{"0"}
-	v1 := datastructure.Vertex{"1"}
-	v2 := datastructure.Vertex{"2"}
-	v3 := datastructure.Vertex{"3"}
-	v4 := datastructure.Vertex{"4"}
-	v5 := datastructure.Vertex{"5"}
-	v6 := datastructure.Vertex{"6"}
-	v7 := datastructure.Vertex{"7"}
-	v8 := datastructure.Vertex{"8"}
+	v0 := datastructure.Vertex{Value: "0"}
+	v1 := datastructure.Vertex{Value: "1"}
+	v2 := datastructure.Vertex{Value: "2"}
+	v3 := datastructure.Vertex{Value: "3"}
+	v4 := datastructure.Vertex{Value: "4"}
+	v5 := datastructure.Vertex{Value: "5"}
+	v6 := datastructure.Vertex{Value: "6"}
+	v7 := datastructure.Vertex{Value: "7"}
+	v8 := datastructure.Vertex{Value: "8"}
 
 	gm.InsertVertex(&v0)
 	gm.InsertVertex(&v1)
@@ -314,12 +321,12 @@ func TestKruskal(t *testing.T) {
 func TestDijkstra(t *testing.T) {
 	var gm datastructure.GraphAdjMatrix
 
-	v0 := datastructure.Vertex{"0"}
-	v1 := datastructure.Vertex{"1"}
-	v2 := datastructure.Vertex{"2"}
-	v3 := datastructure.Vertex{"3"}
-	v4 := datastructure.Vertex{"4"}
-	v5 := datastructure.Vertex{"5"}
+	v0 := datastructure.Vertex{Value: "0"}
+	v1 := datastructure.Vertex{Value: "1"}
+	v2 := datastructure.Vertex{Value: "2"}
+	v3 := datastructure.Vertex{Value: "3"}
+	v4 := datastructure.Vertex{Value: "4"}
+	v5 := datastructure.Vertex{Value: "5"}
 
 	gm.InsertVertex(&v0)
 	gm.InsertVertex(&v1)
@@ -375,12 +382,12 @@ func TestDijkstra(t *testing.T) {
 func TestFloyd(t *testing.T) {
 	var gm datastructure.GraphAdjMatrix
 
-	v0 := datastructure.Vertex{"0"}
-	v1 := datastructure.Vertex{"1"}
-	v2 := datastructure.Vertex{"2"}
-	v3 := datastructure.Vertex{"3"}
-	v4 := datastructure.Vertex{"4"}
-	v5 := datastructure.Vertex{"5"}
+	v0 := datastructure.Vertex{Value: "0"}
+	v1 := datastructure.Vertex{Value: "1"}
+	v2 := datastructure.Vertex{Value: "2"}
+	v3 := datastructure.Vertex{Value: "3"}
+	v4 := datastructure.Vertex{Value: "4"}
+	v5 := datastructure.Vertex{Value: "5"}
 
 	gm.InsertVertex(&v0)
 	gm.InsertVertex(&v1)
