@@ -310,3 +310,64 @@ func TestKruskal(t *testing.T) {
 	}
 
 }
+
+func TestDijkstra(t *testing.T) {
+	var gm datastructure.GraphAdjMatrix
+
+	v0 := datastructure.Vertex{"0"}
+	v1 := datastructure.Vertex{"1"}
+	v2 := datastructure.Vertex{"2"}
+	v3 := datastructure.Vertex{"3"}
+	v4 := datastructure.Vertex{"4"}
+	v5 := datastructure.Vertex{"5"}
+
+	gm.InsertVertex(&v0)
+	gm.InsertVertex(&v1)
+	gm.InsertVertex(&v2)
+	gm.InsertVertex(&v3)
+	gm.InsertVertex(&v4)
+	gm.InsertVertex(&v5)
+
+	gm.InsertEdge(0, 1, 1)
+	gm.InsertEdge(0, 2, 7)
+	gm.InsertEdge(1, 3, 9)
+	gm.InsertEdge(1, 5, 15)
+	gm.InsertEdge(2, 4, 4)
+	gm.InsertEdge(3, 4, 10)
+	gm.InsertEdge(3, 5, 5)
+	gm.InsertEdge(4, 5, 3)
+
+	var result []*datastructure.Vertex
+	visit := func(e *datastructure.Vertex) {
+		result = append(result, e)
+	}
+
+	w1 := graph.DijkstraPath(&gm, 0, 5, visit)
+	expPath1 := []*datastructure.Vertex{
+		gm.GetVertex(0),
+		gm.GetVertex(2),
+		gm.GetVertex(4),
+		gm.GetVertex(5),
+	}
+
+	if w1 != 14 {
+		t.Errorf("expected 14 and got %f", w1)
+	}
+
+	for i, e := range result {
+		if e != expPath1[i] {
+			t.Errorf("expected %v\ngot %v\n", expPath1[i], e)
+		}
+	}
+	result = []*datastructure.Vertex{}
+	w2 := graph.DijkstraPath(&gm, 1, 2, visit)
+
+	if w2 != datastructure.Inf {
+		t.Errorf("expected inf and got %f", w2)
+	}
+
+	if len(result) != 0 {
+		t.Errorf("expected nil path and got %v\n", result)
+	}
+
+}
