@@ -189,9 +189,11 @@ func (g *GraphAdjList) DFS(v *Vertex, f func(*Vertex)) {
 
 // GraphAdjMatrix is an adjacency matrix struct of graph
 type GraphAdjMatrix struct {
-	V    []*Vertex
-	E    [][]*Edge
-	lock sync.RWMutex
+	V         []*Vertex
+	E         [][]*Edge
+	VertexNum int
+	EdgeNum   int
+	lock      sync.RWMutex
 }
 
 // GetVertex returns vertex
@@ -228,6 +230,7 @@ func (g *GraphAdjMatrix) InsertVertex(v *Vertex) {
 	// insert vertex
 	g.V = append(g.V, v)
 	g.E[len(g.V)-1][len(g.V)-1] = &Edge{From: v, To: v, Weight: 0}
+	g.VertexNum++
 	g.lock.Unlock()
 }
 
@@ -245,6 +248,7 @@ func (g *GraphAdjMatrix) RemoveVertex(k int) (*Vertex, error) {
 	g.E = append(g.E[:k], g.E[k+1:]...)
 	// remove vertex
 	g.V = append(g.V[:k], g.V[k+1:]...)
+	g.VertexNum--
 	g.lock.Unlock()
 
 	return v, nil
@@ -262,7 +266,7 @@ func (g *GraphAdjMatrix) InsertEdge(i, j int, weight float64) error {
 	}
 
 	g.E[i][j] = &Edge{From: from, To: to, Weight: weight}
-
+	g.EdgeNum++
 	return nil
 }
 
@@ -274,7 +278,7 @@ func (g *GraphAdjMatrix) RemoveEdge(i, j int) (*Edge, error) {
 
 	e := *g.E[i][j]
 	g.E[i][j] = nil
-
+	g.EdgeNum--
 	return &e, nil
 }
 
