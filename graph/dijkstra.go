@@ -9,6 +9,10 @@ func DijkstraPath(g *datastructure.GraphAdjMatrix, o, d int, f func(*datastructu
 	if g == nil || o < 0 || o >= g.VertexNum || d < 0 || d >= g.VertexNum {
 		return datastructure.Inf
 	}
+	if o == d {
+		return 0
+	}
+
 	path, weight := Dijkstra(g, o)
 
 	ok := getPath(g, path, o, d, f)
