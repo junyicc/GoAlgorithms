@@ -2,6 +2,7 @@ package datastructure
 
 import (
 	"bytes"
+	"container/heap"
 	"fmt"
 	"sync"
 )
@@ -127,4 +128,45 @@ func (h *Heap) String() string {
 		}
 	}
 	return b.String()
+}
+
+// ----------------------------------------------------------------------------
+
+// PQItem struct
+type PQItem struct {
+	Value    Elem
+	Priority int
+	Index    int
+}
+
+// PriorityQueue struct
+type PriorityQueue []*PQItem
+
+func (pq PriorityQueue) Len() int           { return len(pq) }
+func (pq PriorityQueue) Less(i, j int) bool { return pq[i].Priority > pq[j].Priority }
+func (pq PriorityQueue) Swap(i, j int)      { pq[i], pq[j] = pq[j], pq[i]; pq[i].Index = i; pq[j].Index = j }
+
+// Push item
+func (pq *PriorityQueue) Push(item interface{}) {
+	n := pq.Len()
+	pqItem := item.(*PQItem)
+	pqItem.Index = n
+	*pq = append(*pq, pqItem)
+}
+
+// Pop item
+func (pq *PriorityQueue) Pop() interface{} {
+	old := *pq
+	n := old.Len()
+	item := old[n-1]
+	*pq = old[:n-1]
+
+	return item
+}
+
+// Update item
+func (pq *PriorityQueue) Update(item *PQItem, value string, priority int) {
+	item.Value = value
+	item.Priority = priority
+	heap.Fix(pq, item.Index)
 }

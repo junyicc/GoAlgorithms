@@ -1,6 +1,7 @@
 package test
 
 import (
+	Heap "container/heap"
 	"testing"
 
 	"github.com/CAIJUNYI/GoAlgorithms/datastructure"
@@ -45,5 +46,37 @@ func TestHeapRemove(t *testing.T) {
 	result2 := heap.String()
 	if result2 != exp2 {
 		t.Errorf("expected %s and got %s", exp2, result2)
+	}
+}
+
+func TestPriorityQueue(t *testing.T) {
+	company := map[string]int{
+		"MS":     9,
+		"Google": 11,
+		"Apple":  12,
+		"Amazon": 10,
+		"IBM":    9,
+	}
+	pq := datastructure.PriorityQueue{}
+	i := 0
+	for v, p := range company {
+		pq.Push(&datastructure.PQItem{
+			Value:    v,
+			Priority: p,
+			Index:    i,
+		})
+		i++
+	}
+
+	Heap.Init(&pq)
+
+	if item := (Heap.Pop(&pq)).(*datastructure.PQItem); item.Value != "Apple" || item.Priority != 12 {
+		t.Errorf("expected Apple and got %v", item.Value)
+	}
+	if item := (Heap.Pop(&pq)).(*datastructure.PQItem); item.Value != "Google" || item.Priority != 11 {
+		t.Errorf("expected Google and got %v", item.Value)
+	}
+	if item := (Heap.Pop(&pq)).(*datastructure.PQItem); item.Value != "Amazon" || item.Priority != 10 {
+		t.Errorf("expected Amazon and got %v", item.Value)
 	}
 }
