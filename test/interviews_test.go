@@ -600,3 +600,11 @@ func Test40FindTwoNumsAppearOnce(t *testing.T) {
 		t.Errorf("failed to find two numbers that appear once")
 	}
 }
+
+func Test28Permutation(t *testing.T) {
+	s := "abc"
+	visit := func(str string) {
+		fmt.Println(str)
+	}
+	interviews.Permutation(&s, visit)
+}
