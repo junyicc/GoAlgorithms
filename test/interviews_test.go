@@ -591,3 +591,12 @@ func Test27ConvertBSTToDoubleLinkedlist(t *testing.T) {
 		t.Errorf("failed converting bst to double linkedlist")
 	}
 }
+
+func Test40FindTwoNumsAppearOnce(t *testing.T) {
+	arr1 := []int{2, 4, 3, 6, 3, 2, 5, 5}
+	var n1, n2 int
+	ok := interviews.FindTwoNumsAppearOnce(arr1, &n1, &n2)
+	if !ok || n1 != 6 || n2 != 4 {
+		t.Errorf("failed to find two numbers that appear once")
+	}
+}
