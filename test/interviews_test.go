@@ -606,5 +606,16 @@ func Test28Permutation(t *testing.T) {
 	visit := func(str string) {
 		fmt.Println(str)
 	}
-	interviews.Permutation(&s, visit)
+	interviews.StringPermutation(s, visit)
+
+	n, m := 5, 2
+	if r := interviews.Permutation(n, m); r != 20 {
+		t.Errorf("expected 20 and got %d", r)
+	}
+}
+
+func Test28Combination(t *testing.T) {
+	if c := interviews.CombinationIter(10, 2); c != 45 {
+		t.Errorf("expected 45 and got %d", c)
+	}
 }
