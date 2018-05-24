@@ -1,5 +1,9 @@
 package interviews
 
+import (
+	"math"
+)
+
 // StringPermutation returns string permutation
 func StringPermutation(str string, f func(string)) {
 	if str == "" {
@@ -77,4 +81,37 @@ func CombinationIter(n, m int) int {
 		}
 	}
 	return C[n][m]
+}
+
+// SolutionsOfNQueens returns solutions number of n queens problem
+func SolutionsOfNQueens(n int) int {
+	if n == 0 {
+		return 0
+	}
+	queens := make([]int, n)
+	cnt := 0
+	solveNQueens(queens, 0, &cnt)
+	return cnt
+}
+
+func solveNQueens(queens []int, n int, cnt *int) {
+	if n == len(queens) {
+		*cnt++
+	} else {
+		for i := 0; i < len(queens); i++ {
+			queens[n] = i
+			if isValid(queens, n) {
+				solveNQueens(queens, n+1, cnt)
+			}
+		}
+	}
+}
+
+func isValid(queens []int, n int) bool {
+	for j := 0; j < n; j++ {
+		if queens[j] == queens[n] || int(math.Abs(float64(queens[j]-queens[n]))) == n-j {
+			return false
+		}
+	}
+	return true
 }

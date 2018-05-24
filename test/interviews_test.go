@@ -619,3 +619,9 @@ func Test28Combination(t *testing.T) {
 		t.Errorf("expected 45 and got %d", c)
 	}
 }
+
+func Test28NQueens(t *testing.T) {
+	if n := interviews.SolutionsOfNQueens(4); n != 2 {
+		t.Errorf("expected 2 and got %d", n)
+	}
+}
