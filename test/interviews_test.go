@@ -638,3 +638,31 @@ func Test29FindNumMoreThanHalf(t *testing.T) {
 		t.Errorf("expected false and got %t", ok)
 	}
 }
+
+func Test30FindKthMin(t *testing.T) {
+	arr := []int{4, 5, 1, 6, 2, 7, 3, 8}
+	k := 4
+	if n, ok := interviews.FindKthMin(arr, k); !ok || n != 4 {
+		t.Errorf("expected 4 and got %d", n)
+	}
+}
+
+func Test30FindKthMax(t *testing.T) {
+	arr := []int{4, 5, 1, 6, 2, 7, 3, 8}
+	k := 4
+	if n, ok := interviews.FindKthMax(arr, k); !ok || n != 5 {
+		t.Errorf("expected 5 and got %d", n)
+	}
+}
+
+func Test30GetKthLeast(t *testing.T) {
+	arr := []int{4, 5, 1, 6, 2, 7, 3, 8}
+	exp := []int{1, 2, 3, 4}
+	k := 4
+	result := interviews.GetKthLeast(arr, k)
+	for i, e := range result {
+		if e != exp[i] {
+			t.Errorf("expected %d and got %d", exp[i], e)
+		}
+	}
+}
