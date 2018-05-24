@@ -625,3 +625,16 @@ func Test28NQueens(t *testing.T) {
 		t.Errorf("expected 2 and got %d", n)
 	}
 }
+
+func Test29FindNumMoreThanHalf(t *testing.T) {
+	arr := []int{1, 2, 3, 2, 2, 2, 5, 4, 2}
+	exp := 2
+	if n, ok := interviews.FindNumMoreThanHalf(arr); !ok || n != exp {
+		t.Errorf("expected %d and got %d", exp, n)
+	}
+
+	arr = []int{1, 2, 3, 2, 5, 2, 5, 4, 2}
+	if n, ok := interviews.FindNumMoreThanHalf(arr); ok || n != 0 {
+		t.Errorf("expected false and got %t", ok)
+	}
+}
