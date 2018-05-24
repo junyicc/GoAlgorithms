@@ -170,3 +170,26 @@ func (pq *PriorityQueue) Update(item *PQItem, value string, priority int) {
 	item.Priority = priority
 	heap.Fix(pq, item.Index)
 }
+
+// ----------------------------------------------------------------------------
+
+// IntHeap is a heap structure for integer
+type IntHeap []int
+
+func (ih IntHeap) Len() int           { return len(ih) }
+func (ih IntHeap) Less(i, j int) bool { return ih[i] < ih[j] }
+func (ih IntHeap) Swap(i, j int)      { ih[i], ih[j] = ih[j], ih[i] }
+
+// Push an integer
+func (ih *IntHeap) Push(x interface{}) {
+	*ih = append(*ih, x.(int))
+}
+
+// Pop an integer
+func (ih *IntHeap) Pop() interface{} {
+	old := *ih
+	n := ih.Len()
+	x := old[n-1]
+	*ih = old[:n-1]
+	return x
+}
