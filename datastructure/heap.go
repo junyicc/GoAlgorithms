@@ -174,22 +174,25 @@ func (pq *PriorityQueue) Update(item *PQItem, value string, priority int) {
 // ----------------------------------------------------------------------------
 
 // IntHeap is a heap structure for integer
-type IntHeap []int
+type IntHeap struct {
+	Data []int
+	Cmp  func(i, j int) bool
+}
 
-func (ih IntHeap) Len() int           { return len(ih) }
-func (ih IntHeap) Less(i, j int) bool { return ih[i] < ih[j] }
-func (ih IntHeap) Swap(i, j int)      { ih[i], ih[j] = ih[j], ih[i] }
+func (ih IntHeap) Len() int           { return len(ih.Data) }
+func (ih IntHeap) Less(i, j int) bool { return ih.Cmp(i, j) }
+func (ih IntHeap) Swap(i, j int)      { ih.Data[i], ih.Data[j] = ih.Data[j], ih.Data[i] }
 
 // Push an integer
 func (ih *IntHeap) Push(x interface{}) {
-	*ih = append(*ih, x.(int))
+	(*ih).Data = append((*ih).Data, x.(int))
 }
 
 // Pop an integer
 func (ih *IntHeap) Pop() interface{} {
-	old := *ih
+	old := (*ih).Data
 	n := ih.Len()
 	x := old[n-1]
-	*ih = old[:n-1]
+	(*ih).Data = old[:n-1]
 	return x
 }
