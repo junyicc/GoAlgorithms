@@ -717,3 +717,21 @@ func Test31FindSubArrayWithMaxSum(t *testing.T) {
 		t.Errorf("expected {-3} and got %v", sub)
 	}
 }
+
+func Test32NumOf1(t *testing.T) {
+	if n, ok := interviews.NumberOf1(5); !ok || n != 1 {
+		t.Errorf("expected 1 and got %d", n)
+	}
+	if n, ok := interviews.NumberOf1(12); !ok || n != 5 {
+		t.Errorf("expected 5 and got %d", n)
+	}
+	if n, ok := interviews.NumberOf1(0); ok || n != 0 {
+		t.Errorf("expected 0 and got %d", n)
+	}
+	if n, ok := interviews.NumberOf1(1); !ok || n != 1 {
+		t.Errorf("expected 1 and got %d", n)
+	}
+	if n, ok := interviews.NumberOf1(21345); !ok || n != 18821 {
+		t.Errorf("expected 5 and got %d", n)
+	}
+}
