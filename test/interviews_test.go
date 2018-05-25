@@ -735,3 +735,15 @@ func Test32NumOf1(t *testing.T) {
 		t.Errorf("expected 5 and got %d", n)
 	}
 }
+
+func Test33FindMinPermutation(t *testing.T) {
+	arr := []int{3, 32, 321}
+	if s := interviews.FindMinPermutation(arr); s != "321323" {
+		t.Errorf("expected 321323 and got %s", s)
+	}
+
+	arr = []int{3}
+	if s := interviews.FindMinPermutation(arr); s != "3" {
+		t.Errorf("expected 321323 and got %s", s)
+	}
+}
