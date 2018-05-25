@@ -770,3 +770,18 @@ func Test34SuperUglyNum(t *testing.T) {
 		t.Errorf("expected 32 and got %d", u)
 	}
 }
+
+func Test35FindFirstNotRepeatingChar(t *testing.T) {
+	if c := interviews.FindFirstNotRepeatingChar("abaccdeff"); c != 'b' {
+		t.Errorf("expected b and got %c", c)
+	}
+	if c := interviews.FindFirstNotRepeatingChar(""); c != 0 {
+		t.Errorf("expected 0 and got %c", c)
+	}
+	if c := interviews.FindFirstNotRepeatingChar("s"); c != 's' {
+		t.Errorf("expected s and got %c", c)
+	}
+	if c := interviews.FindFirstNotRepeatingChar("a@baccdeff"); c != '@' {
+		t.Errorf("expected @ and got %c", c)
+	}
+}
