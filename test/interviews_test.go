@@ -785,3 +785,30 @@ func Test35FindFirstNotRepeatingChar(t *testing.T) {
 		t.Errorf("expected @ and got %c", c)
 	}
 }
+
+func Test35DeleteChar(t *testing.T) {
+	if s := interviews.DeleteChar("We are students", "aeiou"); s != "W r stdnts" {
+		t.Errorf("expected 'W r stdnts' and got %s", s)
+	}
+	if s := interviews.DeleteChar("We are students", ""); s != "We are students" {
+		t.Errorf("expected 'We are students' and got %s", s)
+	}
+	if s := interviews.DeleteChar("", "asd"); s != "" {
+		t.Errorf("expected '' and got %s", s)
+	}
+}
+
+func Test35DeleteRepeatedChar(t *testing.T) {
+	if s := interviews.DeleteRepeatedChar("Google"); s != "Gogle" {
+		t.Errorf("expected Gogle and got %s", s)
+	}
+	if s := interviews.DeleteRepeatedChar("hooli"); s != "holi" {
+		t.Errorf("expected holi and got %s", s)
+	}
+	if s := interviews.DeleteRepeatedChar(""); s != "" {
+		t.Errorf("expected '' and got %s", s)
+	}
+	if s := interviews.DeleteRepeatedChar("We are students"); s != "We arstudn" {
+		t.Errorf("expected We arstudn and got %s", s)
+	}
+}
