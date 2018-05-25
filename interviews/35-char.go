@@ -63,3 +63,29 @@ func DeleteRepeatedChar(s string) string {
 	}
 	return string(result)
 }
+
+// IsAnagram returns true if s2 is an anagram of s1
+func IsAnagram(s1, s2 string) bool {
+	if (s1 != "" && s2 == "") || (s1 == "" && s2 != "") {
+		return false
+	}
+	if s1 == "" && s2 == "" {
+		return true
+	}
+
+	table := [256]int{}
+	strArr1 := []byte(s1)
+	strArr2 := []byte(s2)
+	for _, c := range strArr2 {
+		table[c]++
+	}
+	for _, c := range strArr1 {
+		table[c]--
+	}
+	for _, c := range strArr2 {
+		if table[c] != 0 {
+			return false
+		}
+	}
+	return true
+}

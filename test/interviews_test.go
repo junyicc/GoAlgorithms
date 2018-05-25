@@ -812,3 +812,15 @@ func Test35DeleteRepeatedChar(t *testing.T) {
 		t.Errorf("expected We arstudn and got %s", s)
 	}
 }
+
+func Test35IsAnagram(t *testing.T) {
+	if b := interviews.IsAnagram("", ""); !b {
+		t.Errorf("expected true and got %t", b)
+	}
+	if b := interviews.IsAnagram("live", ""); b {
+		t.Errorf("expected false and got %t", b)
+	}
+	if b := interviews.IsAnagram("livee", "eevil"); !b {
+		t.Errorf("expected true and got %t", b)
+	}
+}
