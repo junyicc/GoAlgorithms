@@ -63,3 +63,41 @@ func IsUglyNum(n int) bool {
 	}
 	return false
 }
+
+// GetSuperUglyNum returns the nth ugly number
+// whose prime factors only include primes, and the first ugly number is 1
+func GetSuperUglyNum(n int, primes []int) (int, bool) {
+	if n <= 0 {
+		return 0, false
+	}
+	if n == 1 {
+		return 1, true
+	}
+	length := len(primes)
+	uglyNums := []int{1}
+	uglyFactors := make([]int, length)
+	for next := 1; next < n; next++ {
+		tmpUgly := make([]int, length)
+		for i := 0; i < length; i++ {
+			tmpUgly[i] = uglyNums[uglyFactors[i]] * primes[i]
+		}
+		min := minOfSlice(tmpUgly)
+		uglyNums = append(uglyNums, min)
+		for j := 0; j < length; j++ {
+			if tmpUgly[j] <= uglyNums[next] {
+				uglyFactors[j]++
+			}
+		}
+	}
+	return uglyNums[n-1], true
+}
+
+func minOfSlice(arr []int) int {
+	min := arr[0]
+	for i := 1; i < len(arr); i++ {
+		if arr[i] < min {
+			min = arr[i]
+		}
+	}
+	return min
+}

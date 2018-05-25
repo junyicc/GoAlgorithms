@@ -762,3 +762,11 @@ func Test34UglyNum(t *testing.T) {
 		t.Errorf("expected 125 and got %d", n)
 	}
 }
+
+func Test34SuperUglyNum(t *testing.T) {
+	n := 12
+	primes := []int{2, 7, 13, 19}
+	if u, ok := interviews.GetSuperUglyNum(n, primes); !ok || u != 32 {
+		t.Errorf("expected 32 and got %d", u)
+	}
+}
