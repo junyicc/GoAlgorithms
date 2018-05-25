@@ -690,3 +690,30 @@ func Test30GetMaxKth(t *testing.T) {
 		}
 	}
 }
+
+func Test31FindMaxSumOfSubArray(t *testing.T) {
+	arr := []int{1, -2, 3, 10, -4, 7, 2, -5}
+	if s, ok := interviews.FindMaxSumOfSubArray(arr); !ok || s != 18 {
+		t.Errorf("expected 18 and got %d", s)
+	}
+
+	if s, ok := interviews.FindMaxSumOfSubArray([]int{-3}); !ok || s != -3 {
+		t.Errorf("expected -3 and got %d", s)
+	}
+}
+
+func Test31FindSubArrayWithMaxSum(t *testing.T) {
+	arr := []int{1, -2, 3, 10, -4, 7, 2, -5}
+	exp := []int{3, 10, -4, 7, 2}
+	sub := interviews.FindSubArrayWithMaxSum(arr)
+	for i, e := range sub {
+		if e != exp[i] {
+			t.Errorf("expected %d and got %d", exp[i], e)
+		}
+	}
+
+	sub = interviews.FindSubArrayWithMaxSum([]int{-3})
+	if len(sub) != 1 || sub[0] != -3 {
+		t.Errorf("expected {-3} and got %v", sub)
+	}
+}
