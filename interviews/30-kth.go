@@ -1,5 +1,11 @@
 package interviews
 
+import (
+	"container/heap"
+
+	"github.com/CAIJUNYI/GoAlgorithms/datastructure"
+)
+
 // FindKthMin returns the kth min number in the array
 func FindKthMin(arr []int, k int) (int, bool) {
 	if arr == nil || len(arr) < 1 || k < 0 || k >= len(arr) {
@@ -111,4 +117,62 @@ func getPivot(arr []int, lo, hi int) int {
 		arr[mi], arr[lo] = arr[lo], arr[mi]
 	}
 	return arr[lo]
+}
+
+// GetMinKth returns kth min numbers in the array using heap
+func GetMinKth(arr []int, k int) []int {
+	if arr == nil || len(arr) < 1 || k < 0 || k >= len(arr) {
+		return nil
+	}
+
+	intHeap := datastructure.IntHeap{
+		Data: []int{},
+	}
+	intHeap.Cmp = func(i, j int) bool {
+		return intHeap.Data[i] > intHeap.Data[j]
+	}
+	heap.Init(&intHeap)
+
+	for _, e := range arr {
+		if intHeap.Len() < k {
+			heap.Push(&intHeap, e)
+		} else {
+			item := heap.Pop(&intHeap).(int)
+			if e < item {
+				heap.Push(&intHeap, e)
+			} else {
+				heap.Push(&intHeap, item)
+			}
+		}
+	}
+	return intHeap.Data
+}
+
+// GetMaxKth returns kth max numbers in the array using heap
+func GetMaxKth(arr []int, k int) []int {
+	if arr == nil || len(arr) < 1 || k < 0 || k >= len(arr) {
+		return nil
+	}
+
+	intHeap := datastructure.IntHeap{
+		Data: []int{},
+	}
+	intHeap.Cmp = func(i, j int) bool {
+		return intHeap.Data[i] < intHeap.Data[j]
+	}
+	heap.Init(&intHeap)
+
+	for _, e := range arr {
+		if intHeap.Len() < k {
+			heap.Push(&intHeap, e)
+		} else {
+			item := heap.Pop(&intHeap).(int)
+			if e > item {
+				heap.Push(&intHeap, e)
+			} else {
+				heap.Push(&intHeap, item)
+			}
+		}
+	}
+	return intHeap.Data
 }

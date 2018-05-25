@@ -666,3 +666,27 @@ func Test30GetKthLeast(t *testing.T) {
 		}
 	}
 }
+
+func Test30GetMinKth(t *testing.T) {
+	arr := []int{4, 5, 1, 6, 2, 7, 3, 8}
+	exp := []int{4, 3, 1, 2}
+	k := 4
+	result := interviews.GetMinKth(arr, k)
+	for i, e := range result {
+		if e != exp[i] {
+			t.Errorf("expected %d and got %d", exp[i], e)
+		}
+	}
+}
+
+func Test30GetMaxKth(t *testing.T) {
+	arr := []int{4, 5, 1, 6, 2, 7, 3, 8}
+	exp := []int{5, 7, 6, 8}
+	k := 4
+	result := interviews.GetMaxKth(arr, k)
+	for i, e := range result {
+		if e != exp[i] {
+			t.Errorf("expected %d and got %d", exp[i], e)
+		}
+	}
+}
