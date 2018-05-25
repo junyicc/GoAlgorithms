@@ -747,3 +747,18 @@ func Test33FindMinPermutation(t *testing.T) {
 		t.Errorf("expected 321323 and got %s", s)
 	}
 }
+
+func Test34UglyNum(t *testing.T) {
+	if n, ok := interviews.GetUglyNum(1); !ok || n != 1 {
+		t.Errorf("expected 1 and got %d", n)
+	}
+	if n, ok := interviews.GetUglyNum(0); ok || n != 0 {
+		t.Errorf("expected 0 and got %d", n)
+	}
+	if n, ok := interviews.GetUglyNum(11); !ok || n != 15 {
+		t.Errorf("expected 15 and got %d", n)
+	}
+	if n, ok := interviews.GetUglyNum(37); !ok || n != 125 {
+		t.Errorf("expected 125 and got %d", n)
+	}
+}
