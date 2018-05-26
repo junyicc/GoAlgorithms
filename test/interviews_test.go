@@ -824,3 +824,18 @@ func Test35IsAnagram(t *testing.T) {
 		t.Errorf("expected true and got %t", b)
 	}
 }
+
+func Test36InversePairs(t *testing.T) {
+	if n := interviews.InversePairs([]int{}); n != 0 {
+		t.Errorf("expected 0 and got %d", n)
+	}
+	if n := interviews.InversePairs(nil); n != 0 {
+		t.Errorf("expected 0 and got %d", n)
+	}
+	if n := interviews.InversePairs([]int{7, 5, 6, 4}); n != 5 {
+		t.Errorf("expected 5 and got %d", n)
+	}
+	if n := interviews.InversePairs([]int{1, 3, 2, 3, 1}); n != 4 {
+		t.Errorf("expected 4 and got %d", n)
+	}
+}
