@@ -839,3 +839,17 @@ func Test36InversePairs(t *testing.T) {
 		t.Errorf("expected 4 and got %d", n)
 	}
 }
+
+func Test37FindFirstCommonNode(t *testing.T) {
+	n7 := datastructure.Node{Data: 7, Next: nil}
+	n6 := datastructure.Node{Data: 6, Next: &n7}
+	n5 := datastructure.Node{Data: 5, Next: &n6}
+	h2 := datastructure.Node{Data: 4, Next: &n5}
+	n3 := datastructure.Node{Data: 3, Next: &n6}
+	n2 := datastructure.Node{Data: 2, Next: &n3}
+	h1 := datastructure.Node{Data: 1, Next: &n2}
+
+	if n := interviews.FindFirstCommonNode(&h1, &h2); n.Data != 6 {
+		t.Errorf("expected 6 and got %v", n.Data)
+	}
+}
