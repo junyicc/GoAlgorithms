@@ -935,3 +935,43 @@ func Test39IsBalanceTree(t *testing.T) {
 		t.Errorf("expected false and got %t", b)
 	}
 }
+
+func Test41TwoNumWithSum(t *testing.T) {
+	arr := []int{1, 2, 4, 7, 11, 15}
+	if n1, n2, ok := interviews.TwoNumWithSum(arr, 15); !ok {
+		t.Errorf("expected true and got %t", ok)
+		t.Errorf("two numbers: %d and %d", n1, n2)
+	}
+	if n1, n2, ok := interviews.TwoNumWithSum(arr, 4); ok {
+		t.Errorf("expected false and got %t", ok)
+		t.Errorf("two numbers: %d and %d", n1, n2)
+	}
+	if n1, n2, ok := interviews.TwoNumWithSum([]int{1}, 1); ok {
+		t.Errorf("expected false and got %t", ok)
+		t.Errorf("two numbers: %d and %d", n1, n2)
+	}
+}
+
+func Test41ContinuousSeqWithSum(t *testing.T) {
+	visit := func(n1, n2 int) {
+		for i := n1; i <= n2; i++ {
+			fmt.Printf("%d ", i)
+		}
+		fmt.Println()
+	}
+	if found := interviews.ContinuousSeqWithSum(0, visit); found {
+		t.Errorf("expected false and got %t", found)
+	}
+	if found := interviews.ContinuousSeqWithSum(4, visit); found {
+		t.Errorf("expected false and got %t", found)
+	}
+	if found := interviews.ContinuousSeqWithSum(3, visit); !found {
+		t.Errorf("expected true and got %t", found)
+	}
+	if found := interviews.ContinuousSeqWithSum(9, visit); !found {
+		t.Errorf("expected true and got %t", found)
+	}
+	if found := interviews.ContinuousSeqWithSum(100, visit); !found {
+		t.Errorf("expected true and got %t", found)
+	}
+}
