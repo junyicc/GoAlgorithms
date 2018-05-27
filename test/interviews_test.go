@@ -871,3 +871,67 @@ func Test38CountingK(t *testing.T) {
 		t.Errorf("expected 0 and got %d", cnt)
 	}
 }
+
+func Test39TreeDepth(t *testing.T) {
+	n7 := datastructure.TreeNode{Key: 7, Data: 7, LChild: nil, RChild: nil}
+	n6 := datastructure.TreeNode{Key: 6, Data: 6, LChild: nil, RChild: nil}
+	n5 := datastructure.TreeNode{Key: 5, Data: 5, LChild: &n7, RChild: nil}
+	n4 := datastructure.TreeNode{Key: 4, Data: 4, LChild: nil, RChild: nil}
+	n3 := datastructure.TreeNode{Key: 3, Data: 3, LChild: nil, RChild: &n6}
+	n2 := datastructure.TreeNode{Key: 2, Data: 2, LChild: &n4, RChild: &n5}
+	n1 := datastructure.TreeNode{Key: 1, Data: 1, LChild: &n2, RChild: &n3}
+	root := n1
+	if d := interviews.TreeDepth(&root); d != 4 {
+		t.Errorf("expected 4 and got %d", d)
+	}
+
+	n4 = datastructure.TreeNode{Key: 4, Data: 4, LChild: nil, RChild: nil}
+	n2 = datastructure.TreeNode{Key: 2, Data: 2, LChild: &n4, RChild: nil}
+	n1 = datastructure.TreeNode{Key: 1, Data: 1, LChild: &n2, RChild: nil}
+	root = n1
+	if d := interviews.TreeDepth(&root); d != 3 {
+		t.Errorf("expected 3 and got %d", d)
+	}
+
+	n1 = datastructure.TreeNode{Key: 1, Data: 1, LChild: nil, RChild: nil}
+	root = n1
+	if d := interviews.TreeDepth(&root); d != 1 {
+		t.Errorf("expected 1 and got %d", d)
+	}
+
+	if d := interviews.TreeDepth(nil); d != 0 {
+		t.Errorf("expected 0 and got %d", d)
+	}
+}
+
+func Test39IsBalanceTree(t *testing.T) {
+	n7 := datastructure.TreeNode{Key: 7, Data: 7, LChild: nil, RChild: nil}
+	n6 := datastructure.TreeNode{Key: 6, Data: 6, LChild: nil, RChild: nil}
+	n5 := datastructure.TreeNode{Key: 5, Data: 5, LChild: &n7, RChild: nil}
+	n4 := datastructure.TreeNode{Key: 4, Data: 4, LChild: nil, RChild: nil}
+	n3 := datastructure.TreeNode{Key: 3, Data: 3, LChild: nil, RChild: &n6}
+	n2 := datastructure.TreeNode{Key: 2, Data: 2, LChild: &n4, RChild: &n5}
+	n1 := datastructure.TreeNode{Key: 1, Data: 1, LChild: &n2, RChild: &n3}
+	root := n1
+	if b := interviews.IsBalanceTree(&root); !b {
+		t.Errorf("expected true and got %t", b)
+	}
+
+	n4 = datastructure.TreeNode{Key: 4, Data: 4, LChild: nil, RChild: nil}
+	n2 = datastructure.TreeNode{Key: 2, Data: 2, LChild: &n4, RChild: nil}
+	n1 = datastructure.TreeNode{Key: 1, Data: 1, LChild: &n2, RChild: nil}
+	root = n1
+	if b := interviews.IsBalanceTree(&root); b {
+		t.Errorf("expected false and got %t", b)
+	}
+
+	n1 = datastructure.TreeNode{Key: 1, Data: 1, LChild: nil, RChild: nil}
+	root = n1
+	if b := interviews.IsBalanceTree(&root); !b {
+		t.Errorf("expected true and got %t", b)
+	}
+
+	if b := interviews.IsBalanceTree(nil); b {
+		t.Errorf("expected false and got %t", b)
+	}
+}
