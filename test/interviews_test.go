@@ -853,3 +853,21 @@ func Test37FindFirstCommonNode(t *testing.T) {
 		t.Errorf("expected 6 and got %v", n.Data)
 	}
 }
+
+func Test38CountingK(t *testing.T) {
+	if cnt := interviews.CountingK([]int{1, 2, 3, 3, 3, 3, 4, 5}, 3); cnt != 4 {
+		t.Errorf("expected 4 and got %d", cnt)
+	}
+	if cnt := interviews.CountingK([]int{1, 2, 3, 3, 3, 3, 4, 5}, 6); cnt != 0 {
+		t.Errorf("expected 0 and got %d", cnt)
+	}
+	if cnt := interviews.CountingK([]int{2}, 2); cnt != 1 {
+		t.Errorf("expected 1 and got %d", cnt)
+	}
+	if cnt := interviews.CountingK([]int{}, 1); cnt != 0 {
+		t.Errorf("expected 0 and got %d", cnt)
+	}
+	if cnt := interviews.CountingK(nil, 1); cnt != 0 {
+		t.Errorf("expected 0 and got %d", cnt)
+	}
+}
