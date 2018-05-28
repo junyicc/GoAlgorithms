@@ -72,3 +72,17 @@ func reverseString2(s string) string {
 	}
 	return string(charArr)
 }
+
+// LeftRatateString rotates first k characters to the tail
+func LeftRatateString(s string, k int) string {
+	if s == "" || len(s) <= k || k == 0 {
+		return s
+	}
+	words := []rune(s)
+	lo, hi := 0, len(words)-1
+	reverseString(words, lo, hi)
+	reverseString(words, lo, hi-k)
+	reverseString(words, hi-k+1, hi)
+
+	return string(words)
+}

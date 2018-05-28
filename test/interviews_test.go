@@ -998,3 +998,21 @@ func Test42ReverseString(t *testing.T) {
 	}
 
 }
+
+func Test42LeftRotateString(t *testing.T) {
+	if s := interviews.LeftRatateString("abcdefg", 2); s != "cdefgab" {
+		t.Errorf("expected %q and got %q", "cdefgab", s)
+	}
+	if s := interviews.LeftRatateString("abcdefg", 8); s != "abcdefg" {
+		t.Errorf("expected %q and got %q", "abcdefg", s)
+	}
+	if s := interviews.LeftRatateString("abcdefg", 0); s != "abcdefg" {
+		t.Errorf("expected %q and got %q", "abcdefg", s)
+	}
+	if s := interviews.LeftRatateString("", 2); s != "" {
+		t.Errorf("expected %q and got %q", "", s)
+	}
+	if s := interviews.LeftRatateString("a", 2); s != "a" {
+		t.Errorf("expected %q and got %q", "a", s)
+	}
+}
