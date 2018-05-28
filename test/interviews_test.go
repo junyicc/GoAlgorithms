@@ -1045,6 +1045,12 @@ func Test44IsStraight(t *testing.T) {
 	}
 }
 
+func Test45LastReaminingNum(t *testing.T) {
+	if n := interviews.LastRemaining(5, 3); n != 3 {
+		t.Errorf("expected %d and got %d", 3, n)
+	}
+}
+
 func Test47AddTwoNum(t *testing.T) {
 	if n := interviews.AddTwoNum(1, 1); n != 2 {
 		t.Errorf("expected %d and got %d", 2, n)
