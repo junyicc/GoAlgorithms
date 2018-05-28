@@ -1044,3 +1044,18 @@ func Test44IsStraight(t *testing.T) {
 		t.Errorf("expected false and got %t", b)
 	}
 }
+
+func Test47AddTwoNum(t *testing.T) {
+	if n := interviews.AddTwoNum(1, 1); n != 2 {
+		t.Errorf("expected %d and got %d", 2, n)
+	}
+	if n := interviews.AddTwoNum(1, 0); n != 1 {
+		t.Errorf("expected %d and got %d", 0, n)
+	}
+	if n := interviews.AddTwoNum(0, 0); n != 0 {
+		t.Errorf("expected %d and got %d", 0, n)
+	}
+	if n := interviews.AddTwoNum(-1, 1); n != 0 {
+		t.Errorf("expected %d and got %d", 0, n)
+	}
+}
