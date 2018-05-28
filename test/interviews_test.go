@@ -975,3 +975,26 @@ func Test41ContinuousSeqWithSum(t *testing.T) {
 		t.Errorf("expected true and got %t", found)
 	}
 }
+
+func Test42ReverseString(t *testing.T) {
+	s := "I am a student. "
+	es := "student. a am I"
+	if rs := interviews.ReverseSentence2(s); rs != es {
+		t.Errorf("expected %q and got %q", es, rs)
+	}
+	if rs := interviews.ReverseSentence2(""); rs != "" {
+		t.Errorf("expected %q and got %q", "", rs)
+	}
+
+	es = " student. a am I"
+	if rs := interviews.ReverseSentence(s); rs != es {
+		t.Errorf("expected %q and got %q", es, rs)
+	}
+	if rs := interviews.ReverseSentence(""); rs != "" {
+		t.Errorf("expected %q and got %q", "", rs)
+	}
+	if rs := interviews.ReverseSentence("  "); rs != "  " {
+		t.Errorf("expected %q and got %q", "  ", rs)
+	}
+
+}
