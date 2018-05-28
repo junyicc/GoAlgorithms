@@ -1026,3 +1026,8 @@ func Test42LeftRotateString(t *testing.T) {
 		t.Errorf("expected %q and got %q", "a", s)
 	}
 }
+
+func Test34PrintDiceProbability(t *testing.T) {
+	interviews.PrintDiceProbability(6)
+	t.Errorf("testing...")
+}
