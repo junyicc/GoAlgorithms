@@ -977,7 +977,7 @@ func Test41ContinuousSeqWithSum(t *testing.T) {
 }
 
 func Test42ReverseString(t *testing.T) {
-	s := "I am a student. "
+	s := "I am a student."
 	es := "student. a am I"
 	if rs := interviews.ReverseSentence2(s); rs != es {
 		t.Errorf("expected %q and got %q", es, rs)
@@ -986,7 +986,6 @@ func Test42ReverseString(t *testing.T) {
 		t.Errorf("expected %q and got %q", "", rs)
 	}
 
-	es = " student. a am I"
 	if rs := interviews.ReverseSentence(s); rs != es {
 		t.Errorf("expected %q and got %q", es, rs)
 	}
@@ -997,9 +996,20 @@ func Test42ReverseString(t *testing.T) {
 		t.Errorf("expected %q and got %q", "  ", rs)
 	}
 
+	s = "哇哈哈 火箭赢了"
+	es = "火箭赢了 哇哈哈"
+	if rs := interviews.ReverseSentence2(s); rs != es {
+		t.Errorf("expected %q and got %q", es, rs)
+	}
+	if rs := interviews.ReverseSentence(s); rs != es {
+		t.Errorf("expected %q and got %q", es, rs)
+	}
 }
 
 func Test42LeftRotateString(t *testing.T) {
+	if s := interviews.LeftRatateString("我喜欢你", 2); s != "欢你我喜" {
+		t.Errorf("expected %q and got %q", "欢你我喜", s)
+	}
 	if s := interviews.LeftRatateString("abcdefg", 2); s != "cdefgab" {
 		t.Errorf("expected %q and got %q", "cdefgab", s)
 	}
