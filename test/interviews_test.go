@@ -1027,7 +1027,20 @@ func Test42LeftRotateString(t *testing.T) {
 	}
 }
 
-func Test34PrintDiceProbability(t *testing.T) {
+func Test43PrintDiceProbability(t *testing.T) {
 	interviews.PrintDiceProbability(6)
-	t.Errorf("testing...")
+}
+
+func Test44IsStraight(t *testing.T) {
+	if b := interviews.IsStraight([]int{4, 5, 7, 0, 0, 9}); !b {
+		t.Errorf("expected true and got %t", b)
+	}
+
+	if b := interviews.IsStraight([]int{4, 5, 7, 2, 4}); b {
+		t.Errorf("expected false and got %t", b)
+	}
+
+	if b := interviews.IsStraight(nil); b {
+		t.Errorf("expected false and got %t", b)
+	}
 }
