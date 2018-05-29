@@ -1065,3 +1065,34 @@ func Test47AddTwoNum(t *testing.T) {
 		t.Errorf("expected %d and got %d", 0, n)
 	}
 }
+
+func Test49Atoi(t *testing.T) {
+	// empty string
+	if n, ok := interviews.Atoi(""); ok || n != 0 {
+		t.Errorf("expected 0, false and got %d, %t", n, ok)
+	}
+	// not number
+	if n, ok := interviews.Atoi("!32"); ok || n != 0 {
+		t.Errorf("expected 0, false and got %d, %t", n, ok)
+	}
+	// with symbol +/-
+	if n, ok := interviews.Atoi("+"); ok || n != 0 {
+		t.Errorf("expected 0, false and got %d, %t", n, ok)
+	}
+	if n, ok := interviews.Atoi("+9"); !ok || n != 9 {
+		t.Errorf("expected 9, true and got %d, %t", n, ok)
+	}
+	// exceeding boundary
+	if n, ok := interviews.Atoi("-9223372036854775808"); !ok || n != -9223372036854775808 {
+		t.Errorf("expected -9223372036854775808, true and got %d, %t", n, ok)
+	}
+	if n, ok := interviews.Atoi("9223372036854775807"); !ok || n != 9223372036854775807 {
+		t.Errorf("expected 9223372036854775807, true and got %d, %t", n, ok)
+	}
+	if n, ok := interviews.Atoi("9223372036854775808"); ok || n != 0 {
+		t.Errorf("expected 0, false and got %d, %t", n, ok)
+	}
+	if n, ok := interviews.Atoi("-9223372036854775809"); ok || n != 0 {
+		t.Errorf("expected 0, false and got %d, %t", n, ok)
+	}
+}
