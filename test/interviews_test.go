@@ -1154,3 +1154,14 @@ func Test51FindRepeatingNum(t *testing.T) {
 		t.Errorf("expected nil and got %d", n)
 	}
 }
+
+func Test52Multiply(t *testing.T) {
+	arr := []int{1, 3, 2, 1, 5}
+	exp := []int{30, 10, 15, 30, 6}
+	targetArr := interviews.MultiplyArray(arr)
+	for i, e := range targetArr {
+		if e != exp[i] {
+			t.Errorf("expected %d and got %d", exp[i], e)
+		}
+	}
+}
