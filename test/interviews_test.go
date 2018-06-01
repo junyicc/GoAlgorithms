@@ -1212,3 +1212,36 @@ func Test54IsNumeric(t *testing.T) {
 func Test55FirstAppearingOnce(t *testing.T) {
 	interviews.PrintFirstAppearingOnce()
 }
+
+func Test56EntryOfLoop(t *testing.T) {
+	n6 := datastructure.Node{Data: 6, Next: nil}
+	n5 := datastructure.Node{Data: 5, Next: &n6}
+	n4 := datastructure.Node{Data: 4, Next: &n5}
+	n3 := datastructure.Node{Data: 3, Next: &n4}
+	n2 := datastructure.Node{Data: 2, Next: &n3}
+	n1 := datastructure.Node{Data: 1, Next: &n2}
+	n6.Next = &n3
+	// entry at n3
+	if n := interviews.FindEntryOfLoop(&n1); n != &n3 {
+		t.Errorf("expected %v and got %v", n3, n)
+	}
+	// break loop
+	n6.Next = nil
+	if n := interviews.FindEntryOfLoop(&n1); n != nil {
+		t.Errorf("expected nil and got %v", n)
+	}
+	// self-loop
+	n7 := datastructure.Node{Data: 7, Next: nil}
+	n7.Next = &n7
+	if n := interviews.FindEntryOfLoop(&n7); n != &n7 {
+		t.Errorf("expected %v and got %v", n7, n)
+	}
+	// two nodes loop
+	n9 := datastructure.Node{Data: 9, Next: nil}
+	n8 := datastructure.Node{Data: 8, Next: &n9}
+	n9.Next = &n8
+	if n := interviews.FindEntryOfLoop(&n8); n != &n8 {
+		t.Errorf("expected %v and got %v", n8, n)
+	}
+
+}
