@@ -1180,3 +1180,31 @@ func Test53Regex(t *testing.T) {
 		t.Errorf("expected true and got %t", b)
 	}
 }
+
+func Test54IsNumeric(t *testing.T) {
+	if b := interviews.IsNumeric("18"); !b {
+		t.Errorf("expected true and got %t", b)
+	}
+	if b := interviews.IsNumeric("-18"); !b {
+		t.Errorf("expected true and got %t", b)
+	}
+	if b := interviews.IsNumeric("18.58"); !b {
+		t.Errorf("expected true and got %t", b)
+	}
+	if b := interviews.IsNumeric("18.58E-2"); !b {
+		t.Errorf("expected true and got %t", b)
+	}
+	if b := interviews.IsNumeric("18e2"); !b {
+		t.Errorf("expected true and got %t", b)
+	}
+
+	if b := interviews.IsNumeric(""); b {
+		t.Errorf("expected false and got %t", b)
+	}
+	if b := interviews.IsNumeric("2.2a3"); b {
+		t.Errorf("expected false and got %t", b)
+	}
+	if b := interviews.IsNumeric("18.3e2.5"); b {
+		t.Errorf("expected false and got %t", b)
+	}
+}
