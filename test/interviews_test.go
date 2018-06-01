@@ -1165,3 +1165,18 @@ func Test52Multiply(t *testing.T) {
 		}
 	}
 }
+
+func Test53Regex(t *testing.T) {
+	if b := interviews.Match("aaa", "a.a"); !b {
+		t.Errorf("expected true and got %t", b)
+	}
+	if b := interviews.Match("", "a.a"); b {
+		t.Errorf("expected false and got %t", b)
+	}
+	if b := interviews.Match("aaba", "a*.a"); !b {
+		t.Errorf("expected true and got %t", b)
+	}
+	if b := interviews.Match("*aa", "**.a"); !b {
+		t.Errorf("expected true and got %t", b)
+	}
+}
