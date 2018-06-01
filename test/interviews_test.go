@@ -1140,3 +1140,17 @@ func Test50LastCommonAncestor(t *testing.T) {
 		t.Errorf("expected nil\ngot%v\n", *node)
 	}
 }
+
+func Test51FindRepeatingNum(t *testing.T) {
+	if n, ok := interviews.FindRepeatingNum([]int{2, 3, 1, 0, 2, 5, 3}); !ok || (n != 2 && n != 3) {
+		t.Errorf("expected 2 or 3 and got %d", n)
+	}
+
+	if n, ok := interviews.FindRepeatingNum(nil); ok || n != -1 {
+		t.Errorf("expected nil and got %d", n)
+	}
+
+	if n, ok := interviews.FindRepeatingNum([]int{0}); ok || n != -1 {
+		t.Errorf("expected nil and got %d", n)
+	}
+}
