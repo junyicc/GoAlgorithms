@@ -1208,3 +1208,7 @@ func Test54IsNumeric(t *testing.T) {
 		t.Errorf("expected false and got %t", b)
 	}
 }
+
+func Test55FirstAppearingOnce(t *testing.T) {
+	interviews.PrintFirstAppearingOnce()
+}
