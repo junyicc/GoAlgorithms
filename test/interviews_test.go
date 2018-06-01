@@ -1096,3 +1096,47 @@ func Test49Atoi(t *testing.T) {
 		t.Errorf("expected 0, false and got %d, %t", n, ok)
 	}
 }
+
+func Test50LastCommonAncestor(t *testing.T) {
+	f := datastructure.TreeNode{Key: 1, Data: 1, LChild: nil, RChild: nil}
+	g := datastructure.TreeNode{Key: 3, Data: 3, LChild: nil, RChild: nil}
+	d := datastructure.TreeNode{Key: 2, Data: 2, LChild: &f, RChild: &g}
+	h := datastructure.TreeNode{Key: 5, Data: 6, LChild: nil, RChild: nil}
+	i := datastructure.TreeNode{Key: 7, Data: 7, LChild: nil, RChild: nil}
+	e := datastructure.TreeNode{Key: 6, Data: 6, LChild: &h, RChild: &i}
+	b := datastructure.TreeNode{Key: 4, Data: 4, LChild: &d, RChild: &e}
+	c := datastructure.TreeNode{Key: 9, Data: 9, LChild: nil, RChild: nil}
+	a := datastructure.TreeNode{Key: 8, Data: 8, LChild: &b, RChild: &c}
+
+	if node := interviews.GetLastCommonAncestorForBST(&a, &g, &h); node != &b {
+		t.Errorf("expected %v\ngot%v\n", b, *node)
+	}
+
+	if node := interviews.GetLastCommonAncestorForBST(&a, &g, &c); node != &a {
+		t.Errorf("expected %v\ngot%v\n", a, *node)
+	}
+
+	if node := interviews.GetLastCommonAncestorForBST(&a, &d, &d); node != &d {
+		t.Errorf("expected %v\ngot%v\n", d, *node)
+	}
+
+	if node := interviews.GetLastCommonAncestorForBST(&a, nil, nil); node != nil {
+		t.Errorf("expected nil\ngot%v\n", *node)
+	}
+
+	if node := interviews.GetLastCommonAncestorForTree(&a, &g, &h); node != &b {
+		t.Errorf("expected %v\ngot%v\n", b, *node)
+	}
+
+	if node := interviews.GetLastCommonAncestorForTree(&a, &g, &c); node != &a {
+		t.Errorf("expected %v\ngot%v\n", a, *node)
+	}
+
+	if node := interviews.GetLastCommonAncestorForTree(&a, &d, &d); node != &d {
+		t.Errorf("expected %v\ngot%v\n", d, *node)
+	}
+
+	if node := interviews.GetLastCommonAncestorForTree(&a, nil, nil); node != nil {
+		t.Errorf("expected nil\ngot%v\n", *node)
+	}
+}
