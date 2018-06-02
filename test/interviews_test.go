@@ -1344,3 +1344,15 @@ func Test59IsSymmertrical(t *testing.T) {
 		t.Errorf("expected true and got %t", b)
 	}
 }
+
+func Test60PrintBiTree(t *testing.T) {
+	n5L := datastructure.TreeNode{Data: 5}
+	n7L := datastructure.TreeNode{Data: 7}
+	n6L := datastructure.TreeNode{Data: 6, LChild: &n5L, RChild: &n7L}
+	n5R := datastructure.TreeNode{Data: 5}
+	n7R := datastructure.TreeNode{Data: 7}
+	n6R := datastructure.TreeNode{Data: 6, LChild: &n7R, RChild: &n5R}
+	n8 := datastructure.TreeNode{Data: 8, LChild: &n6L, RChild: &n6R}
+
+	interviews.PrintBinaryTree(&n8)
+}
