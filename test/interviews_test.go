@@ -1371,3 +1371,25 @@ func Test61PrintBiTreeInZ(t *testing.T) {
 	interviews.PrintBiTreeInZ(nil)
 	interviews.PrintBiTreeInZ(&datastructure.TreeNode{})
 }
+
+func Test63FindKthNodeInBST(t *testing.T) {
+	n5L := datastructure.TreeNode{Data: 5}
+	n7L := datastructure.TreeNode{Data: 7}
+	n6L := datastructure.TreeNode{Data: 6, LChild: &n5L, RChild: &n7L}
+	n5R := datastructure.TreeNode{Data: 11}
+	n7R := datastructure.TreeNode{Data: 9}
+	n6R := datastructure.TreeNode{Data: 10, LChild: &n7R, RChild: &n5R}
+	n8 := datastructure.TreeNode{Data: 8, LChild: &n6L, RChild: &n6R}
+
+	if n := interviews.FindKthNodeInBST(&n8, 3); n != &n7L {
+		t.Errorf("expected %v\nand got %v\n", n7L, *n)
+	}
+
+	if n := interviews.FindKthNodeInBST(&n8, 4); n != &n8 {
+		t.Errorf("expected %v\nand got %v\n", n8, *n)
+	}
+
+	if n := interviews.FindKthNodeInBST(&n8, 8); n != nil {
+		t.Errorf("expected %v\nand got %v\n", nil, *n)
+	}
+}
