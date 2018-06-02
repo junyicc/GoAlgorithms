@@ -33,6 +33,9 @@ func Less(e1, e2 Elem) bool {
 
 // Equal comparison
 func Equal(e1, e2 Elem) bool {
+	if e1 == nil && e2 == nil {
+		return true
+	}
 	if e1 == nil || e2 == nil {
 		return false
 	}
