@@ -1292,3 +1292,41 @@ func Test57UniqueLinkedlist(t *testing.T) {
 		t.Errorf("failed deleting duplication")
 	}
 }
+
+func Test58Successor(t *testing.T) {
+	a := interviews.TreeNode{Data: "a"}
+	b := interviews.TreeNode{Data: "b"}
+	c := interviews.TreeNode{Data: "c"}
+	d := interviews.TreeNode{Data: "d"}
+	e := interviews.TreeNode{Data: "e"}
+	f := interviews.TreeNode{Data: "f"}
+	g := interviews.TreeNode{Data: "g"}
+	h := interviews.TreeNode{Data: "h"}
+	i := interviews.TreeNode{Data: "i"}
+	a.LChild = &b
+	a.RChild = &c
+	b.LChild = &d
+	b.RChild = &e
+	b.Parent = &a
+	c.LChild = &f
+	c.RChild = &g
+	c.Parent = &a
+	d.Parent = &b
+	e.Parent = &b
+	e.LChild = &h
+	e.RChild = &i
+	f.Parent = &c
+	g.Parent = &c
+	h.Parent = &e
+	i.Parent = &e
+
+	if n := interviews.Succeesor(&a); n != &f {
+		t.Errorf("expected %v and got %v", f, *n)
+	}
+	if n := interviews.Succeesor(&i); n != &a {
+		t.Errorf("expected %v and got %v", a, *n)
+	}
+	if n := interviews.Succeesor(&d); n != &b {
+		t.Errorf("expected %v and got %v", b, *n)
+	}
+}
