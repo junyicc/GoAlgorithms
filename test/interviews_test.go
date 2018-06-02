@@ -1269,3 +1269,26 @@ func Test57DeleteDuplication(t *testing.T) {
 		t.Errorf("failed deleting duplication")
 	}
 }
+
+func Test57UniqueLinkedlist(t *testing.T) {
+	n4 := datastructure.Node{Data: 4, Next: nil}
+	n33 := datastructure.Node{Data: 3, Next: &n4}
+	n3 := datastructure.Node{Data: 3, Next: &n33}
+	n22 := datastructure.Node{Data: 2, Next: &n3}
+	n2 := datastructure.Node{Data: 2, Next: &n22}
+	n1 := datastructure.Node{Data: 1, Next: &n2}
+
+	interviews.UniqueLinkedlist(&n1)
+	if n1.Next != &n2 || n2.Next != &n3 || n3.Next != &n4 {
+		t.Errorf("failed deleting duplication")
+	}
+
+	n7 := datastructure.Node{Data: 7, Next: nil}
+	n6 := datastructure.Node{Data: 6, Next: &n7}
+	n5 := datastructure.Node{Data: 5, Next: &n6}
+
+	interviews.UniqueLinkedlist(&n5)
+	if n5.Next != &n6 || n6.Next != &n7 {
+		t.Errorf("failed deleting duplication")
+	}
+}

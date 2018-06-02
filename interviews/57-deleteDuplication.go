@@ -33,3 +33,29 @@ func DeleteDuplication(head **datastructure.Node) {
 		}
 	}
 }
+
+// UniqueLinkedlist make the sorted linkedlist contain unique nodes
+func UniqueLinkedlist(head *datastructure.Node) {
+	if head == nil {
+		return
+	}
+
+	node := head
+	for node != nil && node.Next != nil {
+		if datastructure.Equal(node.Data, node.Next.Data) {
+			value := node.Data
+			next := node.Next
+			for next != nil && datastructure.Equal(value, next.Data) {
+				del := next
+				next = next.Next
+				del.Data = nil
+				del.Next = nil
+				del = nil
+			}
+			node.Next = next
+			node = next
+		} else {
+			node = node.Next
+		}
+	}
+}
