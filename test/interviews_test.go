@@ -1413,3 +1413,20 @@ func Test62Serialize(t *testing.T) {
 		t.Errorf("failed deserialzing binary tree")
 	}
 }
+
+func Test64Median(t *testing.T) {
+	arr := []int{1, 2, 3, 4, 5}
+	da := interviews.DynamicArray{}
+	da.Init()
+	for _, e := range arr {
+		da.Insert(e)
+	}
+	if m, ok := da.Median(); !ok || m != 3 {
+		t.Errorf("expected 3 and got %d", m)
+	}
+
+	da.Insert(7)
+	if m, ok := da.Median(); !ok || m != 3 {
+		t.Errorf("expected 3 and got %d", m)
+	}
+}
