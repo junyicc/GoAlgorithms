@@ -1,6 +1,7 @@
 package test
 
 import (
+	"bytes"
 	"fmt"
 	"testing"
 
@@ -1391,5 +1392,24 @@ func Test63FindKthNodeInBST(t *testing.T) {
 
 	if n := interviews.FindKthNodeInBST(&n8, 8); n != nil {
 		t.Errorf("expected %v\nand got %v\n", nil, *n)
+	}
+}
+
+func Test62Serialize(t *testing.T) {
+	n4 := datastructure.TreeNode{Data: "4"}
+	n5 := datastructure.TreeNode{Data: "5"}
+	n6 := datastructure.TreeNode{Data: "6"}
+	n2 := datastructure.TreeNode{Data: "2", LChild: &n4}
+	n3 := datastructure.TreeNode{Data: "3", LChild: &n5, RChild: &n6}
+	n1 := datastructure.TreeNode{Data: "1", LChild: &n2, RChild: &n3}
+
+	var b bytes.Buffer
+	interviews.Serialize(&n1, &b)
+
+	root := new(datastructure.TreeNode)
+	interviews.Deserialize(&root, &b)
+
+	if !datastructure.Equal(root.Data, n1.Data) || !datastructure.Equal(root.LChild.Data, n2.Data) || !datastructure.Equal(root.RChild.Data, n3.Data) {
+		t.Errorf("failed deserialzing binary tree")
 	}
 }
