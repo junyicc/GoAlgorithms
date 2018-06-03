@@ -24,11 +24,11 @@ type DynamicArray struct {
 
 // Init DynamicArray
 func (da *DynamicArray) Init() {
-	da.minHeap = MinHeap{IntHeap: datastructure.IntHeap{Data: []int{}}}
+	da.minHeap = MinHeap{}
 	da.minHeap.Cmp = func(i, j int) bool {
 		return da.minHeap.Data[i] < da.minHeap.Data[j]
 	}
-	da.maxHeap = MaxHeap{IntHeap: datastructure.IntHeap{Data: []int{}}}
+	da.maxHeap = MaxHeap{}
 	da.maxHeap.Cmp = func(i, j int) bool {
 		return da.maxHeap.Data[i] > da.maxHeap.Data[j]
 	}
