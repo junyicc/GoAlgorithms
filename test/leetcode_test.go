@@ -20,3 +20,8 @@ func TestThreeSumClosest(t *testing.T) {
 		t.Errorf("expected 2 and got %d", result)
 	}
 }
+
+func TestFourSum(t *testing.T) {
+	result := leetcode.FourSum([]int{0, 0, 0, 0}, 0)
+	fmt.Println(result)
+}
