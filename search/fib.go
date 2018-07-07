@@ -14,11 +14,11 @@ func FibSearch(arr []int, e int) (int, bool) {
 	}
 
 	lo, hi := 0, len(arr)
-	var k int
 	var f datastructure.Fib
 	for lo < hi {
 		var fib = f.New()
-		for hi-lo < fib() {
+		var k int
+		for fib() < hi-lo {
 			k++
 		}
 		mi := lo + f.Get(k-1) - 1

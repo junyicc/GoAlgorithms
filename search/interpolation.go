@@ -6,8 +6,8 @@ func InterpolationSearch(arr []int, e int) (int, bool) {
 		return -1, false
 	}
 
-	lo, hi := 0, len(arr)
-	for hi-lo > 1 {
+	lo, hi := 0, len(arr)-1
+	for lo < hi {
 		mi := lo + (hi-lo)*(e-arr[lo])/(arr[hi]-arr[lo])
 		if e < arr[mi] {
 			hi = mi

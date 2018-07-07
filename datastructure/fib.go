@@ -18,7 +18,7 @@ func (f Fib) Generate() func() int {
 	a, b := 0, 1
 	return func() int {
 		a, b = b, a+b
-		return a
+		return b
 	}
 }
 
@@ -30,7 +30,7 @@ func (f Fib) New() func() int {
 // Get fibonacci number
 func (f Fib) Get(n int) int {
 	if n < 2 {
-		return n
+		return 1
 	}
 	a, b := 0, 1
 	for i := 2; i <= n; i++ {

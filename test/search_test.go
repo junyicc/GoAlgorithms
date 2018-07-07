@@ -26,7 +26,7 @@ func TestBinarySearch(t *testing.T) {
 // TestInterpolationSearch tests binary search algorithm
 func TestInterpolationSearch(t *testing.T) {
 	items := []int{5, 8, 46, 58, 59, 86, 99, 251, 320}
-	if i, _ := search.BinarySearch(items, 320); i != 8 {
+	if i, _ := search.InterpolationSearch(items, 320); i != 8 {
 		t.Errorf("expected 8 and got %d", i)
 	}
 }
@@ -34,7 +34,7 @@ func TestInterpolationSearch(t *testing.T) {
 // TestFibSearch tests fibonacci search
 func TestFibSearch(t *testing.T) {
 	items := []int{5, 8, 46, 58, 59, 86, 99, 251, 320}
-	if i, _ := search.BinarySearch(items, 8); i != 1 {
+	if i, _ := search.FibSearch(items, 251); i != 7 {
 		t.Errorf("expected 1 and got %d", i)
 	}
 }
