@@ -25,3 +25,19 @@ func TestFourSum(t *testing.T) {
 	result := leetcode.FourSum([]int{0, 0, 0, 0}, 0)
 	fmt.Println(result)
 }
+
+func TestProducerConsumer(t *testing.T) {
+	data := make(chan int, 5)
+	leetcode.ProducerWG.Add(1)
+	go leetcode.Producer("P1", data)
+	leetcode.ConsumerWG.Add(1)
+	go leetcode.Consumer("U1", data)
+	leetcode.ProducerWG.Add(1)
+	go leetcode.Producer("P2", data)
+	leetcode.ConsumerWG.Add(1)
+	go leetcode.Consumer("U2", data)
+
+	leetcode.ProducerWG.Wait()
+	close(data)
+	leetcode.ConsumerWG.Wait()
+}
