@@ -16,3 +16,19 @@ func TestSingleton(t *testing.T) {
 		t.Errorf("expected singleton and got %s", result)
 	}
 }
+
+func TestMediator(t *testing.T) {
+	wtw := designpattern.WaterTreatmentWork{
+		PotableWater: 550,
+	}
+	wsw := designpattern.WaterStorageWork{
+		MaxStorage: 200,
+		Storage:    50,
+	}
+	mediator := designpattern.NewWTWWSWMediator(&wtw, &wsw)
+	wsw.OnDemand(mediator, 100)
+
+	if wtw.PotableWater != 450 || wsw.Storage != 150 {
+		t.Errorf("failed to transfer water")
+	}
+}
