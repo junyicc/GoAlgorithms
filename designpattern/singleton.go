@@ -1,17 +1,23 @@
 package designpattern
 
-import "sync"
+import (
+	"sync"
+)
 
-// Singleton struct
-type Singleton struct{}
+// singleton struct
+type singleton struct{}
 
-var instance *Singleton
+func (s singleton) String() string {
+	return "singleton"
+}
+
+var instance *singleton
 var once sync.Once
 
-// GetSingleton instance
-func GetSingleton() *Singleton {
+// Singleton instance
+func Singleton() *singleton {
 	once.Do(func() {
-		instance = &Singleton{}
+		instance = &singleton{}
 	})
 
 	return instance
