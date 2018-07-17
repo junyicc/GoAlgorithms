@@ -41,3 +41,29 @@ func TestProducerConsumer(t *testing.T) {
 	close(data)
 	leetcode.ConsumerWG.Wait()
 }
+
+func Test45JumpGames(t *testing.T) {
+	input := []int{2, 3, 1, 1, 4}
+	expected := 2
+	if result := leetcode.Jump(input); result != expected {
+		t.Errorf("expected %d and got %d", expected, result)
+	}
+
+	input = []int{2}
+	expected = 0
+	if result := leetcode.Jump(input); result != expected {
+		t.Errorf("expected %d and got %d", expected, result)
+	}
+
+	input = []int{0} // false
+	expected = 0
+	if result := leetcode.Jump(input); result != expected {
+		t.Errorf("expected %d and got %d", expected, result)
+	}
+
+	input = []int{} // false
+	expected = 0
+	if result := leetcode.Jump(input); result != expected {
+		t.Errorf("expected %d and got %d", expected, result)
+	}
+}
