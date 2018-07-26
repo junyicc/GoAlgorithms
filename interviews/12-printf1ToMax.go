@@ -1,8 +1,8 @@
 package interviews
 
 import (
-	"bytes"
 	"fmt"
+	"strings"
 )
 
 // Print1ToMaxOfNDigits prints 1 to max of n digits
@@ -54,7 +54,7 @@ func IToA(number []byte) string {
 		return ""
 	}
 
-	var b bytes.Buffer
+	var b strings.Builder
 	n := len(number)
 	isBeginning0 := true // ignore beginning 0
 	for i := 0; i < n; i++ {
@@ -62,7 +62,7 @@ func IToA(number []byte) string {
 			isBeginning0 = false // print following 0
 		}
 		if !isBeginning0 {
-			b.WriteString(fmt.Sprintf("%c", number[i]))
+			b.WriteByte(number[i])
 		}
 	}
 	return b.String()
