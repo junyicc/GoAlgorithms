@@ -11,7 +11,7 @@ func Permutation(n, m int) int {
 		return 1
 	}
 
-	if m == 0 {
+	if m == 0 || n <= m {
 		return 1
 	} else if m == 1 {
 		return n
