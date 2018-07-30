@@ -38,5 +38,5 @@ func isSubtree(r1, r2 *datastructure.TreeNode) bool {
 		return false
 	}
 	// check recursively
-	return isSubtree(r1.LChild, r2.RChild) && isSubtree(r1.RChild, r2.RChild)
+	return isSubtree(r1.LChild, r2.LChild) && isSubtree(r1.RChild, r2.RChild)
 }
