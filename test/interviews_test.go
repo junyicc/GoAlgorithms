@@ -1008,22 +1008,22 @@ func Test42ReverseString(t *testing.T) {
 }
 
 func Test42LeftRotateString(t *testing.T) {
-	if s := interviews.LeftRatateString("我喜欢你", 2); s != "欢你我喜" {
+	if s := interviews.LeftRotateString("我喜欢你", 2); s != "欢你我喜" {
 		t.Errorf("expected %q and got %q", "欢你我喜", s)
 	}
-	if s := interviews.LeftRatateString("abcdefg", 2); s != "cdefgab" {
+	if s := interviews.LeftRotateString("abcdefg", 2); s != "cdefgab" {
 		t.Errorf("expected %q and got %q", "cdefgab", s)
 	}
-	if s := interviews.LeftRatateString("abcdefg", 8); s != "abcdefg" {
+	if s := interviews.LeftRotateString("abcdefg", 8); s != "abcdefg" {
 		t.Errorf("expected %q and got %q", "abcdefg", s)
 	}
-	if s := interviews.LeftRatateString("abcdefg", 0); s != "abcdefg" {
+	if s := interviews.LeftRotateString("abcdefg", 0); s != "abcdefg" {
 		t.Errorf("expected %q and got %q", "abcdefg", s)
 	}
-	if s := interviews.LeftRatateString("", 2); s != "" {
+	if s := interviews.LeftRotateString("", 2); s != "" {
 		t.Errorf("expected %q and got %q", "", s)
 	}
-	if s := interviews.LeftRatateString("a", 2); s != "a" {
+	if s := interviews.LeftRotateString("a", 2); s != "a" {
 		t.Errorf("expected %q and got %q", "a", s)
 	}
 }

@@ -73,8 +73,11 @@ func reverseString2(s string) string {
 	return string(charArr)
 }
 
-// LeftRatateString rotates first k characters to the tail
-func LeftRatateString(s string, k int) string {
+// LeftRotateString rotates first k characters to the tail
+func LeftRotateString(s string, k int) string {
+	if k < 0 {
+		panic("LeftRotateString: k<0")
+	}
 	if s == "" || len(s) <= k || k == 0 {
 		return s
 	}
