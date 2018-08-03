@@ -1165,6 +1165,23 @@ func Test52Multiply(t *testing.T) {
 			t.Errorf("expected %d and got %d", exp[i], e)
 		}
 	}
+	arr = []int{1, 3, 2, 0, 5}
+	exp = []int{0, 0, 0, 30, 0}
+	targetArr = interviews.MultiplyArray(arr)
+	for i, e := range targetArr {
+		if e != exp[i] {
+			t.Errorf("expected %d and got %d", exp[i], e)
+		}
+	}
+
+	arr = []int{1, 0, 2, 0, 5}
+	exp = []int{0, 0, 0, 0, 0}
+	targetArr = interviews.MultiplyArray(arr)
+	for i, e := range targetArr {
+		if e != exp[i] {
+			t.Errorf("expected %d and got %d", exp[i], e)
+		}
+	}
 }
 
 func Test53Regex(t *testing.T) {

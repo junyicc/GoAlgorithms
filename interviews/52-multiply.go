@@ -8,12 +8,16 @@ func MultiplyArray(arr []int) []int {
 	}
 	length := len(arr)
 	targetArr := make([]int, length)
-
-	targetArr[0] = 1
-	for i := 1; i < length; i++ {
-		targetArr[i] = targetArr[i-1] * arr[i-1]
+	for i := 0; i < length; i++ {
+		targetArr[i] = 1
 	}
+
 	tmp := 1
+	for i := 1; i < length; i++ {
+		tmp *= arr[i-1]
+		targetArr[i] *= tmp
+	}
+	tmp = 1
 	for i := length - 2; i >= 0; i-- {
 		tmp *= arr[i+1]
 		targetArr[i] *= tmp
