@@ -26,16 +26,16 @@ func GetLastCommonAncestorForTree(root, n1, n2 *datastructure.TreeNode) *datastr
 		return nil
 	}
 	var p1, p2 []*datastructure.TreeNode
-	getNodePath(root, n1, &p1)
-	getNodePath(root, n2, &p2)
+	getNodePath(root, n1, p1)
+	getNodePath(root, n2, p2)
 
 	node := getLastCommonNode(p1, p2)
 	return node
 }
 
-func getNodePath(root, node *datastructure.TreeNode, path *[]*datastructure.TreeNode) bool {
+func getNodePath(root, node *datastructure.TreeNode, path []*datastructure.TreeNode) bool {
 	found := false
-	*path = append(*path, root)
+	path = append(path, root)
 	if root == node {
 		return true
 	}
@@ -48,7 +48,7 @@ func getNodePath(root, node *datastructure.TreeNode, path *[]*datastructure.Tree
 	}
 
 	if !found {
-		*path = (*path)[:len(*path)-1]
+		path = path[:len(path)-1]
 	}
 	return found
 }
