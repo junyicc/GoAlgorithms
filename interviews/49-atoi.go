@@ -1,7 +1,9 @@
 package interviews
 
 import (
+	"fmt"
 	"math"
+	"strconv"
 )
 
 // Atoi converts string s to int
@@ -45,4 +47,39 @@ func Atoi(s string) (int, bool) {
 		}
 	}
 	return num, true
+}
+
+func atoi(s string) (int, error) {
+	if s == "" || len(s) < 1 {
+		return 0, fmt.Errorf("atoi: invalid input")
+	}
+
+	sLen := len(s)
+	if 0 < sLen && sLen < 19 {
+		s0 := s[0]
+		if s0 == '-' || s0 == '+' {
+			s = s[1:]
+			if len(s) < 1 {
+				// only '+' or '-'
+				return 0, fmt.Errorf("atoi: invalid input")
+			}
+		}
+		// convert
+		n := 0
+		for _, c := range s {
+			c -= '0'
+			// invalid character
+			if c < 0 || c > 9 {
+				return 0, fmt.Errorf("atoi: invalid character in string number")
+			}
+			n = n*10 + int(c)
+		}
+		if s0 == '-' {
+			n = 0 - n
+		}
+		return n, nil
+	}
+
+	n, err := strconv.ParseInt(s, 10, 0)
+	return int(n), err
 }
