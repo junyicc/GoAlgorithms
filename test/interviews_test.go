@@ -1447,3 +1447,19 @@ func Test64Median(t *testing.T) {
 		t.Errorf("expected 3 and got %d", m)
 	}
 }
+
+func Test68ReverseStr(t *testing.T) {
+	s1 := interviews.ReverseStr("abcdefg")
+	if s1 != "gfedcba" {
+		t.Errorf("expected gfedcba and got %s", s1)
+	}
+
+	s2 := interviews.ReverseStrByStack("abcdefg")
+	if s2 != "gfedcba" {
+		t.Errorf("expected gfedcba and got %s", s2)
+	}
+
+	if s3 := interviews.ReverseStrByBit("abcdefg"); s3 != "gfedcba" {
+		t.Errorf("expected gfedcba and got %s", s3)
+	}
+}
