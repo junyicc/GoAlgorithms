@@ -79,6 +79,20 @@ func Test2AddNumbers(t *testing.T) {
 	}
 }
 
+func Test3LenOfLCS(t *testing.T) {
+	if n := lengthOfLongestSubstring("abcabcbb"); n != 3 {
+		t.Errorf("expected 3 and got %d\n", n)
+	}
+
+	if n := lengthOfLongestSubstring("bbbbbbb"); n != 1 {
+		t.Errorf("expected 1 and got %d\n", n)
+	}
+
+	if n := lengthOfLongestSubstring("pwwkew"); n != 3 {
+		t.Errorf("expected 3 and got %d\n", n)
+	}
+}
+
 func Test7ReverseInt(t *testing.T) {
 	if d := reverse(123); d != 321 {
 		t.Errorf("expected 321 and got %d\n", d)
@@ -178,4 +192,17 @@ func Test14LongestCommonPrefix(t *testing.T) {
 	}
 }
 
-// todo: 3, 5, 4
+func Test70ClimbStairs(t *testing.T) {
+	if n := climbStairs(2); n != 2 {
+		t.Errorf("expected 2 and got %d\n", n)
+	}
+
+	if n := climbStairs(3); n != 3 {
+		t.Errorf("expected 3 and got %d\n", n)
+	}
+}
+func Test746ClimbStairs(t *testing.T) {
+	if n := minCostClimbingStairs([]int{1, 100, 1, 1, 1, 100, 1, 1, 100, 1}); n != 6 {
+		t.Errorf("expected 6 and got %d\n", n)
+	}
+}

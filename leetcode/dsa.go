@@ -49,7 +49,7 @@ func (s *Stack) IsEmpty() bool {
 	return len(s.data) == 0
 }
 
-// GetTop of the stack
+// Top of the stack
 func (s *Stack) Top() interface{} {
 	if s.IsEmpty() {
 		return nil
