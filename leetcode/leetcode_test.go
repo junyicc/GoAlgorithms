@@ -93,6 +93,20 @@ func Test3LenOfLCS(t *testing.T) {
 	}
 }
 
+func Test5LongestPalindrome(t *testing.T) {
+	if subString := longestPalindrome("abbd"); subString != "bb" {
+		t.Errorf("expected bb and got %s\n", subString)
+	}
+
+	if subString := longestPalindrome("babad"); subString != "aba" {
+		t.Errorf("expected aba and got %s\n", subString)
+	}
+
+	if subString := longestPalindrome("ac"); subString != "c" {
+		t.Errorf("expected c and got %s\n", subString)
+	}
+}
+
 func Test7ReverseInt(t *testing.T) {
 	if d := reverse(123); d != 321 {
 		t.Errorf("expected 321 and got %d\n", d)
