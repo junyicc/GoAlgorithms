@@ -216,6 +216,18 @@ func Test70ClimbStairs(t *testing.T) {
 	}
 }
 
+func Test121MaxProfit(t *testing.T) {
+	if n := maxProfit([]int{7, 1, 5, 3, 6, 4}); n != 5 {
+		t.Errorf("expected 5 and got %d\n", n)
+	}
+	if n := maxProfit([]int{7, 6, 4, 3, 1}); n != 0 {
+		t.Errorf("expected 0 and got %d\n", n)
+	}
+	if n := maxProfit([]int{2, 4, 1}); n != 2 {
+		t.Errorf("expected 2 and got %d\n", n)
+	}
+}
+
 func Test198RobHouses(t *testing.T) {
 	if n := rob([]int{1, 2, 3, 1}); n != 4 {
 		t.Errorf("expected 4 and got %d\n", n)
