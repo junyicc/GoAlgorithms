@@ -1448,6 +1448,21 @@ func Test64Median(t *testing.T) {
 	}
 }
 
+func Test66HasPath(t *testing.T) {
+	matrix := [][]byte{
+		[]byte{'a', 'b', 'c', 'e'},
+		[]byte{'s', 'f', 'c', 's'},
+		[]byte{'a', 'd', 'e', 'e'},
+	}
+	if b := interviews.HasPath(matrix, 3, 4, "bcced"); !b {
+		t.Errorf("expected true and got %t", b)
+	}
+
+	if b := interviews.HasPath(matrix, 3, 4, "abcb"); b {
+		t.Errorf("expected false and got %t", b)
+	}
+}
+
 func Test68ReverseStr(t *testing.T) {
 	s1 := interviews.ReverseStr("abcdefg")
 	if s1 != "gfedcba" {
