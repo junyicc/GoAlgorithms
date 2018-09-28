@@ -1478,3 +1478,14 @@ func Test68ReverseStr(t *testing.T) {
 		t.Errorf("expected gfedcba and got %s", s3)
 	}
 }
+
+func Test69Maze(t *testing.T) {
+	nums := [][]int{
+		[]int{0, 1, 2},
+		[]int{2, 3, -1},
+		[]int{1, 3, 1},
+	}
+	if n := interviews.FindShortestPath(nums, 3, 3); n != 7 {
+		t.Errorf("expected 7 and got %d\n", n)
+	}
+}
