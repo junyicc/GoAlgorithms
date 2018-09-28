@@ -1489,3 +1489,16 @@ func Test69Maze(t *testing.T) {
 		t.Errorf("expected 7 and got %d\n", n)
 	}
 }
+
+func Test70City(t *testing.T) {
+	n, m := 4, 3
+	paths := [][]int{
+		[]int{0, 0, 0, 0},
+		[]int{1, 0, 0, 0},
+		[]int{0, 1, 0, 0},
+		[]int{0, 0, 1, 0},
+	}
+	if n := interviews.GetImportantCitys(paths, n, m); n != 2 {
+		t.Errorf("expected 2 and got %d\n", n)
+	}
+}
