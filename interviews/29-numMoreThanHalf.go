@@ -8,7 +8,7 @@ func FindNumMoreThanHalf(arr []int) (int, bool) {
 	n := len(arr)
 
 	num := arr[0]
-	times := 0
+	times := 1
 	for i := 1; i < n; i++ {
 		if times == 0 {
 			times = 1
