@@ -243,6 +243,14 @@ func Test198RobHouses(t *testing.T) {
 	}
 }
 
+func Test202HappyNum(t *testing.T) {
+	if b := isHappy(18); b {
+		t.Errorf("expected false and got %t\n", b)
+	}
+	if b := isHappy(19); !b {
+		t.Errorf("expected true and got %t\n", b)
+	}
+}
 func Test746ClimbStairs(t *testing.T) {
 	if n := minCostClimbingStairs([]int{1, 100, 1, 1, 1, 100, 1, 1, 100, 1}); n != 6 {
 		t.Errorf("expected 6 and got %d\n", n)
