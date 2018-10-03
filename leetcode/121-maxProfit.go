@@ -36,3 +36,17 @@ func maxProfit(prices []int) int {
 	}
 	return maxDiff
 }
+
+func maxProfitI(prices []int) int {
+	if prices == nil || len(prices) < 2 {
+		return 0
+	}
+	maxProfit, maxCur := 0, 0
+	n := len(prices)
+	for i := 1; i < n; i++ {
+		maxCur += prices[i] - prices[i-1]
+		maxCur = max(maxCur, 0)
+		maxProfit = max(maxProfit, maxCur)
+	}
+	return maxProfit
+}
