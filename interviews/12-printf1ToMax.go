@@ -42,6 +42,7 @@ func increment(number []byte) bool {
 			}
 		} else {
 			number[i] = nsum + '0'
+			nTakeover = 0
 			break // stop continuing increasing
 		}
 	}
