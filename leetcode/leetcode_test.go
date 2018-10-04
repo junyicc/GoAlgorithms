@@ -251,6 +251,29 @@ func Test202HappyNum(t *testing.T) {
 		t.Errorf("expected true and got %t\n", b)
 	}
 }
+
+func Test326PowerOfThree(t *testing.T) {
+	if b := isPowerOfThree(81); !b {
+		t.Errorf("expected true and got %t\n", b)
+	}
+	if b := isPowerOfThree(14348908); b {
+		t.Errorf("expected false and got %t\n", b)
+	}
+}
+func Test326PowerOfFour(t *testing.T) {
+	if b := isPowerOfFour(16); !b {
+		t.Errorf("expected true and got %t\n", b)
+	}
+	if b := isPowerOfFour(2); b {
+		t.Errorf("expected false and got %t\n", b)
+	}
+	if b := isPowerOfFour(8); b {
+		t.Errorf("expected false and got %t\n", b)
+	}
+	if b := isPowerOfFour(4194304); !b {
+		t.Errorf("expected true and got %t\n", b)
+	}
+}
 func Test746ClimbStairs(t *testing.T) {
 	if n := minCostClimbingStairs([]int{1, 100, 1, 1, 1, 100, 1, 1, 100, 1}); n != 6 {
 		t.Errorf("expected 6 and got %d\n", n)
