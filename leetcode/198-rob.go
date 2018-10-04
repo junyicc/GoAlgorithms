@@ -38,3 +38,17 @@ func rob(nums []int) int {
 	}
 	return vals[houseNum-1]
 }
+
+func robII(nums []int) int {
+	if nums == nil || len(nums) < 1 {
+		return 0
+	}
+	houseNum := len(nums)
+	rob, notRob := 0, 0
+	for i := 0; i < houseNum; i++ {
+		curRob := notRob + nums[i] // rob current house
+		notRob = max(notRob, rob)  // max value of rob (i-1) house and notrob
+		rob = curRob
+	}
+	return max(rob, notRob)
+}
