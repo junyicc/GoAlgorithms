@@ -234,6 +234,15 @@ func Test121MaxProfit(t *testing.T) {
 	}
 }
 
+func Test125ValidPalindrome(t *testing.T) {
+	if b := validPalindrome("A man, a plan, a canal: Panama"); !b {
+		t.Errorf("expected true and got %t\n", b)
+	}
+	if b := validPalindrome("0P"); b {
+		t.Errorf("expected false and got %t\n", b)
+	}
+}
+
 func Test155MinStack(t *testing.T) {
 	obj := StackConstructor()
 	obj.Push(-2)
