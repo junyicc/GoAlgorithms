@@ -228,6 +228,23 @@ func Test121MaxProfit(t *testing.T) {
 	}
 }
 
+func Test155MinStack(t *testing.T) {
+	obj := StackConstructor()
+	obj.Push(-2)
+	obj.Push(0)
+	obj.Push(-3)
+	if m := obj.GetMin(); m != -3 {
+		t.Errorf("expected -3 and got %d\n", m)
+	}
+	obj.Pop()
+	if top := obj.Top(); top != 0 {
+		t.Errorf("expected 0 and got %d\n", top)
+	}
+	if m := obj.GetMin(); m != -2 {
+		t.Errorf("expected -2 and got %d\n", m)
+	}
+}
+
 func Test198RobHouses(t *testing.T) {
 	if n := rob([]int{1, 2, 3, 1}); n != 4 {
 		t.Errorf("expected 4 and got %d\n", n)

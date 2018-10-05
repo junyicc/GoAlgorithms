@@ -25,7 +25,7 @@ func (s *StackWithMin) Push(e datastructure.Elem) {
 	}
 }
 
-// Pop an el(ement from stack
+// Pop an element from stack
 func (s *StackWithMin) Pop() *datastructure.Elem {
 	s.min.Pop()
 	return s.data.Pop()
@@ -38,7 +38,7 @@ func (s *StackWithMin) Min() *datastructure.Elem {
 
 // Len of stack
 func (s *StackWithMin) Len() int {
-	return s.Len()
+	return s.data.Len()
 }
 
 // Top of stack
