@@ -206,6 +206,12 @@ func Test14LongestCommonPrefix(t *testing.T) {
 	}
 }
 
+func Test28StrStr(t *testing.T) {
+	if n := strStr("mississippi", "issip"); n != 4 {
+		t.Errorf("expected 4 and got %d\n", n)
+	}
+}
+
 func Test70ClimbStairs(t *testing.T) {
 	if n := climbStairs(2); n != 2 {
 		t.Errorf("expected 2 and got %d\n", n)
@@ -242,6 +248,26 @@ func Test155MinStack(t *testing.T) {
 	}
 	if m := obj.GetMin(); m != -2 {
 		t.Errorf("expected -2 and got %d\n", m)
+	}
+}
+
+func Test166FindFirstCommonNode(t *testing.T) {
+	n7 := ListNode{Val: 7, Next: nil}
+	n6 := ListNode{Val: 6, Next: &n7}
+	n5 := ListNode{Val: 5, Next: &n6}
+	h2 := ListNode{Val: 4, Next: &n5}
+	n3 := ListNode{Val: 3, Next: &n6}
+	n2 := ListNode{Val: 2, Next: &n3}
+	h1 := ListNode{Val: 1, Next: &n2}
+
+	if n := getIntersectionNode(&h1, &h2); n.Val != 6 {
+		t.Errorf("expected 6 and got %v", n.Val)
+	}
+
+	h1 = ListNode{Val: 7, Next: nil}
+
+	if n := getIntersectionNode(&h1, &h1); n.Val != 7 {
+		t.Errorf("expected 6 and got %v", n.Val)
 	}
 }
 
