@@ -25,12 +25,6 @@ type Stack struct {
 	lock sync.RWMutex
 }
 
-// New an infinite stack
-func (s *Stack) New() *Stack {
-	s.data = []interface{}{}
-	return s
-}
-
 // Push an element into stack
 func (s *Stack) Push(e interface{}) {
 	s.lock.Lock()
