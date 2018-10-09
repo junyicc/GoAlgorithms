@@ -8,7 +8,7 @@ func BinarySearch(arr []int, e int) (int, bool) {
 
 	lo, hi := 0, len(arr)
 	for hi-lo > 1 {
-		mi := lo + (hi-lo)>>1
+		mi := lo + (hi-lo)>>1 // lo+hi may overflow
 		if e < arr[mi] {
 			hi = mi
 		} else {
