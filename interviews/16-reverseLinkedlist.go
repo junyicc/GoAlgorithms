@@ -9,15 +9,35 @@ func ReverseLinkedlist(head *datastructure.Node) *datastructure.Node {
 	if head == nil || head.Next == nil {
 		return head
 	}
-	var pre, next *datastructure.Node
-	node := head
-	for node.Next != nil {
-		next = node.Next
-		node.Next = pre
-		pre = node
-		node = next
+	var pre, next, reverseHead *datastructure.Node
+	curNode := head
+	for curNode != nil {
+		next = curNode.Next
+		if next == nil {
+			reverseHead = curNode
+		}
+		curNode.Next = pre
+		pre = curNode
+		curNode = next
 	}
-	// tail
-	node.Next = pre
-	return node
+	return reverseHead
+}
+
+// ReverseLinkedlistWithHead reverse origin linkedlist
+func ReverseLinkedlistWithHead(head *datastructure.Node) *datastructure.Node {
+	if head == nil || head.Next == nil {
+		return head
+	}
+	var pre, next *datastructure.Node
+	curNode := head.Next
+	for curNode != nil {
+		next = curNode.Next
+		if next == nil {
+			head.Next = curNode
+		}
+		curNode.Next = pre
+		pre = curNode
+		curNode = next
+	}
+	return head
 }
