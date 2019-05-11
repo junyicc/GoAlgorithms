@@ -30,9 +30,9 @@ type Edge struct {
 	Weight float64
 }
 
-// New an edge
-func (e Edge) New() *Edge {
-	e = Edge{
+// NewEdge new an edge
+func NewEdge() *Edge {
+	e := Edge{
 		From:   &Vertex{},
 		To:     &Vertex{},
 		Weight: Inf,
@@ -143,8 +143,7 @@ func (g *GraphAdjList) BFS(v *Vertex, f func(*Vertex)) {
 	g.lock.Lock()
 	defer g.lock.Unlock()
 
-	q := new(DynamicQueue)
-	q = q.New()
+	q := NewDynamicQueue()
 	discovered := make(map[*Vertex]bool)
 	q.Enqueue(v)
 	discovered[v] = true
@@ -170,8 +169,7 @@ func (g *GraphAdjList) DFS(v *Vertex, f func(*Vertex)) {
 	g.lock.Lock()
 	defer g.lock.Unlock()
 
-	s := &DynamicStack{}
-	s = s.New()
+	s := NewDynamicStack()
 	discovered := make(map[*Vertex]bool)
 	s.Push(v)
 	discovered[v] = true
@@ -289,8 +287,7 @@ func (g *GraphAdjMatrix) RemoveEdge(i, j int) (*Edge, error) {
 
 // BFS algorithm
 func (g *GraphAdjMatrix) BFS(k int, f func(*Vertex)) {
-	q := new(DynamicQueue)
-	q = q.New()
+	q := NewDynamicQueue()
 	discovered := make(map[int]bool)
 	q.Enqueue(k)
 	discovered[k] = true
@@ -310,8 +307,7 @@ func (g *GraphAdjMatrix) BFS(k int, f func(*Vertex)) {
 
 // DFS algorithm
 func (g *GraphAdjMatrix) DFS(k int, f func(*Vertex)) {
-	s := new(DynamicStack)
-	s = s.New()
+	s := NewDynamicStack()
 	discovered := make(map[int]bool)
 	s.Push(k)
 	discovered[k] = true

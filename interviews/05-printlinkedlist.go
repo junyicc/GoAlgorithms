@@ -12,8 +12,7 @@ func PrintLinkedlistReversely(list *datastructure.LinkedList) {
 		return
 	}
 
-	stack := &datastructure.DynamicStack{}
-	stack = stack.New()
+	stack := datastructure.NewDynamicStack()
 	node := list.Head()
 	for node != nil {
 		stack.Push(node.Data)

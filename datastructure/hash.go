@@ -15,15 +15,16 @@ type HashTable struct {
 	lock  sync.RWMutex
 }
 
-// New hash table
-func (h *HashTable) New(n int) error {
+// NewHashTable new hash table
+func NewHashTable(n int) (*HashTable, error) {
 	if n < 1 {
-		return fmt.Errorf("invalid initial number %d", n)
+		return nil, fmt.Errorf("invalid initial number %d", n)
 	}
-	h.data = make([]Elem, 0, n)
-	h.count = 0
+	h := &HashTable{
+		data: make([]Elem, 0, n),
+	}
 	hashsize = n
-	return nil
+	return h, nil
 }
 
 // hash function

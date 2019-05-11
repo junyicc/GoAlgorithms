@@ -14,15 +14,16 @@ type Queue struct {
 	lock  sync.RWMutex
 }
 
-// New queue
-func (q *Queue) New(n int) error {
+// NewQueue new a queue
+func NewQueue(n int) (*Queue, error) {
 	if n < 1 {
-		return fmt.Errorf("queue size must larger than 0")
+		return nil, fmt.Errorf("queue size must larger than 0")
 	}
-	q.data = make([]Elem, n, n)
-	q.front = 0
-	q.rear = 0
-	return nil
+	q := &Queue{
+		data: make([]Elem, n, n),
+	}
+
+	return q, nil
 }
 
 // Length of queue: elment number
@@ -82,10 +83,9 @@ type DynamicQueue struct {
 	lock sync.RWMutex
 }
 
-// New an infinite queue
-func (q *DynamicQueue) New() *DynamicQueue {
-	q.data = []Elem{}
-	return q
+// NewDynamicQueue new an infinite queue
+func NewDynamicQueue() *DynamicQueue {
+	return &DynamicQueue{}
 }
 
 // Enqueue an element at rear

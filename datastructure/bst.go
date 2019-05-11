@@ -170,8 +170,7 @@ func (bst *BST) PreOrderTraverseIter(root interface{}, f func(Elem)) {
 	defer bst.lock.RUnlock()
 
 	if root, ok := root.(*TreeNode); ok && root != nil {
-		stack := &DynamicStack{}
-		stack = stack.New()
+		stack := NewDynamicStack()
 		stack.Push(root)
 
 		for !stack.IsEmpty() {
@@ -192,8 +191,7 @@ func (bst *BST) InOrderTraverseIter(root interface{}, f func(Elem)) {
 	defer bst.lock.RUnlock()
 
 	if root, ok := root.(*TreeNode); ok && root != nil {
-		stack := &DynamicStack{}
-		stack = stack.New()
+		stack := NewDynamicStack()
 
 		var node = root
 		for {
@@ -219,8 +217,7 @@ func (bst *BST) PostOrderTraverseIter(root interface{}, f func(Elem)) {
 	defer bst.lock.RUnlock()
 
 	if root, ok := root.(*TreeNode); ok && root != nil {
-		stack := &DynamicStack{}
-		stack = stack.New()
+		stack := NewDynamicStack()
 		stack.Push(root)
 		var pre *TreeNode
 		for !stack.IsEmpty() {
@@ -259,8 +256,7 @@ func (bst *BST) LevelTraverse(root interface{}, f func(Elem)) {
 	defer bst.lock.RUnlock()
 
 	if root, ok := root.(*TreeNode); ok && root != nil {
-		var queue = &DynamicQueue{}
-		queue = queue.New()
+		queue := NewDynamicQueue()
 		queue.Enqueue(root)
 
 		for !queue.IsEmpty() {

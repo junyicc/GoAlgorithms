@@ -9,8 +9,7 @@ func TopoSort(g *datastructure.GraphAdjList, f func(*datastructure.Vertex)) bool
 	if g == nil {
 		return false
 	}
-	stack := new(datastructure.DynamicStack)
-	stack = stack.New()
+	stack := datastructure.NewDynamicStack()
 	var cnt int
 	for _, v := range g.V {
 		if v.In == 0 {

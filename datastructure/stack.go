@@ -13,14 +13,17 @@ type Stack struct {
 	lock sync.RWMutex
 }
 
-// New a stack
-func (s *Stack) New(n int) error {
+// NewStack new a stack
+func NewStack(n int) (*Stack, error) {
 	if n < 1 {
-		return fmt.Errorf("stack size must be larger than 0")
+		return nil, fmt.Errorf("stack size must be larger than 0")
 	}
-	s.data = make([]Elem, 0, n)
-	s.top = -1
-	return nil
+	s := &Stack{
+		data: make([]Elem, 0, n),
+		top:  -1,
+	}
+
+	return s, nil
 }
 
 // Push an element into stack
@@ -92,10 +95,9 @@ type DynamicStack struct {
 	lock sync.RWMutex
 }
 
-// New an infinite stack
-func (s *DynamicStack) New() *DynamicStack {
-	s.data = []Elem{}
-	return s
+// NewDynamicStack new an infinite stack
+func NewDynamicStack() *DynamicStack {
+	return &DynamicStack{}
 }
 
 // Push an element into stack

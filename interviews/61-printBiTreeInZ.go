@@ -11,8 +11,9 @@ func PrintBiTreeInZ(root *datastructure.TreeNode) {
 	if root == nil {
 		return
 	}
-	stack0 := new(datastructure.DynamicStack)
-	stack1 := new(datastructure.DynamicStack)
+	stack0 := datastructure.NewDynamicStack()
+	stack1 := datastructure.NewDynamicStack()
+
 	stack0.Push(root)
 	flag := 0
 	for !stack0.IsEmpty() || !stack1.IsEmpty() {

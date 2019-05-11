@@ -8,8 +8,7 @@ import (
 
 // PrintBinaryTree prints nodes multiline
 func PrintBinaryTree(root *datastructure.TreeNode) {
-	queue := new(datastructure.DynamicQueue)
-	queue = queue.New()
+	queue := datastructure.NewDynamicQueue()
 	queue.Enqueue(root)
 	cnt := 0
 	toBePrinted := 1

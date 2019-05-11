@@ -16,7 +16,7 @@ func FibSearch(arr []int, e int) (int, bool) {
 	lo, hi := 0, len(arr)
 	var f datastructure.Fib
 	for lo < hi {
-		var fib = f.New()
+		var fib = f.Generate()
 		var k int
 		for fib() < hi-lo {
 			k++

@@ -22,11 +22,6 @@ func (f Fib) Generate() func() int {
 	}
 }
 
-// New fib function
-func (f Fib) New() func() int {
-	return f.Generate()
-}
-
 // Get fibonacci number
 func (f Fib) Get(n int) int {
 	if n <= 0 {
@@ -63,7 +58,7 @@ func TestFib() {
 		fmt.Println(f1())
 	}
 	fmt.Println()
-	f2 := f.New()
+	f2 := f.Generate()
 	for i := 0; i < n; i++ {
 		fmt.Println(f2())
 	}

@@ -237,8 +237,7 @@ func (avl *AVL) PreOrderTraverseIter(root interface{}, f func(Elem)) {
 	defer avl.lock.RUnlock()
 
 	if root, ok := root.(*AVLNode); ok && root != nil {
-		stack := &DynamicStack{}
-		stack = stack.New()
+		stack := NewDynamicStack()
 		stack.Push(root)
 
 		for !stack.IsEmpty() {
@@ -259,8 +258,7 @@ func (avl *AVL) InOrderTraverseIter(root interface{}, f func(Elem)) {
 	defer avl.lock.RUnlock()
 
 	if root, ok := root.(*AVLNode); ok && root != nil {
-		stack := &DynamicStack{}
-		stack = stack.New()
+		stack := NewDynamicStack()
 
 		var node = root
 		for {
@@ -286,8 +284,7 @@ func (avl *AVL) PostOrderTraverseIter(root interface{}, f func(Elem)) {
 	defer avl.lock.RUnlock()
 
 	if root, ok := root.(*AVLNode); ok && root != nil {
-		stack := &DynamicStack{}
-		stack = stack.New()
+		stack := NewDynamicStack()
 		stack.Push(root)
 		var pre *AVLNode
 		for !stack.IsEmpty() {
@@ -326,8 +323,7 @@ func (avl *AVL) LevelTraverse(root interface{}, f func(Elem)) {
 	defer avl.lock.RUnlock()
 
 	if root, ok := root.(*AVLNode); ok && root != nil {
-		var queue = &DynamicQueue{}
-		queue = queue.New()
+		queue := NewDynamicQueue()
 		queue.Enqueue(root)
 
 		for !queue.IsEmpty() {

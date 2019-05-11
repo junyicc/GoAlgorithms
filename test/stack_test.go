@@ -6,17 +6,23 @@ import (
 	"github.com/CAIJUNYI/GoAlgorithms/datastructure"
 )
 
-var stack = datastructure.Stack{}
+var stack datastructure.Stack
 
 func TestNew(t *testing.T) {
-	stack.New(5)
+	stack, err := datastructure.NewStack(5)
+	if err != nil {
+		panic(err)
+	}
 	if stack.IsEmpty() != true {
 		t.Errorf("expected true, got %v", stack.IsEmpty())
 	}
 }
 
 func TestPush(t *testing.T) {
-	stack.New(5)
+	stack, err := datastructure.NewStack(5)
+	if err != nil {
+		panic(err)
+	}
 	stack.Push(0)
 	if stack.IsEmpty() != false {
 		t.Errorf("expected true and got %v", stack.IsEmpty())
@@ -28,7 +34,10 @@ func TestPush(t *testing.T) {
 }
 
 func TestPop(t *testing.T) {
-	stack.New(5)
+	stack, err := datastructure.NewStack(5)
+	if err != nil {
+		panic(err)
+	}
 	stack.Push(0)
 	e, err := stack.Pop()
 	if err != nil {
@@ -40,7 +49,10 @@ func TestPop(t *testing.T) {
 }
 
 func TestClear(t *testing.T) {
-	stack.New(5)
+	stack, err := datastructure.NewStack(5)
+	if err != nil {
+		panic(err)
+	}
 	stack.Push(0)
 	stack.Push(1)
 	stack.Push(2)
