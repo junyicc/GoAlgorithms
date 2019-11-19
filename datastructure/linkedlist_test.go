@@ -1,13 +1,11 @@
-package test
+package datastructure
 
 import (
 	"fmt"
 	"testing"
-
-	"github.com/CAIJUNYI/GoAlgorithms/datastructure"
 )
 
-var ll datastructure.LinkedList
+var ll LinkedList
 
 func TestAppend(t *testing.T) {
 	if !ll.IsEmpty() {

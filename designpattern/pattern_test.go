@@ -1,14 +1,12 @@
-package test
+package designpattern
 
 import (
 	"testing"
-
-	"github.com/CAIJUNYI/GoAlgorithms/designpattern"
 )
 
 func TestSingleton(t *testing.T) {
-	s1 := designpattern.Singleton()
-	s2 := designpattern.Singleton()
+	s1 := Singleton()
+	s2 := Singleton()
 	if s1 != s2 {
 		t.Error("failed singleton")
 	}
@@ -18,14 +16,14 @@ func TestSingleton(t *testing.T) {
 }
 
 func TestMediator(t *testing.T) {
-	wtw := designpattern.WaterTreatmentWork{
+	wtw := WaterTreatmentWork{
 		PotableWater: 550,
 	}
-	wsw := designpattern.WaterStorageWork{
+	wsw := WaterStorageWork{
 		MaxStorage: 200,
 		Storage:    50,
 	}
-	mediator := designpattern.NewWTWWSWMediator(&wtw, &wsw)
+	mediator := NewWTWWSWMediator(&wtw, &wsw)
 	wsw.OnDemand(mediator, 100)
 
 	if wtw.PotableWater != 450 || wsw.Storage != 150 {

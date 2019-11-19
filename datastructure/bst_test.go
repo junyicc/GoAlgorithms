@@ -1,57 +1,43 @@
-package test
+package datastructure
 
 import (
 	"fmt"
-	"strconv"
 	"testing"
-
-	"github.com/CAIJUNYI/GoAlgorithms/datastructure"
 )
 
-var avl datastructure.AVL
+var bst BST
 
-func TestAVLInsert(t *testing.T) {
-	data := []int{3, 2, 1, 4, 5, 6, 7, 10, 9, 8}
-	for _, item := range data {
-		avl.Insert(item, strconv.Itoa(item))
-	}
-
-	var result []string
-	expInOrder := []string{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}
-
-	visit := func(e datastructure.Elem) {
-		result = append(result, fmt.Sprintf("%v", e))
-	}
-
-	avl.InOrderTraverseIter(avl.Root, visit)
-	if len(result) == 0 {
-		t.Errorf("expected %v\n got %v", expInOrder, result)
-	}
-	for i, e := range result {
-		if expInOrder[i] != e {
-			t.Errorf("expected %v and got %v", expInOrder[i], e)
-		}
-	}
-
+func TestBSTInsert(t *testing.T) {
+	bst.Insert(8, "8")
+	bst.Insert(4, "4")
+	bst.Insert(10, "10")
+	bst.Insert(2, "2")
+	bst.Insert(6, "6")
+	bst.Insert(1, "1")
+	bst.Insert(3, "3")
+	bst.Insert(5, "5")
+	bst.Insert(7, "7")
+	bst.Insert(9, "9")
 }
 
-func TestAVLSearch(t *testing.T) {
-	if e, ok := avl.Search(9); !ok || (*e).(string) != "9" {
+func TestBSTSearch(t *testing.T) {
+	if e, ok := bst.Search(9); !ok || (*e).(string) != "9" {
 		t.Errorf("expected (true, 9) and got (%v, %v)", ok, *e)
 	}
-	if e, ok := avl.Search(0); ok || e != nil {
+	if e, ok := bst.Search(0); ok || e != nil {
 		t.Errorf("expected (false, nil) and got (%v, %v)", ok, *e)
 	}
 }
-func TestAVLPreOrderTraverse(t *testing.T) {
-	var result []string
-	expPreOrder := []string{"4", "2", "1", "3", "7", "6", "5", "9", "8", "10"}
 
-	visit := func(e datastructure.Elem) {
+func TestBSTPreOrderTraverse(t *testing.T) {
+	var result []string
+	expPreOrder := []string{"8", "4", "2", "1", "3", "6", "5", "7", "10", "9"}
+
+	visit := func(e Elem) {
 		result = append(result, fmt.Sprintf("%v", e))
 	}
 
-	avl.PreOrderTraverseRecur(avl.Root, visit)
+	bst.PreOrderTraverseRecur(bst.Root, visit)
 	if len(result) == 0 {
 		t.Errorf("expected %v\n got %v", expPreOrder, result)
 	}
@@ -62,7 +48,7 @@ func TestAVLPreOrderTraverse(t *testing.T) {
 	}
 
 	result = []string{}
-	avl.PreOrderTraverseIter(avl.Root, visit)
+	bst.PreOrderTraverseIter(bst.Root, visit)
 	if len(result) == 0 {
 		t.Errorf("expected %v\n got %v", expPreOrder, result)
 	}
@@ -73,15 +59,15 @@ func TestAVLPreOrderTraverse(t *testing.T) {
 	}
 }
 
-func TestAVLInOrderTraverse(t *testing.T) {
+func TestBSTInOrderTraverse(t *testing.T) {
 	var result []string
 	expInOrder := []string{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}
 
-	visit := func(e datastructure.Elem) {
+	visit := func(e Elem) {
 		result = append(result, fmt.Sprintf("%v", e))
 	}
 
-	avl.InOrderTraverseRecur(avl.Root, visit)
+	bst.InOrderTraverseRecur(bst.Root, visit)
 	if len(result) == 0 {
 		t.Errorf("expected %v\n got %v", expInOrder, result)
 	}
@@ -92,7 +78,7 @@ func TestAVLInOrderTraverse(t *testing.T) {
 	}
 
 	result = []string{}
-	avl.InOrderTraverseIter(avl.Root, visit)
+	bst.InOrderTraverseIter(bst.Root, visit)
 	if len(result) == 0 {
 		t.Errorf("expected %v\n got %v", expInOrder, result)
 	}
@@ -103,15 +89,15 @@ func TestAVLInOrderTraverse(t *testing.T) {
 	}
 }
 
-func TestAVLPostOrderTraverse(t *testing.T) {
+func TestBSTPostOrderTraverse(t *testing.T) {
 	var result []string
-	expPostOrder := []string{"1", "3", "2", "5", "6", "8", "10", "9", "7", "4"}
+	expPostOrder := []string{"1", "3", "2", "5", "7", "6", "4", "9", "10", "8"}
 
-	visit := func(e datastructure.Elem) {
+	visit := func(e Elem) {
 		result = append(result, fmt.Sprintf("%v", e))
 	}
 
-	avl.PostOrderTraverseRecur(avl.Root, visit)
+	bst.PostOrderTraverseRecur(bst.Root, visit)
 	if len(result) == 0 {
 		t.Errorf("expected %v\n got %v", expPostOrder, result)
 	}
@@ -122,7 +108,7 @@ func TestAVLPostOrderTraverse(t *testing.T) {
 	}
 
 	result = []string{}
-	avl.PostOrderTraverseIter(avl.Root, visit)
+	bst.PostOrderTraverseIter(bst.Root, visit)
 	if len(result) == 0 {
 		t.Errorf("expected %v\n got %v", expPostOrder, result)
 	}
@@ -133,15 +119,15 @@ func TestAVLPostOrderTraverse(t *testing.T) {
 	}
 }
 
-func TestAVLLevelTraverse(t *testing.T) {
+func TestBSTLevelTraverse(t *testing.T) {
 	var result []string
-	expLevelOrder := []string{"4", "2", "7", "1", "3", "6", "9", "5", "8", "10"}
+	expLevelOrder := []string{"8", "4", "10", "2", "6", "9", "1", "3", "5", "7"}
 
-	visit := func(e datastructure.Elem) {
+	visit := func(e Elem) {
 		result = append(result, fmt.Sprintf("%v", e))
 	}
 
-	avl.LevelTraverse(avl.Root, visit)
+	bst.LevelTraverse(bst.Root, visit)
 	if len(result) == 0 {
 		t.Errorf("expected %v\n got %v", expLevelOrder, result)
 	}
@@ -149,5 +135,15 @@ func TestAVLLevelTraverse(t *testing.T) {
 		if expLevelOrder[i] != e {
 			t.Errorf("expected %v and got %v", expLevelOrder[i], e)
 		}
+	}
+}
+func TestBSTRemove(t *testing.T) {
+
+	if e, ok := bst.Remove(4); !ok || (*e).(string) != "4" {
+		t.Errorf("expected (true, 4) and got (%v, %v)", ok, *e)
+	}
+
+	if e, ok := bst.Search(4); ok || e != nil {
+		t.Errorf("expected (false, nil) and got (%v, %v)", ok, *e)
 	}
 }

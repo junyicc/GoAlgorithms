@@ -1,4 +1,4 @@
-package test
+package interviews
 
 import (
 	"bytes"
@@ -6,26 +6,25 @@ import (
 	"testing"
 
 	"github.com/CAIJUNYI/GoAlgorithms/datastructure"
-	"github.com/CAIJUNYI/GoAlgorithms/interviews"
 )
 
 func Test04ReplaceBlank(t *testing.T) {
 	s1 := " abc def  g  "
-	r1 := interviews.ReplaceBlank(s1)
+	r1 := ReplaceBlank(s1)
 	exp1 := "%20abc%20def%20%20g%20%20"
 	if r1 != exp1 {
 		t.Errorf("expected %v and got %v", exp1, r1)
 	}
 
 	s2 := ""
-	r2 := interviews.ReplaceBlank(s2)
+	r2 := ReplaceBlank(s2)
 	exp2 := ""
 	if r2 != exp2 {
 		t.Errorf("expected %v and got %v", exp2, r2)
 	}
 
 	s3 := "abc"
-	r3 := interviews.ReplaceBlank(s3)
+	r3 := ReplaceBlank(s3)
 	exp3 := "abc"
 	if r3 != exp3 {
 		t.Errorf("expected %v and got %v", exp3, r3)
@@ -39,14 +38,14 @@ func Test05PrintLinkedList(t *testing.T) {
 	ll.Append("3")
 	ll.Append("4")
 
-	interviews.PrintLinkedlistReversely(&ll)
+	PrintLinkedlistReversely(&ll)
 }
 
 func Test06ReconstructTree(t *testing.T) {
 	preorder := []int{8, 4, 2, 1, 3, 6, 5, 7, 10, 9}
 	inorder := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 
-	tree := interviews.ReConstructBiTree(preorder, inorder)
+	tree := ReConstructBiTree(preorder, inorder)
 	var result []string
 	expPostOrder := []string{"1", "3", "2", "5", "7", "6", "4", "9", "10", "8"}
 
@@ -67,53 +66,53 @@ func Test06ReconstructTree(t *testing.T) {
 
 func Test08MinOfRotatedArray(t *testing.T) {
 	arr1 := []int{3, 4, 5, 1, 2}
-	min1, ok := interviews.MinOfRotatedArray(arr1)
+	min1, ok := MinOfRotatedArray(arr1)
 	if !ok || min1 != 1 {
 		t.Errorf("expected 1 and got %v", min1)
 	}
 
 	arr2 := []int{1, 0, 1, 1, 1}
-	min2, ok := interviews.MinOfRotatedArray(arr2)
+	min2, ok := MinOfRotatedArray(arr2)
 	if !ok || min2 != 0 {
 		t.Errorf("expected 0 and got %v", min2)
 	}
 
 	arr3 := []int{1, 1, 1, 0, 1}
-	min3, ok := interviews.MinOfRotatedArray(arr3)
+	min3, ok := MinOfRotatedArray(arr3)
 	if !ok || min3 != 0 {
 		t.Errorf("expected 0 and got %v", min3)
 	}
 
 	arr4 := []int{1, 2, 3, 4, 5}
-	min4, ok := interviews.MinOfRotatedArray(arr4)
+	min4, ok := MinOfRotatedArray(arr4)
 	if !ok || min4 != 1 {
 		t.Errorf("expected 1 and got %v", min4)
 	}
 	arr5 := []int{}
-	min5, ok := interviews.MinOfRotatedArray(arr5)
+	min5, ok := MinOfRotatedArray(arr5)
 	if ok || min5 != -1 {
 		t.Errorf("expected -1 and got %v", min5)
 	}
 }
 
 func Test09Fib(t *testing.T) {
-	if n, ok := interviews.Fib(3); !ok || n != 2 {
+	if n, ok := Fib(3); !ok || n != 2 {
 		t.Errorf("expected 2 and got %v", n)
 	}
 }
 
 func Test10NumOf1(t *testing.T) {
-	cnt1 := interviews.NumOf1(1)
+	cnt1 := NumOf1(1)
 	if cnt1 != 1 {
 		t.Errorf("expected 1 and got %v", cnt1)
 	}
 
-	cnt2 := interviews.NumOf1(0)
+	cnt2 := NumOf1(0)
 	if cnt2 != 0 {
 		t.Errorf("expected 0 and got %v", cnt2)
 	}
 
-	cnt3 := interviews.NumOf1(-1)
+	cnt3 := NumOf1(-1)
 	if cnt3 != 64 {
 		t.Errorf("expected 64 and got %v", cnt3)
 	}
@@ -121,56 +120,56 @@ func Test10NumOf1(t *testing.T) {
 }
 
 func Test10IsPowerOf2(t *testing.T) {
-	b1 := interviews.IsPowerOf2(4)
+	b1 := IsPowerOf2(4)
 	if !b1 {
 		t.Errorf("expected true and got %v", b1)
 	}
 
-	b2 := interviews.IsPowerOf2(0)
+	b2 := IsPowerOf2(0)
 	if b2 {
 		t.Errorf("expected false and got %v", b2)
 	}
 
-	b3 := interviews.IsPowerOf2(3)
+	b3 := IsPowerOf2(3)
 	if b3 {
 		t.Errorf("expected false and got %v", b3)
 	}
 }
 
 func Test10NumOfChangingBits(t *testing.T) {
-	if n1 := interviews.NumOfChangingBits(10, 13); n1 != 3 {
+	if n1 := NumOfChangingBits(10, 13); n1 != 3 {
 		t.Errorf("expected 3 and got %v", n1)
 	}
 
-	if n2 := interviews.NumOfChangingBits(-1, 1); n2 != 63 {
+	if n2 := NumOfChangingBits(-1, 1); n2 != 63 {
 		t.Errorf("expected 63 and got %v", n2)
 	}
 }
 
 func Test11Power(t *testing.T) {
-	if n1, ok := interviews.Power(2.0, 2); !ok || !interviews.Equal(n1, 4) {
+	if n1, ok := Power(2.0, 2); !ok || !Equal(n1, 4) {
 		t.Errorf("expected 4 and got %v", n1)
 	}
-	if n2, ok := interviews.Power(0, 2); !ok || !interviews.Equal(n2, 0) {
+	if n2, ok := Power(0, 2); !ok || !Equal(n2, 0) {
 		t.Errorf("expected 0 and got %v", n2)
 	}
-	if n3, ok := interviews.Power(-2.0, 3); !ok || !interviews.Equal(n3, -8) {
+	if n3, ok := Power(-2.0, 3); !ok || !Equal(n3, -8) {
 		t.Errorf("expected -8 and got %v", n3)
 	}
 
-	if n4, ok := interviews.Power(-2.0, -2); !ok || !interviews.Equal(n4, 0.25) {
+	if n4, ok := Power(-2.0, -2); !ok || !Equal(n4, 0.25) {
 		t.Errorf("expected 0.25 and got %v", n4)
 	}
 }
 
 func Test12Print1ToMax(t *testing.T) {
-	interviews.Print1ToMaxOfNDigits(3)
+	Print1ToMaxOfNDigits(3)
 }
 
 func Test13DeleteNode(t *testing.T) {
 	l1 := datastructure.Node{Data: 1, Next: nil}
 	lP := &l1
-	d1 := interviews.DeleteNode(&lP, lP)
+	d1 := DeleteNode(&lP, lP)
 	if *d1 != 1 || lP != nil {
 		t.Errorf("expected 1 and got %v", *d1)
 	}
@@ -179,21 +178,21 @@ func Test13DeleteNode(t *testing.T) {
 	n2 := datastructure.Node{Data: 2, Next: &n3}
 	n1 := datastructure.Node{Data: 1, Next: &n2}
 	n1P := &n1
-	if d2 := interviews.DeleteNode(&n1P, &n1); *d2 != 1 || n1P.Data != 2 {
+	if d2 := DeleteNode(&n1P, &n1); *d2 != 1 || n1P.Data != 2 {
 		t.Errorf("expected 1 and got %v", *d2)
 	}
-	if d3 := interviews.DeleteNode(&n1P, &n3); *d3 != 3 || n1P.Data != 2 {
+	if d3 := DeleteNode(&n1P, &n3); *d3 != 3 || n1P.Data != 2 {
 		t.Errorf("expected 3 and got %v", *d3)
 	}
 
-	if d := interviews.DeleteNode(nil, nil); d != nil {
+	if d := DeleteNode(nil, nil); d != nil {
 		t.Errorf("expected nil and got %v", d)
 	}
 }
 
 func Test14ReorderOddEven(t *testing.T) {
 	arr := []int{1, 2, 3, 4, 5}
-	seq := interviews.ReorderOddEven2(arr)
+	seq := ReorderOddEven2(arr)
 	exp := []int{1, 5, 3, 4, 2}
 	for i, e := range seq {
 		if e != exp[i] {
@@ -209,20 +208,20 @@ func Test15FindKthToTail(t *testing.T) {
 	n2 := datastructure.Node{Data: 2, Next: &n3}
 	n1 := datastructure.Node{Data: 1, Next: &n2}
 
-	if n := interviews.FindKthToTail(&n1, 1); (*n).Data != 5 {
+	if n := FindKthToTail(&n1, 1); (*n).Data != 5 {
 		t.Errorf("expected 5 and got %v", (*n).Data)
 	}
-	if n := interviews.FindKthToTail(&n1, 5); (*n).Data != 1 {
+	if n := FindKthToTail(&n1, 5); (*n).Data != 1 {
 		t.Errorf("expected 1 and got %v", (*n).Data)
 	}
-	if n := interviews.FindKthToTail(&n1, 0); n != nil {
+	if n := FindKthToTail(&n1, 0); n != nil {
 		t.Errorf("expected nil and got %v", n)
 	}
 
-	if n := interviews.FindKthToTail(&n1, 6); n != nil {
+	if n := FindKthToTail(&n1, 6); n != nil {
 		t.Errorf("expected nil and got %v", n)
 	}
-	if n := interviews.FindKthToTail(nil, 0); n != nil {
+	if n := FindKthToTail(nil, 0); n != nil {
 		t.Errorf("expected nil and got %v", n)
 	}
 
@@ -234,13 +233,13 @@ func Test15FindMidNode(t *testing.T) {
 	n2 := datastructure.Node{Data: 2, Next: &n3}
 	n1 := datastructure.Node{Data: 1, Next: &n2}
 
-	if n := interviews.FindMidNode(&n1); (*n).Data != 3 {
+	if n := FindMidNode(&n1); (*n).Data != 3 {
 		t.Errorf("expected 3 and got %v", (*n).Data)
 	}
 
 	n6 := datastructure.Node{Data: 6, Next: nil}
 	n5.Next = &n6
-	if n := interviews.FindMidNode(&n1); (*n).Data != 3 {
+	if n := FindMidNode(&n1); (*n).Data != 3 {
 		t.Errorf("expected 3 and got %v", (*n).Data)
 	}
 }
@@ -251,12 +250,12 @@ func Test15IsLoop(t *testing.T) {
 	n3 := datastructure.Node{Data: 3, Next: &n4}
 	n2 := datastructure.Node{Data: 2, Next: &n3}
 	n1 := datastructure.Node{Data: 1, Next: &n2}
-	if b := interviews.IsLoop(&n1); b {
+	if b := IsLoop(&n1); b {
 		t.Errorf("expected false and got %v", b)
 	}
 
 	n5.Next = &n1
-	if b := interviews.IsLoop(&n1); !b {
+	if b := IsLoop(&n1); !b {
 		t.Errorf("expected true and got %v", b)
 	}
 }
@@ -266,15 +265,15 @@ func Test16ReverseLinkedlist(t *testing.T) {
 	n2 := datastructure.Node{Data: 2, Next: &n3}
 	n1 := datastructure.Node{Data: 1, Next: &n2}
 
-	if n := interviews.ReverseLinkedlist(&n1); n != &n3 || n.Next != &n2 || n.Next.Next != &n1 {
+	if n := ReverseLinkedlist(&n1); n != &n3 || n.Next != &n2 || n.Next.Next != &n1 {
 		t.Errorf("failed reversing linkedlist")
 	}
 
-	if n := interviews.ReverseLinkedlist(&n1); n != &n1 || n.Next != nil {
+	if n := ReverseLinkedlist(&n1); n != &n1 || n.Next != nil {
 		t.Errorf("failed reversing linkedlist")
 	}
 
-	if n := interviews.ReverseLinkedlist(nil); n != nil {
+	if n := ReverseLinkedlist(nil); n != nil {
 		t.Errorf("failed reversing linkedlist")
 	}
 }
@@ -285,7 +284,7 @@ func Test17MergeLinkedlist(t *testing.T) {
 	n2 := datastructure.Node{Data: 3, Next: &n4}
 	n1 := datastructure.Node{Data: 2, Next: &n3}
 
-	if n := interviews.MergeLinkedlist(&n1, &n2); n != &n1 || n.Next != &n2 || n.Next.Next != &n3 || n.Next.Next.Next != &n4 {
+	if n := MergeLinkedlist(&n1, &n2); n != &n1 || n.Next != &n2 || n.Next.Next != &n3 || n.Next.Next.Next != &n4 {
 		t.Errorf("failed merging linkedlist")
 	}
 }
@@ -304,11 +303,11 @@ func Test18HasSubtree(t *testing.T) {
 	t2.Insert(2, "2")
 	t2.Insert(6, "6")
 	// t2 is a subtree of t1
-	if has := interviews.HasSubtree(t1.Root, t2.Root); !has {
+	if has := HasSubtree(t1.Root, t2.Root); !has {
 		t.Errorf("expected true and got %v", has)
 	}
 	// nil pointer
-	if has := interviews.HasSubtree(nil, nil); has {
+	if has := HasSubtree(nil, nil); has {
 		t.Errorf("expected false and got %v", has)
 	}
 
@@ -317,12 +316,12 @@ func Test18HasSubtree(t *testing.T) {
 	var t4 datastructure.BST
 	t4.Insert(1, "1")
 	// only one node
-	if has := interviews.HasSubtree(t3.Root, t4.Root); !has {
+	if has := HasSubtree(t3.Root, t4.Root); !has {
 		t.Errorf("expected true and got %v", has)
 	}
 	// t4 is not a subtree of t3
 	t4.Insert(2, "2")
-	if has := interviews.HasSubtree(t3.Root, t4.Root); has {
+	if has := HasSubtree(t3.Root, t4.Root); has {
 		t.Errorf("expected false and got %v", has)
 	}
 }
@@ -334,7 +333,7 @@ func Test19TreeMirror(t *testing.T) {
 	bst.Insert(10, "10")
 	bst.Insert(2, "2")
 
-	interviews.BiTreeMirror(bst.Root)
+	BiTreeMirror(bst.Root)
 	if bst.Root.LChild.Key != 10 || bst.Root.RChild.Key != 4 || bst.Root.RChild.RChild.Key != 2 || bst.Root.RChild.LChild != nil {
 		t.Errorf("failed mirror binary tree")
 	}
@@ -352,7 +351,7 @@ func Test20VisitMatrixClockwisely(t *testing.T) {
 		result = append(result, e)
 	}
 
-	interviews.VisitMatrixClockwisely(m1, 4, 4, visit)
+	VisitMatrixClockwisely(m1, 4, 4, visit)
 	exp1 := []int{1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10}
 	for i, e := range result {
 		if e != exp1[i] {
@@ -365,7 +364,7 @@ func Test20VisitMatrixClockwisely(t *testing.T) {
 	}
 	result = []int{}
 	exp2 := []int{1, 2, 3, 4}
-	interviews.VisitMatrixClockwisely(m2, 1, 4, visit)
+	VisitMatrixClockwisely(m2, 1, 4, visit)
 	for i, e := range result {
 		if e != exp2[i] {
 			t.Errorf("expected %v and got %v", exp2[i], e)
@@ -380,7 +379,7 @@ func Test20VisitMatrixClockwisely(t *testing.T) {
 	}
 	result = []int{}
 	exp3 := []int{1, 4, 3, 2}
-	interviews.VisitMatrixClockwisely(m3, 4, 1, visit)
+	VisitMatrixClockwisely(m3, 4, 1, visit)
 	for i, e := range result {
 		if e != exp3[i] {
 			t.Errorf("expected %v and got %v", exp3[i], e)
@@ -390,7 +389,7 @@ func Test20VisitMatrixClockwisely(t *testing.T) {
 	m4 := [][]int{{3}}
 	result = []int{}
 	exp4 := []int{3}
-	interviews.VisitMatrixClockwisely(m4, 1, 1, visit)
+	VisitMatrixClockwisely(m4, 1, 1, visit)
 	for i, e := range result {
 		if e != exp4[i] {
 			t.Errorf("expected %v and got %v", exp4[i], e)
@@ -399,7 +398,7 @@ func Test20VisitMatrixClockwisely(t *testing.T) {
 }
 
 func Test21StackWithMin(t *testing.T) {
-	s := interviews.StackWithMin{}
+	s := StackWithMin{}
 	s.Push(3)
 	s.Push(4)
 	s.Push(2)
@@ -418,67 +417,67 @@ func Test22IsPopOrder(t *testing.T) {
 	pushOrder := []int{1, 2, 3, 4, 5}
 	popOrder := []int{3, 5, 4, 2, 1}
 
-	if order := interviews.IsPopOrder(pushOrder, popOrder); !order {
+	if order := IsPopOrder(pushOrder, popOrder); !order {
 		t.Errorf("expected true and got %v", order)
 	}
 }
 
 func Test24VerifyPostSeqOfBST(t *testing.T) {
 	arr1 := []int{5, 7, 6, 9, 11, 10, 8}
-	if b := interviews.VerifyPostSeqOfBST(arr1, 7); !b {
+	if b := VerifyPostSeqOfBST(arr1, 7); !b {
 		t.Errorf("expected true and got %v", b)
 	}
 
 	arr2 := []int{4, 5, 8, 8}
-	if b := interviews.VerifyPostSeqOfBST(arr2, 4); !b {
+	if b := VerifyPostSeqOfBST(arr2, 4); !b {
 		t.Errorf("expected true and got %v", b)
 	}
 
 	arr3 := []int{8, 9, 10}
-	if b := interviews.VerifyPostSeqOfBST(arr3, 3); !b {
+	if b := VerifyPostSeqOfBST(arr3, 3); !b {
 		t.Errorf("expected true and got %v", b)
 	}
 	arr4 := []int{8}
-	if b := interviews.VerifyPostSeqOfBST(arr4, 1); !b {
+	if b := VerifyPostSeqOfBST(arr4, 1); !b {
 		t.Errorf("expected true and got %v", b)
 	}
 
 	arr5 := []int{}
-	if b := interviews.VerifyPostSeqOfBST(arr5, 0); b {
+	if b := VerifyPostSeqOfBST(arr5, 0); b {
 		t.Errorf("expected false and got %v", b)
 	}
 
-	if b := interviews.VerifyPostSeqOfBST(nil, 0); b {
+	if b := VerifyPostSeqOfBST(nil, 0); b {
 		t.Errorf("expected false and got %v", b)
 	}
 }
 
 func Test24VerifyPreSeqOfBST(t *testing.T) {
 	arr1 := []int{8, 6, 5, 7, 10, 9, 11}
-	if b := interviews.VerifyPreSeqOfBST(arr1, 7); !b {
+	if b := VerifyPreSeqOfBST(arr1, 7); !b {
 		t.Errorf("expected true and got %v", b)
 	}
 
 	arr2 := []int{8, 8, 5, 4}
-	if b := interviews.VerifyPreSeqOfBST(arr2, 4); !b {
+	if b := VerifyPreSeqOfBST(arr2, 4); !b {
 		t.Errorf("expected true and got %v", b)
 	}
 
 	arr3 := []int{8, 9, 10}
-	if b := interviews.VerifyPreSeqOfBST(arr3, 3); !b {
+	if b := VerifyPreSeqOfBST(arr3, 3); !b {
 		t.Errorf("expected true and got %v", b)
 	}
 	arr4 := []int{8}
-	if b := interviews.VerifyPreSeqOfBST(arr4, 1); !b {
+	if b := VerifyPreSeqOfBST(arr4, 1); !b {
 		t.Errorf("expected true and got %v", b)
 	}
 
 	arr5 := []int{}
-	if b := interviews.VerifyPreSeqOfBST(arr5, 0); b {
+	if b := VerifyPreSeqOfBST(arr5, 0); b {
 		t.Errorf("expected false and got %v", b)
 	}
 
-	if b := interviews.VerifyPreSeqOfBST(nil, 0); b {
+	if b := VerifyPreSeqOfBST(nil, 0); b {
 		t.Errorf("expected false and got %v", b)
 	}
 }
@@ -490,7 +489,7 @@ func Test25FindPathOfTree(t *testing.T) {
 	bst.Insert(4, "4")
 	bst.Insert(7, "7")
 	bst.Insert(12, "12")
-	interviews.FindPathofTree(bst.Root, 22)
+	FindPathofTree(bst.Root, 22)
 
 	t.Errorf("testing...")
 }
@@ -503,7 +502,7 @@ func Test26CloneComplexLinkedlist(t *testing.T) {
 	d.Data, d.Next, d.Sibling = "D", &e, &b
 	e.Data, e.Next, e.Sibling = "E", nil, nil
 
-	clone := interviews.CloneComplexLinkedlist(&a)
+	clone := CloneComplexLinkedlist(&a)
 
 	for node := &a; clone != nil && node != nil; clone, node = clone.Next, node.Next {
 		if clone.Data != node.Data {
@@ -522,7 +521,7 @@ func Test26CloneComplexLinkedlist(t *testing.T) {
 	d.Data, d.Next, d.Sibling = "D", &e, &b
 	e.Data, e.Next, e.Sibling = "E", nil, &b
 
-	clone = interviews.CloneComplexLinkedlist(&a)
+	clone = CloneComplexLinkedlist(&a)
 
 	for node := &a; clone != nil && node != nil; clone, node = clone.Next, node.Next {
 		if clone.Data != node.Data {
@@ -536,7 +535,7 @@ func Test26CloneComplexLinkedlist(t *testing.T) {
 	}
 
 	o := datastructure.ComplexListNode{Data: "O", Next: nil, Sibling: nil}
-	clone = interviews.CloneComplexLinkedlist(&o)
+	clone = CloneComplexLinkedlist(&o)
 	for node := &o; clone != nil && node != nil; clone, node = clone.Next, node.Next {
 		if clone.Data != node.Data {
 			t.Errorf("expected %v and got %v", node.Data, clone.Data)
@@ -559,21 +558,21 @@ func Test27ConvertBSTToDoubleLinkedlist(t *testing.T) {
 	bst.Insert(12, "12")
 	bst.Insert(16, "16")
 
-	head := interviews.BSTToDoubleLinkedlist(bst.Root)
+	head := BSTToDoubleLinkedlist(bst.Root)
 	if head.Key != 4 || head.LChild != nil || head.RChild.Key != 6 {
 		t.Errorf("failed converting bst to double linkedlist")
 	}
 
 	var bst2 datastructure.BST
 	bst2.Insert(10, "10")
-	head = interviews.BSTToDoubleLinkedlist(bst2.Root)
+	head = BSTToDoubleLinkedlist(bst2.Root)
 	if head.Key != 10 || head.LChild != nil || head.RChild != nil {
 		t.Errorf("failed converting bst to double linkedlist")
 	}
 
 	bst2.Insert(6, "6")
 	bst2.Insert(4, "4")
-	head = interviews.BSTToDoubleLinkedlist(bst2.Root)
+	head = BSTToDoubleLinkedlist(bst2.Root)
 	if head.Key != 4 || head.LChild != nil || head.RChild.Key != 6 || head.RChild.RChild.Key != 10 {
 		t.Errorf("failed converting bst to double linkedlist")
 	}
@@ -582,12 +581,12 @@ func Test27ConvertBSTToDoubleLinkedlist(t *testing.T) {
 	bst3.Insert(10, "10")
 	bst3.Insert(14, "14")
 	bst3.Insert(16, "16")
-	head = interviews.BSTToDoubleLinkedlist(bst3.Root)
+	head = BSTToDoubleLinkedlist(bst3.Root)
 	if head.Key != 10 || head.LChild != nil || head.RChild.Key != 14 || head.RChild.RChild.Key != 16 {
 		t.Errorf("failed converting bst to double linkedlist")
 	}
 
-	head = interviews.BSTToDoubleLinkedlist(nil)
+	head = BSTToDoubleLinkedlist(nil)
 	if head != nil {
 		t.Errorf("failed converting bst to double linkedlist")
 	}
@@ -596,7 +595,7 @@ func Test27ConvertBSTToDoubleLinkedlist(t *testing.T) {
 func Test40FindTwoNumsAppearOnce(t *testing.T) {
 	arr1 := []int{2, 4, 3, 6, 3, 2, 5, 5}
 	var n1, n2 int
-	ok := interviews.FindTwoNumsAppearOnce(arr1, &n1, &n2)
+	ok := FindTwoNumsAppearOnce(arr1, &n1, &n2)
 	if !ok || n1 != 6 || n2 != 4 {
 		t.Errorf("failed to find two numbers that appear once")
 	}
@@ -607,22 +606,22 @@ func Test28Permutation(t *testing.T) {
 	visit := func(str string) {
 		fmt.Println(str)
 	}
-	interviews.StringPermutation(s, visit)
+	StringPermutation(s, visit)
 
 	n, m := 5, 2
-	if r := interviews.Permutation(n, m); r != 20 {
+	if r := Permutation(n, m); r != 20 {
 		t.Errorf("expected 20 and got %d", r)
 	}
 }
 
 func Test28Combination(t *testing.T) {
-	if c := interviews.CombinationIter(10, 2); c != 45 {
+	if c := CombinationIter(10, 2); c != 45 {
 		t.Errorf("expected 45 and got %d", c)
 	}
 }
 
 func Test28NQueens(t *testing.T) {
-	if n := interviews.SolutionsOfNQueens(4); n != 2 {
+	if n := SolutionsOfNQueens(4); n != 2 {
 		t.Errorf("expected 2 and got %d", n)
 	}
 }
@@ -630,12 +629,12 @@ func Test28NQueens(t *testing.T) {
 func Test29FindNumMoreThanHalf(t *testing.T) {
 	arr := []int{1, 2, 3, 2, 2, 2, 5, 4, 2}
 	exp := 2
-	if n, ok := interviews.FindNumMoreThanHalf(arr); !ok || n != exp {
+	if n, ok := FindNumMoreThanHalf(arr); !ok || n != exp {
 		t.Errorf("expected %d and got %d", exp, n)
 	}
 
 	arr = []int{1, 2, 3, 2, 5, 2, 5, 4, 2}
-	if n, ok := interviews.FindNumMoreThanHalf(arr); ok || n != 0 {
+	if n, ok := FindNumMoreThanHalf(arr); ok || n != 0 {
 		t.Errorf("expected false and got %t", ok)
 	}
 }
@@ -643,7 +642,7 @@ func Test29FindNumMoreThanHalf(t *testing.T) {
 func Test30FindKthMin(t *testing.T) {
 	arr := []int{4, 5, 1, 6, 2, 7, 3, 8}
 	k := 4
-	if n, ok := interviews.FindKthMin(arr, k); !ok || n != 4 {
+	if n, ok := FindKthMin(arr, k); !ok || n != 4 {
 		t.Errorf("expected 4 and got %d", n)
 	}
 }
@@ -651,7 +650,7 @@ func Test30FindKthMin(t *testing.T) {
 func Test30FindKthMax(t *testing.T) {
 	arr := []int{4, 5, 1, 6, 2, 7, 3, 8}
 	k := 4
-	if n, ok := interviews.FindKthMax(arr, k); !ok || n != 5 {
+	if n, ok := FindKthMax(arr, k); !ok || n != 5 {
 		t.Errorf("expected 5 and got %d", n)
 	}
 }
@@ -660,7 +659,7 @@ func Test30GetKthLeast(t *testing.T) {
 	arr := []int{4, 5, 1, 6, 2, 7, 3, 8}
 	exp := []int{1, 2, 3, 4}
 	k := 4
-	result := interviews.GetKthLeast(arr, k)
+	result := GetKthLeast(arr, k)
 	for i, e := range result {
 		if e != exp[i] {
 			t.Errorf("expected %d and got %d", exp[i], e)
@@ -672,7 +671,7 @@ func Test30GetMinKth(t *testing.T) {
 	arr := []int{4, 5, 1, 6, 2, 7, 3, 8}
 	exp := []int{4, 3, 1, 2}
 	k := 4
-	result := interviews.GetMinKth(arr, k)
+	result := GetMinKth(arr, k)
 	for i, e := range result {
 		if e != exp[i] {
 			t.Errorf("expected %d and got %d", exp[i], e)
@@ -684,7 +683,7 @@ func Test30GetMaxKth(t *testing.T) {
 	arr := []int{4, 5, 1, 6, 2, 7, 3, 8}
 	exp := []int{5, 7, 6, 8}
 	k := 4
-	result := interviews.GetMaxKth(arr, k)
+	result := GetMaxKth(arr, k)
 	for i, e := range result {
 		if e != exp[i] {
 			t.Errorf("expected %d and got %d", exp[i], e)
@@ -694,11 +693,11 @@ func Test30GetMaxKth(t *testing.T) {
 
 func Test31FindMaxSumOfSubArray(t *testing.T) {
 	arr := []int{1, -2, 3, 10, -4, 7, 2, -5}
-	if s, ok := interviews.FindMaxSumOfSubArray(arr); !ok || s != 18 {
+	if s, ok := FindMaxSumOfSubArray(arr); !ok || s != 18 {
 		t.Errorf("expected 18 and got %d", s)
 	}
 
-	if s, ok := interviews.FindMaxSumOfSubArray([]int{-3}); !ok || s != -3 {
+	if s, ok := FindMaxSumOfSubArray([]int{-3}); !ok || s != -3 {
 		t.Errorf("expected -3 and got %d", s)
 	}
 }
@@ -706,60 +705,60 @@ func Test31FindMaxSumOfSubArray(t *testing.T) {
 func Test31FindSubArrayWithMaxSum(t *testing.T) {
 	arr := []int{1, -2, 3, 10, -4, 7, 2, -5}
 	exp := []int{3, 10, -4, 7, 2}
-	sub := interviews.FindSubArrayWithMaxSum(arr)
+	sub := FindSubArrayWithMaxSum(arr)
 	for i, e := range sub {
 		if e != exp[i] {
 			t.Errorf("expected %d and got %d", exp[i], e)
 		}
 	}
 
-	sub = interviews.FindSubArrayWithMaxSum([]int{-3})
+	sub = FindSubArrayWithMaxSum([]int{-3})
 	if len(sub) != 1 || sub[0] != -3 {
 		t.Errorf("expected {-3} and got %v", sub)
 	}
 }
 
 func Test32NumOf1(t *testing.T) {
-	if n, ok := interviews.NumberOf1(5); !ok || n != 1 {
+	if n, ok := NumberOf1(5); !ok || n != 1 {
 		t.Errorf("expected 1 and got %d", n)
 	}
-	if n, ok := interviews.NumberOf1(12); !ok || n != 5 {
+	if n, ok := NumberOf1(12); !ok || n != 5 {
 		t.Errorf("expected 5 and got %d", n)
 	}
-	if n, ok := interviews.NumberOf1(0); ok || n != 0 {
+	if n, ok := NumberOf1(0); ok || n != 0 {
 		t.Errorf("expected 0 and got %d", n)
 	}
-	if n, ok := interviews.NumberOf1(1); !ok || n != 1 {
+	if n, ok := NumberOf1(1); !ok || n != 1 {
 		t.Errorf("expected 1 and got %d", n)
 	}
-	if n, ok := interviews.NumberOf1(21345); !ok || n != 18821 {
+	if n, ok := NumberOf1(21345); !ok || n != 18821 {
 		t.Errorf("expected 5 and got %d", n)
 	}
 }
 
 func Test33FindMinPermutation(t *testing.T) {
 	arr := []int{3, 32, 321}
-	if s := interviews.FindMinPermutation(arr); s != "321323" {
+	if s := FindMinPermutation(arr); s != "321323" {
 		t.Errorf("expected 321323 and got %s", s)
 	}
 
 	arr = []int{3}
-	if s := interviews.FindMinPermutation(arr); s != "3" {
+	if s := FindMinPermutation(arr); s != "3" {
 		t.Errorf("expected 321323 and got %s", s)
 	}
 }
 
 func Test34UglyNum(t *testing.T) {
-	if n, ok := interviews.GetUglyNum(1); !ok || n != 1 {
+	if n, ok := GetUglyNum(1); !ok || n != 1 {
 		t.Errorf("expected 1 and got %d", n)
 	}
-	if n, ok := interviews.GetUglyNum(0); ok || n != 0 {
+	if n, ok := GetUglyNum(0); ok || n != 0 {
 		t.Errorf("expected 0 and got %d", n)
 	}
-	if n, ok := interviews.GetUglyNum(11); !ok || n != 15 {
+	if n, ok := GetUglyNum(11); !ok || n != 15 {
 		t.Errorf("expected 15 and got %d", n)
 	}
-	if n, ok := interviews.GetUglyNum(37); !ok || n != 125 {
+	if n, ok := GetUglyNum(37); !ok || n != 125 {
 		t.Errorf("expected 125 and got %d", n)
 	}
 }
@@ -767,76 +766,76 @@ func Test34UglyNum(t *testing.T) {
 func Test34SuperUglyNum(t *testing.T) {
 	n := 12
 	primes := []int{2, 7, 13, 19}
-	if u, ok := interviews.GetSuperUglyNum(n, primes); !ok || u != 32 {
+	if u, ok := GetSuperUglyNum(n, primes); !ok || u != 32 {
 		t.Errorf("expected 32 and got %d", u)
 	}
 }
 
 func Test35FindFirstNotRepeatingChar(t *testing.T) {
-	if c := interviews.FindFirstNotRepeatingChar("abaccdeff"); c != 'b' {
+	if c := FindFirstNotRepeatingChar("abaccdeff"); c != 'b' {
 		t.Errorf("expected b and got %c", c)
 	}
-	if c := interviews.FindFirstNotRepeatingChar(""); c != 0 {
+	if c := FindFirstNotRepeatingChar(""); c != 0 {
 		t.Errorf("expected 0 and got %c", c)
 	}
-	if c := interviews.FindFirstNotRepeatingChar("s"); c != 's' {
+	if c := FindFirstNotRepeatingChar("s"); c != 's' {
 		t.Errorf("expected s and got %c", c)
 	}
-	if c := interviews.FindFirstNotRepeatingChar("a@baccdeff"); c != '@' {
+	if c := FindFirstNotRepeatingChar("a@baccdeff"); c != '@' {
 		t.Errorf("expected @ and got %c", c)
 	}
 }
 
 func Test35DeleteChar(t *testing.T) {
-	if s := interviews.DeleteChar("We are students", "aeiou"); s != "W r stdnts" {
+	if s := DeleteChar("We are students", "aeiou"); s != "W r stdnts" {
 		t.Errorf("expected 'W r stdnts' and got %s", s)
 	}
-	if s := interviews.DeleteChar("We are students", ""); s != "We are students" {
+	if s := DeleteChar("We are students", ""); s != "We are students" {
 		t.Errorf("expected 'We are students' and got %s", s)
 	}
-	if s := interviews.DeleteChar("", "asd"); s != "" {
+	if s := DeleteChar("", "asd"); s != "" {
 		t.Errorf("expected '' and got %s", s)
 	}
 }
 
 func Test35DeleteRepeatedChar(t *testing.T) {
-	if s := interviews.DeleteRepeatedChar("Google"); s != "Gogle" {
+	if s := DeleteRepeatedChar("Google"); s != "Gogle" {
 		t.Errorf("expected Gogle and got %s", s)
 	}
-	if s := interviews.DeleteRepeatedChar("hooli"); s != "holi" {
+	if s := DeleteRepeatedChar("hooli"); s != "holi" {
 		t.Errorf("expected holi and got %s", s)
 	}
-	if s := interviews.DeleteRepeatedChar(""); s != "" {
+	if s := DeleteRepeatedChar(""); s != "" {
 		t.Errorf("expected '' and got %s", s)
 	}
-	if s := interviews.DeleteRepeatedChar("We are students"); s != "We arstudn" {
+	if s := DeleteRepeatedChar("We are students"); s != "We arstudn" {
 		t.Errorf("expected We arstudn and got %s", s)
 	}
 }
 
 func Test35IsAnagram(t *testing.T) {
-	if b := interviews.IsAnagram("", ""); !b {
+	if b := IsAnagram("", ""); !b {
 		t.Errorf("expected true and got %t", b)
 	}
-	if b := interviews.IsAnagram("live", ""); b {
+	if b := IsAnagram("live", ""); b {
 		t.Errorf("expected false and got %t", b)
 	}
-	if b := interviews.IsAnagram("livee", "eevil"); !b {
+	if b := IsAnagram("livee", "eevil"); !b {
 		t.Errorf("expected true and got %t", b)
 	}
 }
 
 func Test36InversePairs(t *testing.T) {
-	if n := interviews.InversePairs([]int{}); n != 0 {
+	if n := InversePairs([]int{}); n != 0 {
 		t.Errorf("expected 0 and got %d", n)
 	}
-	if n := interviews.InversePairs(nil); n != 0 {
+	if n := InversePairs(nil); n != 0 {
 		t.Errorf("expected 0 and got %d", n)
 	}
-	if n := interviews.InversePairs([]int{7, 5, 6, 4}); n != 5 {
+	if n := InversePairs([]int{7, 5, 6, 4}); n != 5 {
 		t.Errorf("expected 5 and got %d", n)
 	}
-	if n := interviews.InversePairs([]int{1, 3, 2, 3, 1}); n != 4 {
+	if n := InversePairs([]int{1, 3, 2, 3, 1}); n != 4 {
 		t.Errorf("expected 4 and got %d", n)
 	}
 }
@@ -850,25 +849,25 @@ func Test37FindFirstCommonNode(t *testing.T) {
 	n2 := datastructure.Node{Data: 2, Next: &n3}
 	h1 := datastructure.Node{Data: 1, Next: &n2}
 
-	if n := interviews.FindFirstCommonNode(&h1, &h2); n.Data != 6 {
+	if n := FindFirstCommonNode(&h1, &h2); n.Data != 6 {
 		t.Errorf("expected 6 and got %v", n.Data)
 	}
 }
 
 func Test38CountingK(t *testing.T) {
-	if cnt := interviews.CountingK([]int{1, 2, 3, 3, 3, 3, 4, 5}, 3); cnt != 4 {
+	if cnt := CountingK([]int{1, 2, 3, 3, 3, 3, 4, 5}, 3); cnt != 4 {
 		t.Errorf("expected 4 and got %d", cnt)
 	}
-	if cnt := interviews.CountingK([]int{1, 2, 3, 3, 3, 3, 4, 5}, 6); cnt != 0 {
+	if cnt := CountingK([]int{1, 2, 3, 3, 3, 3, 4, 5}, 6); cnt != 0 {
 		t.Errorf("expected 0 and got %d", cnt)
 	}
-	if cnt := interviews.CountingK([]int{2}, 2); cnt != 1 {
+	if cnt := CountingK([]int{2}, 2); cnt != 1 {
 		t.Errorf("expected 1 and got %d", cnt)
 	}
-	if cnt := interviews.CountingK([]int{}, 1); cnt != 0 {
+	if cnt := CountingK([]int{}, 1); cnt != 0 {
 		t.Errorf("expected 0 and got %d", cnt)
 	}
-	if cnt := interviews.CountingK(nil, 1); cnt != 0 {
+	if cnt := CountingK(nil, 1); cnt != 0 {
 		t.Errorf("expected 0 and got %d", cnt)
 	}
 }
@@ -882,7 +881,7 @@ func Test39TreeDepth(t *testing.T) {
 	n2 := datastructure.TreeNode{Key: 2, Data: 2, LChild: &n4, RChild: &n5}
 	n1 := datastructure.TreeNode{Key: 1, Data: 1, LChild: &n2, RChild: &n3}
 	root := n1
-	if d := interviews.TreeDepth(&root); d != 4 {
+	if d := TreeDepth(&root); d != 4 {
 		t.Errorf("expected 4 and got %d", d)
 	}
 
@@ -890,17 +889,17 @@ func Test39TreeDepth(t *testing.T) {
 	n2 = datastructure.TreeNode{Key: 2, Data: 2, LChild: &n4, RChild: nil}
 	n1 = datastructure.TreeNode{Key: 1, Data: 1, LChild: &n2, RChild: nil}
 	root = n1
-	if d := interviews.TreeDepth(&root); d != 3 {
+	if d := TreeDepth(&root); d != 3 {
 		t.Errorf("expected 3 and got %d", d)
 	}
 
 	n1 = datastructure.TreeNode{Key: 1, Data: 1, LChild: nil, RChild: nil}
 	root = n1
-	if d := interviews.TreeDepth(&root); d != 1 {
+	if d := TreeDepth(&root); d != 1 {
 		t.Errorf("expected 1 and got %d", d)
 	}
 
-	if d := interviews.TreeDepth(nil); d != 0 {
+	if d := TreeDepth(nil); d != 0 {
 		t.Errorf("expected 0 and got %d", d)
 	}
 }
@@ -914,7 +913,7 @@ func Test39IsBalanceTree(t *testing.T) {
 	n2 := datastructure.TreeNode{Key: 2, Data: 2, LChild: &n4, RChild: &n5}
 	n1 := datastructure.TreeNode{Key: 1, Data: 1, LChild: &n2, RChild: &n3}
 	root := n1
-	if b := interviews.IsBalanceTree(&root); !b {
+	if b := IsBalanceTree(&root); !b {
 		t.Errorf("expected true and got %t", b)
 	}
 
@@ -922,32 +921,32 @@ func Test39IsBalanceTree(t *testing.T) {
 	n2 = datastructure.TreeNode{Key: 2, Data: 2, LChild: &n4, RChild: nil}
 	n1 = datastructure.TreeNode{Key: 1, Data: 1, LChild: &n2, RChild: nil}
 	root = n1
-	if b := interviews.IsBalanceTree(&root); b {
+	if b := IsBalanceTree(&root); b {
 		t.Errorf("expected false and got %t", b)
 	}
 
 	n1 = datastructure.TreeNode{Key: 1, Data: 1, LChild: nil, RChild: nil}
 	root = n1
-	if b := interviews.IsBalanceTree(&root); !b {
+	if b := IsBalanceTree(&root); !b {
 		t.Errorf("expected true and got %t", b)
 	}
 
-	if b := interviews.IsBalanceTree(nil); b {
+	if b := IsBalanceTree(nil); b {
 		t.Errorf("expected false and got %t", b)
 	}
 }
 
 func Test41TwoNumWithSum(t *testing.T) {
 	arr := []int{1, 2, 4, 7, 11, 15}
-	if n1, n2, ok := interviews.TwoNumWithSum(arr, 15); !ok {
+	if n1, n2, ok := TwoNumWithSum(arr, 15); !ok {
 		t.Errorf("expected true and got %t", ok)
 		t.Errorf("two numbers: %d and %d", n1, n2)
 	}
-	if n1, n2, ok := interviews.TwoNumWithSum(arr, 4); ok {
+	if n1, n2, ok := TwoNumWithSum(arr, 4); ok {
 		t.Errorf("expected false and got %t", ok)
 		t.Errorf("two numbers: %d and %d", n1, n2)
 	}
-	if n1, n2, ok := interviews.TwoNumWithSum([]int{1}, 1); ok {
+	if n1, n2, ok := TwoNumWithSum([]int{1}, 1); ok {
 		t.Errorf("expected false and got %t", ok)
 		t.Errorf("two numbers: %d and %d", n1, n2)
 	}
@@ -960,19 +959,19 @@ func Test41ContinuousSeqWithSum(t *testing.T) {
 		}
 		fmt.Println()
 	}
-	if found := interviews.ContinuousSeqWithSum(0, visit); found {
+	if found := ContinuousSeqWithSum(0, visit); found {
 		t.Errorf("expected false and got %t", found)
 	}
-	if found := interviews.ContinuousSeqWithSum(4, visit); found {
+	if found := ContinuousSeqWithSum(4, visit); found {
 		t.Errorf("expected false and got %t", found)
 	}
-	if found := interviews.ContinuousSeqWithSum(3, visit); !found {
+	if found := ContinuousSeqWithSum(3, visit); !found {
 		t.Errorf("expected true and got %t", found)
 	}
-	if found := interviews.ContinuousSeqWithSum(9, visit); !found {
+	if found := ContinuousSeqWithSum(9, visit); !found {
 		t.Errorf("expected true and got %t", found)
 	}
-	if found := interviews.ContinuousSeqWithSum(100, visit); !found {
+	if found := ContinuousSeqWithSum(100, visit); !found {
 		t.Errorf("expected true and got %t", found)
 	}
 }
@@ -980,120 +979,120 @@ func Test41ContinuousSeqWithSum(t *testing.T) {
 func Test42ReverseString(t *testing.T) {
 	s := "I am a student."
 	es := "student. a am I"
-	if rs := interviews.ReverseSentence2(s); rs != es {
+	if rs := ReverseSentence2(s); rs != es {
 		t.Errorf("expected %q and got %q", es, rs)
 	}
-	if rs := interviews.ReverseSentence2(""); rs != "" {
+	if rs := ReverseSentence2(""); rs != "" {
 		t.Errorf("expected %q and got %q", "", rs)
 	}
 
-	if rs := interviews.ReverseSentence(s); rs != es {
+	if rs := ReverseSentence(s); rs != es {
 		t.Errorf("expected %q and got %q", es, rs)
 	}
-	if rs := interviews.ReverseSentence(""); rs != "" {
+	if rs := ReverseSentence(""); rs != "" {
 		t.Errorf("expected %q and got %q", "", rs)
 	}
-	if rs := interviews.ReverseSentence("  "); rs != "  " {
+	if rs := ReverseSentence("  "); rs != "  " {
 		t.Errorf("expected %q and got %q", "  ", rs)
 	}
 
 	s = "哇哈哈 火箭赢了"
 	es = "火箭赢了 哇哈哈"
-	if rs := interviews.ReverseSentence2(s); rs != es {
+	if rs := ReverseSentence2(s); rs != es {
 		t.Errorf("expected %q and got %q", es, rs)
 	}
-	if rs := interviews.ReverseSentence(s); rs != es {
+	if rs := ReverseSentence(s); rs != es {
 		t.Errorf("expected %q and got %q", es, rs)
 	}
 }
 
 func Test42LeftRotateString(t *testing.T) {
-	if s := interviews.LeftRotateString("我喜欢你", 2); s != "欢你我喜" {
+	if s := LeftRotateString("我喜欢你", 2); s != "欢你我喜" {
 		t.Errorf("expected %q and got %q", "欢你我喜", s)
 	}
-	if s := interviews.LeftRotateString("abcdefg", 2); s != "cdefgab" {
+	if s := LeftRotateString("abcdefg", 2); s != "cdefgab" {
 		t.Errorf("expected %q and got %q", "cdefgab", s)
 	}
-	if s := interviews.LeftRotateString("abcdefg", 8); s != "abcdefg" {
+	if s := LeftRotateString("abcdefg", 8); s != "abcdefg" {
 		t.Errorf("expected %q and got %q", "abcdefg", s)
 	}
-	if s := interviews.LeftRotateString("abcdefg", 0); s != "abcdefg" {
+	if s := LeftRotateString("abcdefg", 0); s != "abcdefg" {
 		t.Errorf("expected %q and got %q", "abcdefg", s)
 	}
-	if s := interviews.LeftRotateString("", 2); s != "" {
+	if s := LeftRotateString("", 2); s != "" {
 		t.Errorf("expected %q and got %q", "", s)
 	}
-	if s := interviews.LeftRotateString("a", 2); s != "a" {
+	if s := LeftRotateString("a", 2); s != "a" {
 		t.Errorf("expected %q and got %q", "a", s)
 	}
 }
 
 func Test43PrintDiceProbability(t *testing.T) {
-	interviews.PrintDiceProbability(6)
+	PrintDiceProbability(6)
 }
 
 func Test44IsStraight(t *testing.T) {
-	if b := interviews.IsStraight([]int{4, 5, 7, 0, 0, 9}); !b {
+	if b := IsStraight([]int{4, 5, 7, 0, 0, 9}); !b {
 		t.Errorf("expected true and got %t", b)
 	}
 
-	if b := interviews.IsStraight([]int{4, 5, 7, 2, 4}); b {
+	if b := IsStraight([]int{4, 5, 7, 2, 4}); b {
 		t.Errorf("expected false and got %t", b)
 	}
 
-	if b := interviews.IsStraight(nil); b {
+	if b := IsStraight(nil); b {
 		t.Errorf("expected false and got %t", b)
 	}
 }
 
 func Test45LastReaminingNum(t *testing.T) {
-	if n := interviews.LastRemaining(5, 3); n != 3 {
+	if n := LastRemaining(5, 3); n != 3 {
 		t.Errorf("expected %d and got %d", 3, n)
 	}
 }
 
 func Test47AddTwoNum(t *testing.T) {
-	if n := interviews.AddTwoNum(1, 1); n != 2 {
+	if n := AddTwoNum(1, 1); n != 2 {
 		t.Errorf("expected %d and got %d", 2, n)
 	}
-	if n := interviews.AddTwoNum(1, 0); n != 1 {
+	if n := AddTwoNum(1, 0); n != 1 {
 		t.Errorf("expected %d and got %d", 0, n)
 	}
-	if n := interviews.AddTwoNum(0, 0); n != 0 {
+	if n := AddTwoNum(0, 0); n != 0 {
 		t.Errorf("expected %d and got %d", 0, n)
 	}
-	if n := interviews.AddTwoNum(-1, 1); n != 0 {
+	if n := AddTwoNum(-1, 1); n != 0 {
 		t.Errorf("expected %d and got %d", 0, n)
 	}
 }
 
 func Test49Atoi(t *testing.T) {
 	// empty string
-	if n, ok := interviews.Atoi(""); ok || n != 0 {
+	if n, ok := Atoi(""); ok || n != 0 {
 		t.Errorf("expected 0, false and got %d, %t", n, ok)
 	}
 	// not number
-	if n, ok := interviews.Atoi("!32"); ok || n != 0 {
+	if n, ok := Atoi("!32"); ok || n != 0 {
 		t.Errorf("expected 0, false and got %d, %t", n, ok)
 	}
 	// with symbol +/-
-	if n, ok := interviews.Atoi("+"); ok || n != 0 {
+	if n, ok := Atoi("+"); ok || n != 0 {
 		t.Errorf("expected 0, false and got %d, %t", n, ok)
 	}
-	if n, ok := interviews.Atoi("+9"); !ok || n != 9 {
+	if n, ok := Atoi("+9"); !ok || n != 9 {
 		t.Errorf("expected 9, true and got %d, %t", n, ok)
 	}
 	// exceeding boundary
-	if n, ok := interviews.Atoi("-9223372036854775808"); !ok || n != -9223372036854775808 {
+	if n, ok := Atoi("-9223372036854775808"); !ok || n != -9223372036854775808 {
 		t.Errorf("expected -9223372036854775808, true and got %d, %t", n, ok)
 	}
-	if n, ok := interviews.Atoi("9223372036854775807"); !ok || n != 9223372036854775807 {
+	if n, ok := Atoi("9223372036854775807"); !ok || n != 9223372036854775807 {
 		t.Errorf("expected 9223372036854775807, true and got %d, %t", n, ok)
 	}
-	if n, ok := interviews.Atoi("9223372036854775808"); ok || n != 0 {
+	if n, ok := Atoi("9223372036854775808"); ok || n != 0 {
 		t.Errorf("expected 0, false and got %d, %t", n, ok)
 	}
-	if n, ok := interviews.Atoi("-9223372036854775809"); ok || n != 0 {
+	if n, ok := Atoi("-9223372036854775809"); ok || n != 0 {
 		t.Errorf("expected 0, false and got %d, %t", n, ok)
 	}
 }
@@ -1109,49 +1108,49 @@ func Test50LastCommonAncestor(t *testing.T) {
 	c := datastructure.TreeNode{Key: 9, Data: 9, LChild: nil, RChild: nil}
 	a := datastructure.TreeNode{Key: 8, Data: 8, LChild: &b, RChild: &c}
 
-	if node := interviews.GetLastCommonAncestorForBST(&a, &g, &h); node != &b {
+	if node := GetLastCommonAncestorForBST(&a, &g, &h); node != &b {
 		t.Errorf("expected %v\ngot%v\n", b, *node)
 	}
 
-	if node := interviews.GetLastCommonAncestorForBST(&a, &g, &c); node != &a {
+	if node := GetLastCommonAncestorForBST(&a, &g, &c); node != &a {
 		t.Errorf("expected %v\ngot%v\n", a, *node)
 	}
 
-	if node := interviews.GetLastCommonAncestorForBST(&a, &d, &d); node != &d {
+	if node := GetLastCommonAncestorForBST(&a, &d, &d); node != &d {
 		t.Errorf("expected %v\ngot%v\n", d, *node)
 	}
 
-	if node := interviews.GetLastCommonAncestorForBST(&a, nil, nil); node != nil {
+	if node := GetLastCommonAncestorForBST(&a, nil, nil); node != nil {
 		t.Errorf("expected nil\ngot%v\n", *node)
 	}
 
-	if node := interviews.GetLastCommonAncestorForTree(&a, &g, &h); node != &b {
+	if node := GetLastCommonAncestorForTree(&a, &g, &h); node != &b {
 		t.Errorf("expected %v\ngot%v\n", b, *node)
 	}
 
-	if node := interviews.GetLastCommonAncestorForTree(&a, &g, &c); node != &a {
+	if node := GetLastCommonAncestorForTree(&a, &g, &c); node != &a {
 		t.Errorf("expected %v\ngot%v\n", a, *node)
 	}
 
-	if node := interviews.GetLastCommonAncestorForTree(&a, &d, &d); node != &d {
+	if node := GetLastCommonAncestorForTree(&a, &d, &d); node != &d {
 		t.Errorf("expected %v\ngot%v\n", d, *node)
 	}
 
-	if node := interviews.GetLastCommonAncestorForTree(&a, nil, nil); node != nil {
+	if node := GetLastCommonAncestorForTree(&a, nil, nil); node != nil {
 		t.Errorf("expected nil\ngot%v\n", *node)
 	}
 }
 
 func Test51FindRepeatingNum(t *testing.T) {
-	if n, ok := interviews.FindRepeatingNum([]int{2, 3, 1, 0, 2, 5, 3}); !ok || (n != 2 && n != 3) {
+	if n, ok := FindRepeatingNum([]int{2, 3, 1, 0, 2, 5, 3}); !ok || (n != 2 && n != 3) {
 		t.Errorf("expected 2 or 3 and got %d", n)
 	}
 
-	if n, ok := interviews.FindRepeatingNum(nil); ok || n != -1 {
+	if n, ok := FindRepeatingNum(nil); ok || n != -1 {
 		t.Errorf("expected nil and got %d", n)
 	}
 
-	if n, ok := interviews.FindRepeatingNum([]int{0}); ok || n != -1 {
+	if n, ok := FindRepeatingNum([]int{0}); ok || n != -1 {
 		t.Errorf("expected nil and got %d", n)
 	}
 }
@@ -1159,7 +1158,7 @@ func Test51FindRepeatingNum(t *testing.T) {
 func Test52Multiply(t *testing.T) {
 	arr := []int{1, 3, 2, 1, 5}
 	exp := []int{30, 10, 15, 30, 6}
-	targetArr := interviews.MultiplyArray(arr)
+	targetArr := MultiplyArray(arr)
 	for i, e := range targetArr {
 		if e != exp[i] {
 			t.Errorf("expected %d and got %d", exp[i], e)
@@ -1167,7 +1166,7 @@ func Test52Multiply(t *testing.T) {
 	}
 	arr = []int{1, 3, 2, 0, 5}
 	exp = []int{0, 0, 0, 30, 0}
-	targetArr = interviews.MultiplyArray(arr)
+	targetArr = MultiplyArray(arr)
 	for i, e := range targetArr {
 		if e != exp[i] {
 			t.Errorf("expected %d and got %d", exp[i], e)
@@ -1176,7 +1175,7 @@ func Test52Multiply(t *testing.T) {
 
 	arr = []int{1, 0, 2, 0, 5}
 	exp = []int{0, 0, 0, 0, 0}
-	targetArr = interviews.MultiplyArray(arr)
+	targetArr = MultiplyArray(arr)
 	for i, e := range targetArr {
 		if e != exp[i] {
 			t.Errorf("expected %d and got %d", exp[i], e)
@@ -1185,50 +1184,50 @@ func Test52Multiply(t *testing.T) {
 }
 
 func Test53Regex(t *testing.T) {
-	if b := interviews.Match("aaa", "a.a"); !b {
+	if b := Match("aaa", "a.a"); !b {
 		t.Errorf("expected true and got %t", b)
 	}
-	if b := interviews.Match("", "a.a"); b {
+	if b := Match("", "a.a"); b {
 		t.Errorf("expected false and got %t", b)
 	}
-	if b := interviews.Match("aaba", "a*.a"); !b {
+	if b := Match("aaba", "a*.a"); !b {
 		t.Errorf("expected true and got %t", b)
 	}
-	if b := interviews.Match("*aa", "**.a"); !b {
+	if b := Match("*aa", "**.a"); !b {
 		t.Errorf("expected true and got %t", b)
 	}
 }
 
 func Test54IsNumeric(t *testing.T) {
-	if b := interviews.IsNumeric("18"); !b {
+	if b := IsNumeric("18"); !b {
 		t.Errorf("expected true and got %t", b)
 	}
-	if b := interviews.IsNumeric("-18"); !b {
+	if b := IsNumeric("-18"); !b {
 		t.Errorf("expected true and got %t", b)
 	}
-	if b := interviews.IsNumeric("18.58"); !b {
+	if b := IsNumeric("18.58"); !b {
 		t.Errorf("expected true and got %t", b)
 	}
-	if b := interviews.IsNumeric("18.58E-2"); !b {
+	if b := IsNumeric("18.58E-2"); !b {
 		t.Errorf("expected true and got %t", b)
 	}
-	if b := interviews.IsNumeric("18e2"); !b {
+	if b := IsNumeric("18e2"); !b {
 		t.Errorf("expected true and got %t", b)
 	}
 
-	if b := interviews.IsNumeric(""); b {
+	if b := IsNumeric(""); b {
 		t.Errorf("expected false and got %t", b)
 	}
-	if b := interviews.IsNumeric("2.2a3"); b {
+	if b := IsNumeric("2.2a3"); b {
 		t.Errorf("expected false and got %t", b)
 	}
-	if b := interviews.IsNumeric("18.3e2.5"); b {
+	if b := IsNumeric("18.3e2.5"); b {
 		t.Errorf("expected false and got %t", b)
 	}
 }
 
 func Test55FirstAppearingOnce(t *testing.T) {
-	interviews.PrintFirstAppearingOnce()
+	PrintFirstAppearingOnce()
 }
 
 func Test56EntryOfLoop(t *testing.T) {
@@ -1240,25 +1239,25 @@ func Test56EntryOfLoop(t *testing.T) {
 	n1 := datastructure.Node{Data: 1, Next: &n2}
 	n6.Next = &n3
 	// entry at n3
-	if n := interviews.FindEntryOfLoop(&n1); n != &n3 {
+	if n := FindEntryOfLoop(&n1); n != &n3 {
 		t.Errorf("expected %v and got %v", n3, n)
 	}
 	// break loop
 	n6.Next = nil
-	if n := interviews.FindEntryOfLoop(&n1); n != nil {
+	if n := FindEntryOfLoop(&n1); n != nil {
 		t.Errorf("expected nil and got %v", n)
 	}
 	// self-loop
 	n7 := datastructure.Node{Data: 7, Next: nil}
 	n7.Next = &n7
-	if n := interviews.FindEntryOfLoop(&n7); n != &n7 {
+	if n := FindEntryOfLoop(&n7); n != &n7 {
 		t.Errorf("expected %v and got %v", n7, n)
 	}
 	// two nodes loop
 	n9 := datastructure.Node{Data: 9, Next: nil}
 	n8 := datastructure.Node{Data: 8, Next: &n9}
 	n9.Next = &n8
-	if n := interviews.FindEntryOfLoop(&n8); n != &n8 {
+	if n := FindEntryOfLoop(&n8); n != &n8 {
 		t.Errorf("expected %v and got %v", n8, n)
 	}
 }
@@ -1272,7 +1271,7 @@ func Test57DeleteDuplication(t *testing.T) {
 	n1 := datastructure.Node{Data: 1, Next: &n2}
 
 	n1Ptr := &n1
-	interviews.DeleteDuplication(&n1Ptr)
+	DeleteDuplication(&n1Ptr)
 	if n1.Next != &n4 {
 		t.Errorf("failed deleting duplication")
 	}
@@ -1282,7 +1281,7 @@ func Test57DeleteDuplication(t *testing.T) {
 	n5 := datastructure.Node{Data: 5, Next: &n6}
 
 	n5Ptr := &n5
-	interviews.DeleteDuplication(&n5Ptr)
+	DeleteDuplication(&n5Ptr)
 	if n5.Next != &n6 || n6.Next != &n7 {
 		t.Errorf("failed deleting duplication")
 	}
@@ -1296,7 +1295,7 @@ func Test57UniqueLinkedlist(t *testing.T) {
 	n2 := datastructure.Node{Data: 2, Next: &n22}
 	n1 := datastructure.Node{Data: 1, Next: &n2}
 
-	interviews.UniqueLinkedlist(&n1)
+	UniqueLinkedlist(&n1)
 	if n1.Next != &n2 || n2.Next != &n3 || n3.Next != &n4 {
 		t.Errorf("failed deleting duplication")
 	}
@@ -1305,22 +1304,22 @@ func Test57UniqueLinkedlist(t *testing.T) {
 	n6 := datastructure.Node{Data: 6, Next: &n7}
 	n5 := datastructure.Node{Data: 5, Next: &n6}
 
-	interviews.UniqueLinkedlist(&n5)
+	UniqueLinkedlist(&n5)
 	if n5.Next != &n6 || n6.Next != &n7 {
 		t.Errorf("failed deleting duplication")
 	}
 }
 
 func Test58Successor(t *testing.T) {
-	a := interviews.TreeNode{Data: "a"}
-	b := interviews.TreeNode{Data: "b"}
-	c := interviews.TreeNode{Data: "c"}
-	d := interviews.TreeNode{Data: "d"}
-	e := interviews.TreeNode{Data: "e"}
-	f := interviews.TreeNode{Data: "f"}
-	g := interviews.TreeNode{Data: "g"}
-	h := interviews.TreeNode{Data: "h"}
-	i := interviews.TreeNode{Data: "i"}
+	a := TreeNode{Data: "a"}
+	b := TreeNode{Data: "b"}
+	c := TreeNode{Data: "c"}
+	d := TreeNode{Data: "d"}
+	e := TreeNode{Data: "e"}
+	f := TreeNode{Data: "f"}
+	g := TreeNode{Data: "g"}
+	h := TreeNode{Data: "h"}
+	i := TreeNode{Data: "i"}
 	a.LChild = &b
 	a.RChild = &c
 	b.LChild = &d
@@ -1338,13 +1337,13 @@ func Test58Successor(t *testing.T) {
 	h.Parent = &e
 	i.Parent = &e
 
-	if n := interviews.Succeesor(&a); n != &f {
+	if n := Succeesor(&a); n != &f {
 		t.Errorf("expected %v and got %v", f, *n)
 	}
-	if n := interviews.Succeesor(&i); n != &a {
+	if n := Succeesor(&i); n != &a {
 		t.Errorf("expected %v and got %v", a, *n)
 	}
-	if n := interviews.Succeesor(&d); n != &b {
+	if n := Succeesor(&d); n != &b {
 		t.Errorf("expected %v and got %v", b, *n)
 	}
 }
@@ -1358,7 +1357,7 @@ func Test59IsSymmertrical(t *testing.T) {
 	n6R := datastructure.TreeNode{Data: 6, LChild: &n7R, RChild: &n5R}
 	n8 := datastructure.TreeNode{Data: 8, LChild: &n6L, RChild: &n6R}
 
-	if b := interviews.IsSymmertrical(&n8); !b {
+	if b := IsSymmertrical(&n8); !b {
 		t.Errorf("expected true and got %t", b)
 	}
 }
@@ -1372,7 +1371,7 @@ func Test60PrintBiTree(t *testing.T) {
 	n6R := datastructure.TreeNode{Data: 6, LChild: &n7R, RChild: &n5R}
 	n8 := datastructure.TreeNode{Data: 8, LChild: &n6L, RChild: &n6R}
 
-	interviews.PrintBinaryTree(&n8)
+	PrintBinaryTree(&n8)
 }
 
 func Test61PrintBiTreeInZ(t *testing.T) {
@@ -1384,10 +1383,10 @@ func Test61PrintBiTreeInZ(t *testing.T) {
 	n6R := datastructure.TreeNode{Data: 10, LChild: &n7R, RChild: &n5R}
 	n8 := datastructure.TreeNode{Data: 8, LChild: &n6L, RChild: &n6R}
 
-	interviews.PrintBiTreeInZ(&n8)
-	interviews.PrintBiTreeInZ(&n6L)
-	interviews.PrintBiTreeInZ(nil)
-	interviews.PrintBiTreeInZ(&datastructure.TreeNode{})
+	PrintBiTreeInZ(&n8)
+	PrintBiTreeInZ(&n6L)
+	PrintBiTreeInZ(nil)
+	PrintBiTreeInZ(&datastructure.TreeNode{})
 }
 
 func Test63FindKthNodeInBST(t *testing.T) {
@@ -1399,15 +1398,15 @@ func Test63FindKthNodeInBST(t *testing.T) {
 	n6R := datastructure.TreeNode{Data: 10, LChild: &n7R, RChild: &n5R}
 	n8 := datastructure.TreeNode{Data: 8, LChild: &n6L, RChild: &n6R}
 
-	if n := interviews.FindKthNodeInBST(&n8, 3); n != &n7L {
+	if n := FindKthNodeInBST(&n8, 3); n != &n7L {
 		t.Errorf("expected %v\nand got %v\n", n7L, *n)
 	}
 
-	if n := interviews.FindKthNodeInBST(&n8, 4); n != &n8 {
+	if n := FindKthNodeInBST(&n8, 4); n != &n8 {
 		t.Errorf("expected %v\nand got %v\n", n8, *n)
 	}
 
-	if n := interviews.FindKthNodeInBST(&n8, 8); n != nil {
+	if n := FindKthNodeInBST(&n8, 8); n != nil {
 		t.Errorf("expected %v\nand got %v\n", nil, *n)
 	}
 }
@@ -1421,10 +1420,10 @@ func Test62Serialize(t *testing.T) {
 	n1 := datastructure.TreeNode{Data: "1", LChild: &n2, RChild: &n3}
 
 	var b bytes.Buffer
-	interviews.Serialize(&n1, &b)
+	Serialize(&n1, &b)
 
 	root := new(datastructure.TreeNode)
-	interviews.Deserialize(&root, &b)
+	Deserialize(&root, &b)
 
 	if !datastructure.Equal(root.Data, n1.Data) || !datastructure.Equal(root.LChild.Data, n2.Data) || !datastructure.Equal(root.RChild.Data, n3.Data) {
 		t.Errorf("failed deserialzing binary tree")
@@ -1433,7 +1432,7 @@ func Test62Serialize(t *testing.T) {
 
 func Test64Median(t *testing.T) {
 	arr := []int{1, 2, 3, 4, 5}
-	da := interviews.DynamicArray{}
+	da := DynamicArray{}
 	da.Init()
 	for _, e := range arr {
 		da.Insert(e)
@@ -1450,42 +1449,42 @@ func Test64Median(t *testing.T) {
 
 func Test66HasPath(t *testing.T) {
 	matrix := [][]byte{
-		[]byte{'a', 'b', 'c', 'e'},
-		[]byte{'s', 'f', 'c', 's'},
-		[]byte{'a', 'd', 'e', 'e'},
+		{'a', 'b', 'c', 'e'},
+		{'s', 'f', 'c', 's'},
+		{'a', 'd', 'e', 'e'},
 	}
-	if b := interviews.HasPath(matrix, 3, 4, "bcced"); !b {
+	if b := HasPath(matrix, 3, 4, "bcced"); !b {
 		t.Errorf("expected true and got %t", b)
 	}
 
-	if b := interviews.HasPath(matrix, 3, 4, "abcb"); b {
+	if b := HasPath(matrix, 3, 4, "abcb"); b {
 		t.Errorf("expected false and got %t", b)
 	}
 }
 
 func Test68ReverseStr(t *testing.T) {
-	s1 := interviews.ReverseStr("abcdefg")
+	s1 := ReverseStr("abcdefg")
 	if s1 != "gfedcba" {
 		t.Errorf("expected gfedcba and got %s", s1)
 	}
 
-	s2 := interviews.ReverseStrByStack("abcdefg")
+	s2 := ReverseStrByStack("abcdefg")
 	if s2 != "gfedcba" {
 		t.Errorf("expected gfedcba and got %s", s2)
 	}
 
-	if s3 := interviews.ReverseStrByBit("abcdefg"); s3 != "gfedcba" {
+	if s3 := ReverseStrByBit("abcdefg"); s3 != "gfedcba" {
 		t.Errorf("expected gfedcba and got %s", s3)
 	}
 }
 
 func Test69Maze(t *testing.T) {
 	nums := [][]int{
-		[]int{0, 1, 2},
-		[]int{2, 3, -1},
-		[]int{1, 3, 1},
+		{0, 1, 2},
+		{2, 3, -1},
+		{1, 3, 1},
 	}
-	if n := interviews.FindShortestPath(nums, 3, 3); n != 7 {
+	if n := FindShortestPath(nums, 3, 3); n != 7 {
 		t.Errorf("expected 7 and got %d\n", n)
 	}
 }
@@ -1493,12 +1492,12 @@ func Test69Maze(t *testing.T) {
 func Test70City(t *testing.T) {
 	n, m := 4, 3
 	paths := [][]int{
-		[]int{0, 0, 0, 0},
-		[]int{1, 0, 0, 0},
-		[]int{0, 1, 0, 0},
-		[]int{0, 0, 1, 0},
+		{0, 0, 0, 0},
+		{1, 0, 0, 0},
+		{0, 1, 0, 0},
+		{0, 0, 1, 0},
 	}
-	if n := interviews.GetImportantCitys(paths, n, m); n != 2 {
+	if n := GetImportantCitys(paths, n, m); n != 2 {
 		t.Errorf("expected 2 and got %d\n", n)
 	}
 }
