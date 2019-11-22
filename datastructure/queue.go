@@ -20,7 +20,7 @@ func NewQueue(n int) (*Queue, error) {
 		return nil, fmt.Errorf("queue size must larger than 0")
 	}
 	q := &Queue{
-		data: make([]Elem, n, n),
+		data: make([]Elem, n),
 	}
 
 	return q, nil
@@ -38,10 +38,7 @@ func (q *Queue) Length() int {
 func (q *Queue) IsEmpty() bool {
 	q.lock.RLock()
 	defer q.lock.RUnlock()
-	if q.rear == q.front {
-		return true
-	}
-	return false
+	return q.rear == q.front
 }
 
 // Enqueue an element

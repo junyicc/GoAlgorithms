@@ -198,7 +198,7 @@ func rightBalance(node **AVLNode) {
 // PreOrderTraverseRecur visits AVL nodes in pre-order recursively
 func (avl *AVL) PreOrderTraverseRecur(node interface{}, f func(Elem)) {
 	avl.lock.RLock()
-	avl.lock.RUnlock()
+	defer avl.lock.RUnlock()
 
 	if node, ok := node.(*AVLNode); ok && node != nil {
 		f(node.Data)
@@ -210,7 +210,7 @@ func (avl *AVL) PreOrderTraverseRecur(node interface{}, f func(Elem)) {
 // InOrderTraverseRecur visits AVL nodes in in-order recursively
 func (avl *AVL) InOrderTraverseRecur(node interface{}, f func(Elem)) {
 	avl.lock.RLock()
-	avl.lock.RUnlock()
+	defer avl.lock.RUnlock()
 
 	if node, ok := node.(*AVLNode); ok && node != nil {
 		avl.InOrderTraverseRecur(node.LChild, f)
@@ -222,7 +222,7 @@ func (avl *AVL) InOrderTraverseRecur(node interface{}, f func(Elem)) {
 // PostOrderTraverseRecur visits AVL nodes in post-order recursively
 func (avl *AVL) PostOrderTraverseRecur(node interface{}, f func(Elem)) {
 	avl.lock.RLock()
-	avl.lock.RUnlock()
+	defer avl.lock.RUnlock()
 
 	if node, ok := node.(*AVLNode); ok && node != nil {
 		avl.PostOrderTraverseRecur(node.LChild, f)

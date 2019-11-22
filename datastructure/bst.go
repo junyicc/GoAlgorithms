@@ -131,7 +131,7 @@ func remove(node *TreeNode, key int) (*Elem, bool) {
 // PreOrderTraverseRecur visits BST nodes in pre-order recursively
 func (bst *BST) PreOrderTraverseRecur(node interface{}, f func(Elem)) {
 	bst.lock.RLock()
-	bst.lock.RUnlock()
+	defer bst.lock.RUnlock()
 
 	if node, ok := node.(*TreeNode); ok && node != nil {
 		f(node.Data)
@@ -143,7 +143,7 @@ func (bst *BST) PreOrderTraverseRecur(node interface{}, f func(Elem)) {
 // InOrderTraverseRecur visits BST nodes in in-order recursively
 func (bst *BST) InOrderTraverseRecur(node interface{}, f func(Elem)) {
 	bst.lock.RLock()
-	bst.lock.RUnlock()
+	defer bst.lock.RUnlock()
 
 	if node, ok := node.(*TreeNode); ok && node != nil {
 		bst.InOrderTraverseRecur(node.LChild, f)
@@ -155,7 +155,7 @@ func (bst *BST) InOrderTraverseRecur(node interface{}, f func(Elem)) {
 // PostOrderTraverseRecur visits BST nodes in post-order recursively
 func (bst *BST) PostOrderTraverseRecur(node interface{}, f func(Elem)) {
 	bst.lock.RLock()
-	bst.lock.RUnlock()
+	defer bst.lock.RUnlock()
 
 	if node, ok := node.(*TreeNode); ok && node != nil {
 		bst.PostOrderTraverseRecur(node.LChild, f)

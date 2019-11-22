@@ -57,10 +57,7 @@ func (s *Stack) Pop() (Elem, error) {
 
 // IsEmpty stack
 func (s *Stack) IsEmpty() bool {
-	if s.top == -1 {
-		return true
-	}
-	return false
+	return s.top == -1
 }
 
 // GetTop element of stack
@@ -84,7 +81,7 @@ func (s *Stack) Clear() error {
 	}
 
 	for !s.IsEmpty() {
-		s.Pop()
+		_, _ = s.Pop()
 	}
 	return nil
 }

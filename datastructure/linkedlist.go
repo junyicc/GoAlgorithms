@@ -78,6 +78,7 @@ func (l *LinkedList) Insert(k int, e Elem) error {
 	if k == 0 {
 		node.Next = l.head
 		l.head = &node
+		l.length++
 		return nil
 	}
 	last := l.head
@@ -106,10 +107,11 @@ func (l *LinkedList) Remove(k int) (*Elem, error) {
 	node := last.Next
 	last.Next = node.Next
 	// delete node
+	data := node.Data
 	node.Next = nil
 	node = nil
 	l.length--
-	return &node.Data, nil
+	return &data, nil
 }
 
 // Clear linked list
@@ -162,10 +164,7 @@ func (l *LinkedList) IndexOf(e Elem) (int, bool) {
 func (l *LinkedList) IsEmpty() bool {
 	l.lock.RLock()
 	defer l.lock.RUnlock()
-	if l.head == nil {
-		return true
-	}
-	return false
+	return l.head == nil
 }
 
 // Len of the linked list
