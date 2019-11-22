@@ -8,12 +8,12 @@ import (
 
 // PrintLinkedlistReversely prints linkedlist reversely
 func PrintLinkedlistReversely(list *datastructure.LinkedList) {
-	if list == nil || list.Head() == nil {
+	if list == nil || list.FirstNode() == nil {
 		return
 	}
 
 	stack := datastructure.NewDynamicStack()
-	node := list.Head()
+	node := list.FirstNode()
 	for node != nil {
 		stack.Push(node.Data)
 		node = node.Next

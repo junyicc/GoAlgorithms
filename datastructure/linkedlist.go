@@ -12,6 +12,13 @@ type Node struct {
 	Next *Node
 }
 
+func NewListNode(v interface{}) *Node {
+	return &Node{
+		Data: v,
+		Next: nil,
+	}
+}
+
 // ComplexListNode of LinkedList
 type ComplexListNode struct {
 	Data    Elem
@@ -41,6 +48,8 @@ func (n *Node) Less(node *Node) bool {
 	}
 }
 
+//------------------------------------------------------------------------------------------------
+
 // LinkedList struct
 type LinkedList struct {
 	head   *Node
@@ -48,52 +57,62 @@ type LinkedList struct {
 	lock   sync.RWMutex
 }
 
+func NewLinkedList() *LinkedList {
+	return &LinkedList{
+		head:   NewListNode(0),
+		length: 0,
+	}
+}
+
 // Append an element to the end of the linked list
-func (l *LinkedList) Append(e Elem) {
+func (l *LinkedList) Append(e Elem) error {
 	l.lock.Lock()
 	defer l.lock.Unlock()
-	node := Node{e, nil}
-	if l.head == nil {
-		l.head = &node
-	} else {
-		last := l.head
-		for last.Next != nil {
-			last = last.Next
-		}
-		last.Next = &node
+
+	last := l.head
+	for last.Next != nil {
+		last = last.Next
 	}
-	l.length++
+	return l.InsertAfter(last, e)
 }
 
 // Insert an element at k index
 func (l *LinkedList) Insert(k int, e Elem) error {
-	if k < 0 || k > l.length {
+	if k < 0 || k >= l.length {
 		return fmt.Errorf("index out of range")
 	}
 
 	l.lock.Lock()
 	defer l.lock.Unlock()
 
-	node := Node{e, nil}
+	var node *Node
 	if k == 0 {
-		node.Next = l.head
-		l.head = &node
-		l.length++
-		return nil
+		node = l.head
+	} else {
+		last := l.head.Next
+		for i := 0; i < k-1; i++ {
+			last = last.Next
+		}
+		node = last
 	}
-	last := l.head
-	for i := 0; i < k-1; i++ {
-		last = last.Next
+	return l.InsertAfter(node, e)
+}
+
+func (l *LinkedList) InsertAfter(p *Node, e Elem) error {
+	if p == nil {
+		return fmt.Errorf("invalid list node")
 	}
-	node.Next = last.Next
-	last.Next = &node
+
+	n := NewListNode(e)
+	n.Next = p.Next
+	p.Next = n
 	l.length++
 	return nil
 }
 
 // Remove an element at k index
 func (l *LinkedList) Remove(k int) (*Elem, error) {
-	if k < 0 || k > l.length {
+	if k < 0 || k >= l.length {
 		return nil, fmt.Errorf("index out of range")
 	}
 
@@ -114,6 +133,32 @@ func (l *LinkedList) Remove(k int) (*Elem, error) {
 	return &data, nil
 }
 
+func (l *LinkedList) DeleteNode(node *Node) (*Elem, error) {
+	if node == nil {
+		return nil, fmt.Errorf("invalid list node")
+	}
+	delData := node.Data
+	//delete node in O(1)
+	if node.Next != nil {
+		next := node.Next
+		node.Data = next.Data
+		node.Next = next.Next
+		next.Data = nil
+		next = nil
+	} else if node == l.head.Next {
+		//delete the first node in O(1)
+		l.head.Next = nil
+	} else {
+		//delete the last node in O(n)
+		last := l.head.Next
+		for last.Next != node {
+			last = last.Next
+		}
+		last.Next = nil
+	}
+	return &delData, nil
+}
+
 // Clear linked list
 func (l *LinkedList) Clear() {
 	l.lock.Lock()
@@ -129,14 +174,14 @@ func (l *LinkedList) Clear() {
 
 // Get the element at k index
 func (l *LinkedList) Get(k int) (*Elem, bool) {
-	if k < 0 || k > l.length {
+	if k < 0 || k >= l.length {
 		return nil, false
 	}
 
 	l.lock.RLock()
 	defer l.lock.RUnlock()
 
-	last := l.head
+	last := l.head.Next
 	for i := 0; i < k && last != nil; i++ {
 		last = last.Next
 	}
@@ -150,7 +195,7 @@ func (l *LinkedList) Get(k int) (*Elem, bool) {
 func (l *LinkedList) IndexOf(e Elem) (int, bool) {
 	l.lock.RLock()
 	defer l.lock.RUnlock()
-	last := l.head
+	last := l.head.Next
 	for i := 0; last != nil; i++ {
 		if last.Data == e {
 			return i, true
@@ -164,7 +209,7 @@ func (l *LinkedList) IndexOf(e Elem) (int, bool) {
 func (l *LinkedList) IsEmpty() bool {
 	l.lock.RLock()
 	defer l.lock.RUnlock()
-	return l.head == nil
+	return l.head.Next == nil
 }
 
 // Len of the linked list
@@ -178,7 +223,7 @@ func (l *LinkedList) String() string {
 	l.lock.RLock()
 	defer l.lock.RUnlock()
 
-	node := l.head
+	node := l.head.Next
 	var b bytes.Buffer
 	for node.Next != nil {
 		b.WriteString(fmt.Sprintf("%v", node.Data))
@@ -189,9 +234,9 @@ func (l *LinkedList) String() string {
 	return b.String()
 }
 
-// Head of the linked list
-func (l *LinkedList) Head() *Node {
+// FirstNode of the linked list
+func (l *LinkedList) FirstNode() *Node {
 	l.lock.RLock()
 	defer l.lock.RUnlock()
-	return l.head
+	return l.head.Next
 }

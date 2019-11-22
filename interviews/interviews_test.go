@@ -32,13 +32,14 @@ func Test04ReplaceBlank(t *testing.T) {
 }
 
 func Test05PrintLinkedList(t *testing.T) {
-	var ll datastructure.LinkedList
+	ll := datastructure.NewLinkedList()
+
 	ll.Append("1")
 	ll.Append("2")
 	ll.Append("3")
 	ll.Append("4")
 
-	PrintLinkedlistReversely(&ll)
+	PrintLinkedlistReversely(ll)
 }
 
 func Test06ReconstructTree(t *testing.T) {

@@ -5,9 +5,8 @@ import (
 	"testing"
 )
 
-var ll LinkedList
-
 func TestAppend(t *testing.T) {
+	ll := NewLinkedList()
 	if !ll.IsEmpty() {
 		t.Errorf("list should be empty")
 	}
@@ -30,6 +29,10 @@ func TestAppend(t *testing.T) {
 }
 
 func TestRemove(t *testing.T) {
+	ll := NewLinkedList()
+	ll.Append("first")
+	ll.Append("second")
+	ll.Append("third")
 	_, err := ll.Remove(1)
 	if err != nil {
 		t.Errorf("unexpected error %s", err)
@@ -41,7 +44,10 @@ func TestRemove(t *testing.T) {
 }
 
 func TestInsert(t *testing.T) {
+	ll := NewLinkedList()
 	//test inserting in the middle
+	ll.Append("first")
+	ll.Append("third")
 	err := ll.Insert(1, "second2")
 	if err != nil {
 		t.Errorf("unexpected error %s", err)
@@ -58,13 +64,23 @@ func TestInsert(t *testing.T) {
 }
 
 func TestHead(t *testing.T) {
-	h := ll.Head()
+	ll := NewLinkedList()
+	ll.Append("first")
+	ll.Append("third")
+	ll.Insert(1, "second2")
+	ll.Insert(0, "zero")
+	h := ll.FirstNode()
 	if "zero" != fmt.Sprint(h.Data) {
 		t.Errorf("Expected 'zero' but got %s", fmt.Sprint(h.Data))
 	}
 }
 
 func TestString(t *testing.T) {
+	ll := NewLinkedList()
+	ll.Append("first")
+	ll.Append("third")
+	ll.Insert(1, "second2")
+	ll.Insert(0, "zero")
 	s := ll.String()
 	fmt.Println(s)
 	if s != "zero->first->second2->third" {
@@ -73,8 +89,13 @@ func TestString(t *testing.T) {
 }
 
 func TestGet(t *testing.T) {
-	if size := ll.Len(); size != 3 {
-		t.Errorf("wrong count, expected 2 and got %d", size)
+	ll := NewLinkedList()
+	ll.Append("first")
+	ll.Append("third")
+	ll.Insert(1, "second2")
+	ll.Insert(0, "zero")
+	if size := ll.Len(); size != 4 {
+		t.Errorf("wrong count, expected 4 and got %d", size)
 	}
 	if e, _ := ll.Get(3); *e != "third" {
 		t.Errorf("wrong data, expected third, and got %s", *e)
@@ -82,6 +103,11 @@ func TestGet(t *testing.T) {
 }
 
 func TestIndexOf(t *testing.T) {
+	ll := NewLinkedList()
+	ll.Append("first")
+	ll.Append("third")
+	ll.Insert(1, "second2")
+	ll.Insert(0, "zero")
 	if i, _ := ll.IndexOf("zero"); i != 0 {
 		t.Errorf("expected position 0 but got %d", i)
 	}
