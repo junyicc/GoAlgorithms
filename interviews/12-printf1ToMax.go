@@ -51,7 +51,7 @@ func increment(number []byte) bool {
 
 // IToA converts number array to string
 func IToA(number []byte) string {
-	if number == nil || len(number) == 0 {
+	if len(number) == 0 {
 		return ""
 	}
 

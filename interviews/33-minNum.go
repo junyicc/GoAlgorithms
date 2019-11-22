@@ -18,10 +18,7 @@ func FindMinPermutation(arr []int) string {
 		a := strconv.Itoa(intHeap.Data[i])
 		b := strconv.Itoa(intHeap.Data[j])
 		result := strings.Compare(a+b, b+a)
-		if result < 0 {
-			return true
-		}
-		return false
+		return result < 0
 	}
 
 	sort.Sort(intHeap)

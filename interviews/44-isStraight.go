@@ -30,8 +30,5 @@ func IsStraight(arr []int) bool {
 		}
 	}
 
-	if jokerCnt >= gapCnt {
-		return true
-	}
-	return false
+	return jokerCnt >= gapCnt
 }

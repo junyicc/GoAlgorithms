@@ -36,8 +36,5 @@ func findFirstBitIs1(n int) uint {
 
 func isBit1(n int, index uint) bool {
 	n = n >> index
-	if n&1 == 1 {
-		return true
-	}
-	return false
+	return n&1 == 1
 }

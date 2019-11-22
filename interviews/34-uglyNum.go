@@ -58,10 +58,7 @@ func IsUglyNum(n int) bool {
 		n /= 5
 	}
 
-	if n == 1 {
-		return true
-	}
-	return false
+	return n == 1
 }
 
 // GetSuperUglyNum returns the nth ugly number

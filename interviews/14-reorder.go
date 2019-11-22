@@ -2,7 +2,7 @@ package interviews
 
 // ReorderOddEven reorders the array as odd part + even part
 func ReorderOddEven(arr []int) []int {
-	if arr == nil || len(arr) == 0 {
+	if len(arr) == 0 {
 		return nil
 	}
 
@@ -30,7 +30,7 @@ func ReorderOddEven2(arr []int) []int {
 
 // Reorder array according to function f
 func Reorder(arr []int, f func(int) bool) []int {
-	if arr == nil || len(arr) == 0 {
+	if len(arr) == 0 {
 		return nil
 	}
 
