@@ -6,14 +6,14 @@ import (
 	"sync"
 )
 
-// Node of linkedlist
-type Node struct {
+// ListNode of linkedlist
+type ListNode struct {
 	Data Elem
-	Next *Node
+	Next *ListNode
 }
 
-func NewListNode(v interface{}) *Node {
-	return &Node{
+func NewListNode(v interface{}) *ListNode {
+	return &ListNode{
 		Data: v,
 		Next: nil,
 	}
@@ -27,7 +27,7 @@ type ComplexListNode struct {
 }
 
 // Less comparison
-func (n *Node) Less(node *Node) bool {
+func (n *ListNode) Less(node *ListNode) bool {
 	if node == nil {
 		return false
 	}
@@ -48,11 +48,15 @@ func (n *Node) Less(node *Node) bool {
 	}
 }
 
+func (n *ListNode) String() string {
+	return String(n.Data)
+}
+
 //------------------------------------------------------------------------------------------------
 
 // LinkedList struct
 type LinkedList struct {
-	head   *Node
+	head   *ListNode
 	length int
 	lock   sync.RWMutex
 }
@@ -85,7 +89,7 @@ func (l *LinkedList) Insert(k int, e Elem) error {
 	l.lock.Lock()
 	defer l.lock.Unlock()
 
-	var node *Node
+	var node *ListNode
 	if k == 0 {
 		node = l.head
 	} else {
@@ -98,7 +102,7 @@ func (l *LinkedList) Insert(k int, e Elem) error {
 	return l.InsertAfter(node, e)
 }
 
-func (l *LinkedList) InsertAfter(p *Node, e Elem) error {
+func (l *LinkedList) InsertAfter(p *ListNode, e Elem) error {
 	if p == nil {
 		return fmt.Errorf("invalid list node")
 	}
@@ -133,7 +137,7 @@ func (l *LinkedList) Remove(k int) (*Elem, error) {
 	return &data, nil
 }
 
-func (l *LinkedList) DeleteNode(node *Node) (*Elem, error) {
+func (l *LinkedList) DeleteNode(node *ListNode) (*Elem, error) {
 	if node == nil {
 		return nil, fmt.Errorf("invalid list node")
 	}
@@ -235,8 +239,12 @@ func (l *LinkedList) String() string {
 }
 
 // FirstNode of the linked list
-func (l *LinkedList) FirstNode() *Node {
+func (l *LinkedList) FirstNode() *ListNode {
 	l.lock.RLock()
 	defer l.lock.RUnlock()
 	return l.head.Next
+}
+
+func (l *LinkedList) Head() *ListNode {
+	return l.head
 }

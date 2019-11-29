@@ -5,7 +5,7 @@ import (
 )
 
 // MergeLinkedlist merges h1 and h2 that are sorted linkedlist
-func MergeLinkedlist(h1, h2 *datastructure.Node) *datastructure.Node {
+func MergeLinkedlist(h1, h2 *datastructure.ListNode) *datastructure.ListNode {
 	if h1 == nil {
 		return h2
 	}
@@ -13,7 +13,7 @@ func MergeLinkedlist(h1, h2 *datastructure.Node) *datastructure.Node {
 		return h1
 	}
 
-	var n, n1, n2 *datastructure.Node
+	var n, n1, n2 *datastructure.ListNode
 	// head of merge linkedlist
 	if h1.Less(h2) {
 		n = h1
@@ -48,7 +48,7 @@ func MergeLinkedlist(h1, h2 *datastructure.Node) *datastructure.Node {
 }
 
 // MergeLinkedlist2 merge sorted linkedlist recursively
-func MergeLinkedlist2(h1, h2 *datastructure.Node) *datastructure.Node {
+func MergeLinkedlist2(h1, h2 *datastructure.ListNode) *datastructure.ListNode {
 	if h1 == nil {
 		return h2
 	}
@@ -56,7 +56,7 @@ func MergeLinkedlist2(h1, h2 *datastructure.Node) *datastructure.Node {
 		return h1
 	}
 
-	var h *datastructure.Node
+	var h *datastructure.ListNode
 	if h1.Less(h2) {
 		h = h1
 		h.Next = MergeLinkedlist2(h1.Next, h2)

@@ -5,7 +5,7 @@ import (
 )
 
 // FindEntryOfLoop returns the entry node of loop linkedlist
-func FindEntryOfLoop(head *datastructure.Node) *datastructure.Node {
+func FindEntryOfLoop(head *datastructure.ListNode) *datastructure.ListNode {
 	mi := findMeetingNode(head)
 	if mi == nil {
 		return nil
@@ -31,11 +31,11 @@ func FindEntryOfLoop(head *datastructure.Node) *datastructure.Node {
 	return nil
 }
 
-func findMeetingNode(head *datastructure.Node) *datastructure.Node {
+func findMeetingNode(head *datastructure.ListNode) *datastructure.ListNode {
 	if head == nil {
 		return nil
 	}
-	var lo, hi *datastructure.Node
+	var lo, hi *datastructure.ListNode
 	lo = head
 	if lo.Next == nil {
 		return nil

@@ -1,11 +1,19 @@
 package datastructure
 
 import (
+	"fmt"
 	"reflect"
 )
 
 // Elem type of data structures
 type Elem interface{}
+
+func String(e Elem) string {
+	if e == nil {
+		return ""
+	}
+	return fmt.Sprint(e)
+}
 
 // Less comparison
 func Less(e1, e2 Elem) bool {

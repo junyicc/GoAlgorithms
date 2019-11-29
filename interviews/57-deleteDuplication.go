@@ -5,11 +5,11 @@ import (
 )
 
 // DeleteDuplication deletes the duplicated nodes of the sorted linkedlist
-func DeleteDuplication(head **datastructure.Node) {
+func DeleteDuplication(head **datastructure.ListNode) {
 	if head == nil || *head == nil {
 		return
 	}
-	var pre *datastructure.Node
+	var pre *datastructure.ListNode
 	node := *head
 	for node != nil && node.Next != nil {
 		if datastructure.Equal(node.Data, node.Next.Data) {
@@ -35,7 +35,7 @@ func DeleteDuplication(head **datastructure.Node) {
 }
 
 // UniqueLinkedlist make the sorted linkedlist contain unique nodes
-func UniqueLinkedlist(head *datastructure.Node) {
+func UniqueLinkedlist(head *datastructure.ListNode) {
 	if head == nil {
 		return
 	}

@@ -6,7 +6,7 @@ import (
 
 // FindKthToTail return the node that Kth to tail of linkedlist
 // k starts at 1
-func FindKthToTail(head *datastructure.Node, k uint) *datastructure.Node {
+func FindKthToTail(head *datastructure.ListNode, k uint) *datastructure.ListNode {
 	if head == nil || k == 0 {
 		return nil
 	}
@@ -28,7 +28,7 @@ func FindKthToTail(head *datastructure.Node, k uint) *datastructure.Node {
 }
 
 // FindMidNode returns the middle node of linkedlist
-func FindMidNode(head *datastructure.Node) *datastructure.Node {
+func FindMidNode(head *datastructure.ListNode) *datastructure.ListNode {
 	if head == nil {
 		return nil
 	}
@@ -42,7 +42,7 @@ func FindMidNode(head *datastructure.Node) *datastructure.Node {
 }
 
 // IsLoop returns if the linkedlist is loop
-func IsLoop(head *datastructure.Node) bool {
+func IsLoop(head *datastructure.ListNode) bool {
 	if head == nil {
 		return false
 	}

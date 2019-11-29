@@ -5,7 +5,7 @@ import (
 )
 
 // DeleteNode deletes the toBeDel node in the linkedlist in O(1)
-func DeleteNode(head **datastructure.Node, toBeDel *datastructure.Node) *datastructure.Elem {
+func DeleteNode(head **datastructure.ListNode, toBeDel *datastructure.ListNode) *datastructure.Elem {
 	if head == nil || toBeDel == nil {
 		return nil
 	}

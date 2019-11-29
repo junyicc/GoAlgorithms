@@ -5,7 +5,7 @@ import (
 )
 
 // FindFirstCommonNode returns the first common node of two linkedlist
-func FindFirstCommonNode(h1, h2 *datastructure.Node) *datastructure.Node {
+func FindFirstCommonNode(h1, h2 *datastructure.ListNode) *datastructure.ListNode {
 	if h1 == nil || h2 == nil {
 		return nil
 	}
@@ -30,7 +30,7 @@ func FindFirstCommonNode(h1, h2 *datastructure.Node) *datastructure.Node {
 	return n1
 }
 
-func getLinkedlistLength(head *datastructure.Node) int {
+func getLinkedlistLength(head *datastructure.ListNode) int {
 	if head == nil {
 		return 0
 	}

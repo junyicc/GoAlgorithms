@@ -168,16 +168,16 @@ func Test12Print1ToMax(t *testing.T) {
 }
 
 func Test13DeleteNode(t *testing.T) {
-	l1 := datastructure.Node{Data: 1, Next: nil}
+	l1 := datastructure.ListNode{Data: 1, Next: nil}
 	lP := &l1
 	d1 := DeleteNode(&lP, lP)
 	if *d1 != 1 || lP != nil {
 		t.Errorf("expected 1 and got %v", *d1)
 	}
 
-	n3 := datastructure.Node{Data: 3, Next: nil}
-	n2 := datastructure.Node{Data: 2, Next: &n3}
-	n1 := datastructure.Node{Data: 1, Next: &n2}
+	n3 := datastructure.ListNode{Data: 3, Next: nil}
+	n2 := datastructure.ListNode{Data: 2, Next: &n3}
+	n1 := datastructure.ListNode{Data: 1, Next: &n2}
 	n1P := &n1
 	if d2 := DeleteNode(&n1P, &n1); *d2 != 1 || n1P.Data != 2 {
 		t.Errorf("expected 1 and got %v", *d2)
@@ -203,11 +203,11 @@ func Test14ReorderOddEven(t *testing.T) {
 }
 
 func Test15FindKthToTail(t *testing.T) {
-	n5 := datastructure.Node{Data: 5, Next: nil}
-	n4 := datastructure.Node{Data: 4, Next: &n5}
-	n3 := datastructure.Node{Data: 3, Next: &n4}
-	n2 := datastructure.Node{Data: 2, Next: &n3}
-	n1 := datastructure.Node{Data: 1, Next: &n2}
+	n5 := datastructure.ListNode{Data: 5, Next: nil}
+	n4 := datastructure.ListNode{Data: 4, Next: &n5}
+	n3 := datastructure.ListNode{Data: 3, Next: &n4}
+	n2 := datastructure.ListNode{Data: 2, Next: &n3}
+	n1 := datastructure.ListNode{Data: 1, Next: &n2}
 
 	if n := FindKthToTail(&n1, 1); (*n).Data != 5 {
 		t.Errorf("expected 5 and got %v", (*n).Data)
@@ -228,17 +228,17 @@ func Test15FindKthToTail(t *testing.T) {
 
 }
 func Test15FindMidNode(t *testing.T) {
-	n5 := datastructure.Node{Data: 5, Next: nil}
-	n4 := datastructure.Node{Data: 4, Next: &n5}
-	n3 := datastructure.Node{Data: 3, Next: &n4}
-	n2 := datastructure.Node{Data: 2, Next: &n3}
-	n1 := datastructure.Node{Data: 1, Next: &n2}
+	n5 := datastructure.ListNode{Data: 5, Next: nil}
+	n4 := datastructure.ListNode{Data: 4, Next: &n5}
+	n3 := datastructure.ListNode{Data: 3, Next: &n4}
+	n2 := datastructure.ListNode{Data: 2, Next: &n3}
+	n1 := datastructure.ListNode{Data: 1, Next: &n2}
 
 	if n := FindMidNode(&n1); (*n).Data != 3 {
 		t.Errorf("expected 3 and got %v", (*n).Data)
 	}
 
-	n6 := datastructure.Node{Data: 6, Next: nil}
+	n6 := datastructure.ListNode{Data: 6, Next: nil}
 	n5.Next = &n6
 	if n := FindMidNode(&n1); (*n).Data != 3 {
 		t.Errorf("expected 3 and got %v", (*n).Data)
@@ -246,11 +246,11 @@ func Test15FindMidNode(t *testing.T) {
 }
 
 func Test15IsLoop(t *testing.T) {
-	n5 := datastructure.Node{Data: 5, Next: nil}
-	n4 := datastructure.Node{Data: 4, Next: &n5}
-	n3 := datastructure.Node{Data: 3, Next: &n4}
-	n2 := datastructure.Node{Data: 2, Next: &n3}
-	n1 := datastructure.Node{Data: 1, Next: &n2}
+	n5 := datastructure.ListNode{Data: 5, Next: nil}
+	n4 := datastructure.ListNode{Data: 4, Next: &n5}
+	n3 := datastructure.ListNode{Data: 3, Next: &n4}
+	n2 := datastructure.ListNode{Data: 2, Next: &n3}
+	n1 := datastructure.ListNode{Data: 1, Next: &n2}
 	if b := IsLoop(&n1); b {
 		t.Errorf("expected false and got %v", b)
 	}
@@ -262,9 +262,9 @@ func Test15IsLoop(t *testing.T) {
 }
 
 func Test16ReverseLinkedlist(t *testing.T) {
-	n3 := datastructure.Node{Data: 3, Next: nil}
-	n2 := datastructure.Node{Data: 2, Next: &n3}
-	n1 := datastructure.Node{Data: 1, Next: &n2}
+	n3 := datastructure.ListNode{Data: 3, Next: nil}
+	n2 := datastructure.ListNode{Data: 2, Next: &n3}
+	n1 := datastructure.ListNode{Data: 1, Next: &n2}
 
 	if n := ReverseLinkedlist(&n1); n != &n3 || n.Next != &n2 || n.Next.Next != &n1 {
 		t.Errorf("failed reversing linkedlist")
@@ -280,10 +280,10 @@ func Test16ReverseLinkedlist(t *testing.T) {
 }
 
 func Test17MergeLinkedlist(t *testing.T) {
-	n4 := datastructure.Node{Data: 5, Next: nil}
-	n3 := datastructure.Node{Data: 4, Next: nil}
-	n2 := datastructure.Node{Data: 3, Next: &n4}
-	n1 := datastructure.Node{Data: 2, Next: &n3}
+	n4 := datastructure.ListNode{Data: 5, Next: nil}
+	n3 := datastructure.ListNode{Data: 4, Next: nil}
+	n2 := datastructure.ListNode{Data: 3, Next: &n4}
+	n1 := datastructure.ListNode{Data: 2, Next: &n3}
 
 	if n := MergeLinkedlist(&n1, &n2); n != &n1 || n.Next != &n2 || n.Next.Next != &n3 || n.Next.Next.Next != &n4 {
 		t.Errorf("failed merging linkedlist")
@@ -842,13 +842,13 @@ func Test36InversePairs(t *testing.T) {
 }
 
 func Test37FindFirstCommonNode(t *testing.T) {
-	n7 := datastructure.Node{Data: 7, Next: nil}
-	n6 := datastructure.Node{Data: 6, Next: &n7}
-	n5 := datastructure.Node{Data: 5, Next: &n6}
-	h2 := datastructure.Node{Data: 4, Next: &n5}
-	n3 := datastructure.Node{Data: 3, Next: &n6}
-	n2 := datastructure.Node{Data: 2, Next: &n3}
-	h1 := datastructure.Node{Data: 1, Next: &n2}
+	n7 := datastructure.ListNode{Data: 7, Next: nil}
+	n6 := datastructure.ListNode{Data: 6, Next: &n7}
+	n5 := datastructure.ListNode{Data: 5, Next: &n6}
+	h2 := datastructure.ListNode{Data: 4, Next: &n5}
+	n3 := datastructure.ListNode{Data: 3, Next: &n6}
+	n2 := datastructure.ListNode{Data: 2, Next: &n3}
+	h1 := datastructure.ListNode{Data: 1, Next: &n2}
 
 	if n := FindFirstCommonNode(&h1, &h2); n.Data != 6 {
 		t.Errorf("expected 6 and got %v", n.Data)
@@ -1232,12 +1232,12 @@ func Test55FirstAppearingOnce(t *testing.T) {
 }
 
 func Test56EntryOfLoop(t *testing.T) {
-	n6 := datastructure.Node{Data: 6, Next: nil}
-	n5 := datastructure.Node{Data: 5, Next: &n6}
-	n4 := datastructure.Node{Data: 4, Next: &n5}
-	n3 := datastructure.Node{Data: 3, Next: &n4}
-	n2 := datastructure.Node{Data: 2, Next: &n3}
-	n1 := datastructure.Node{Data: 1, Next: &n2}
+	n6 := datastructure.ListNode{Data: 6, Next: nil}
+	n5 := datastructure.ListNode{Data: 5, Next: &n6}
+	n4 := datastructure.ListNode{Data: 4, Next: &n5}
+	n3 := datastructure.ListNode{Data: 3, Next: &n4}
+	n2 := datastructure.ListNode{Data: 2, Next: &n3}
+	n1 := datastructure.ListNode{Data: 1, Next: &n2}
 	n6.Next = &n3
 	// entry at n3
 	if n := FindEntryOfLoop(&n1); n != &n3 {
@@ -1249,14 +1249,14 @@ func Test56EntryOfLoop(t *testing.T) {
 		t.Errorf("expected nil and got %v", n)
 	}
 	// self-loop
-	n7 := datastructure.Node{Data: 7, Next: nil}
+	n7 := datastructure.ListNode{Data: 7, Next: nil}
 	n7.Next = &n7
 	if n := FindEntryOfLoop(&n7); n != &n7 {
 		t.Errorf("expected %v and got %v", n7, n)
 	}
 	// two nodes loop
-	n9 := datastructure.Node{Data: 9, Next: nil}
-	n8 := datastructure.Node{Data: 8, Next: &n9}
+	n9 := datastructure.ListNode{Data: 9, Next: nil}
+	n8 := datastructure.ListNode{Data: 8, Next: &n9}
 	n9.Next = &n8
 	if n := FindEntryOfLoop(&n8); n != &n8 {
 		t.Errorf("expected %v and got %v", n8, n)
@@ -1264,12 +1264,12 @@ func Test56EntryOfLoop(t *testing.T) {
 }
 
 func Test57DeleteDuplication(t *testing.T) {
-	n4 := datastructure.Node{Data: 4, Next: nil}
-	n33 := datastructure.Node{Data: 3, Next: &n4}
-	n3 := datastructure.Node{Data: 3, Next: &n33}
-	n22 := datastructure.Node{Data: 2, Next: &n3}
-	n2 := datastructure.Node{Data: 2, Next: &n22}
-	n1 := datastructure.Node{Data: 1, Next: &n2}
+	n4 := datastructure.ListNode{Data: 4, Next: nil}
+	n33 := datastructure.ListNode{Data: 3, Next: &n4}
+	n3 := datastructure.ListNode{Data: 3, Next: &n33}
+	n22 := datastructure.ListNode{Data: 2, Next: &n3}
+	n2 := datastructure.ListNode{Data: 2, Next: &n22}
+	n1 := datastructure.ListNode{Data: 1, Next: &n2}
 
 	n1Ptr := &n1
 	DeleteDuplication(&n1Ptr)
@@ -1277,9 +1277,9 @@ func Test57DeleteDuplication(t *testing.T) {
 		t.Errorf("failed deleting duplication")
 	}
 
-	n7 := datastructure.Node{Data: 7, Next: nil}
-	n6 := datastructure.Node{Data: 6, Next: &n7}
-	n5 := datastructure.Node{Data: 5, Next: &n6}
+	n7 := datastructure.ListNode{Data: 7, Next: nil}
+	n6 := datastructure.ListNode{Data: 6, Next: &n7}
+	n5 := datastructure.ListNode{Data: 5, Next: &n6}
 
 	n5Ptr := &n5
 	DeleteDuplication(&n5Ptr)
@@ -1289,21 +1289,21 @@ func Test57DeleteDuplication(t *testing.T) {
 }
 
 func Test57UniqueLinkedlist(t *testing.T) {
-	n4 := datastructure.Node{Data: 4, Next: nil}
-	n33 := datastructure.Node{Data: 3, Next: &n4}
-	n3 := datastructure.Node{Data: 3, Next: &n33}
-	n22 := datastructure.Node{Data: 2, Next: &n3}
-	n2 := datastructure.Node{Data: 2, Next: &n22}
-	n1 := datastructure.Node{Data: 1, Next: &n2}
+	n4 := datastructure.ListNode{Data: 4, Next: nil}
+	n33 := datastructure.ListNode{Data: 3, Next: &n4}
+	n3 := datastructure.ListNode{Data: 3, Next: &n33}
+	n22 := datastructure.ListNode{Data: 2, Next: &n3}
+	n2 := datastructure.ListNode{Data: 2, Next: &n22}
+	n1 := datastructure.ListNode{Data: 1, Next: &n2}
 
 	UniqueLinkedlist(&n1)
 	if n1.Next != &n2 || n2.Next != &n3 || n3.Next != &n4 {
 		t.Errorf("failed deleting duplication")
 	}
 
-	n7 := datastructure.Node{Data: 7, Next: nil}
-	n6 := datastructure.Node{Data: 6, Next: &n7}
-	n5 := datastructure.Node{Data: 5, Next: &n6}
+	n7 := datastructure.ListNode{Data: 7, Next: nil}
+	n6 := datastructure.ListNode{Data: 6, Next: &n7}
+	n5 := datastructure.ListNode{Data: 5, Next: &n6}
 
 	UniqueLinkedlist(&n5)
 	if n5.Next != &n6 || n6.Next != &n7 {

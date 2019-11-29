@@ -5,11 +5,11 @@ import (
 )
 
 // ReverseLinkedlist reverse origin linkedlist
-func ReverseLinkedlist(head *datastructure.Node) *datastructure.Node {
+func ReverseLinkedlist(head *datastructure.ListNode) *datastructure.ListNode {
 	if head == nil || head.Next == nil {
 		return head
 	}
-	var pre, next, reverseHead *datastructure.Node
+	var pre, next, reverseHead *datastructure.ListNode
 	curNode := head
 	for curNode != nil {
 		next = curNode.Next
@@ -24,11 +24,11 @@ func ReverseLinkedlist(head *datastructure.Node) *datastructure.Node {
 }
 
 // ReverseLinkedlistWithHead reverse origin linkedlist
-func ReverseLinkedlistWithHead(head *datastructure.Node) *datastructure.Node {
+func ReverseLinkedlistWithHead(head *datastructure.ListNode) *datastructure.ListNode {
 	if head == nil || head.Next == nil {
 		return head
 	}
-	var pre, next *datastructure.Node
+	var pre, next *datastructure.ListNode
 	curNode := head.Next
 	for curNode != nil {
 		next = curNode.Next
