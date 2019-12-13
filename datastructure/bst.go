@@ -260,7 +260,7 @@ func (bst *BST) LevelTraverse(root interface{}, f func(Elem)) {
 		queue.Enqueue(root)
 
 		for !queue.IsEmpty() {
-			node := (*queue.Dequeue()).(*TreeNode)
+			node := queue.Dequeue().(*TreeNode)
 			f(node.Data)
 
 			if node.LChild != nil {

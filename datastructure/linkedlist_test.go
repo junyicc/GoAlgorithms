@@ -97,8 +97,8 @@ func TestGet(t *testing.T) {
 	if size := ll.Len(); size != 4 {
 		t.Errorf("wrong count, expected 4 and got %d", size)
 	}
-	if e, _ := ll.Get(3); *e != "third" {
-		t.Errorf("wrong data, expected third, and got %s", *e)
+	if e, _ := ll.Get(3); e != "third" {
+		t.Errorf("wrong data, expected third, and got %s", e)
 	}
 }
 

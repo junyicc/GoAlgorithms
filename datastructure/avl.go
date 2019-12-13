@@ -327,7 +327,7 @@ func (avl *AVL) LevelTraverse(root interface{}, f func(Elem)) {
 		queue.Enqueue(root)
 
 		for !queue.IsEmpty() {
-			node := (*queue.Dequeue()).(*AVLNode)
+			node := queue.Dequeue().(*AVLNode)
 			f(node.Data)
 
 			if node.LChild != nil {

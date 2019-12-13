@@ -34,11 +34,11 @@ func TestAVLInsert(t *testing.T) {
 }
 
 func TestAVLSearch(t *testing.T) {
-	if e, ok := avl.Search(9); !ok || (*e).(string) != "9" {
-		t.Errorf("expected (true, 9) and got (%v, %v)", ok, *e)
+	if e, ok := avl.Search(9); !ok || e.(string) != "9" {
+		t.Errorf("expected (true, 9) and got (%v, %v)", ok, e)
 	}
 	if e, ok := avl.Search(0); ok || e != nil {
-		t.Errorf("expected (false, nil) and got (%v, %v)", ok, *e)
+		t.Errorf("expected (false, nil) and got (%v, %v)", ok, e)
 	}
 }
 func TestAVLPreOrderTraverse(t *testing.T) {

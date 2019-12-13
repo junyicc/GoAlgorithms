@@ -148,7 +148,7 @@ func (g *GraphAdjList) BFS(v *Vertex, f func(*Vertex)) {
 	q.Enqueue(v)
 	discovered[v] = true
 	for !q.IsEmpty() {
-		v := (*q.Dequeue()).(*Vertex)
+		v := q.Dequeue().(*Vertex)
 		f(v)
 		near := g.E[v]
 		for _, e := range near {
@@ -292,7 +292,7 @@ func (g *GraphAdjMatrix) BFS(k int, f func(*Vertex)) {
 	q.Enqueue(k)
 	discovered[k] = true
 	for !q.IsEmpty() {
-		i := (*q.Dequeue()).(int)
+		i := q.Dequeue().(int)
 		v := g.GetVertex(i)
 		f(v)
 		edge := g.E[i]

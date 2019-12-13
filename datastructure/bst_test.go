@@ -21,11 +21,11 @@ func TestBSTInsert(t *testing.T) {
 }
 
 func TestBSTSearch(t *testing.T) {
-	if e, ok := bst.Search(9); !ok || (*e).(string) != "9" {
-		t.Errorf("expected (true, 9) and got (%v, %v)", ok, *e)
+	if e, ok := bst.Search(9); !ok || e.(string) != "9" {
+		t.Errorf("expected (true, 9) and got (%v, %v)", ok, e)
 	}
 	if e, ok := bst.Search(0); ok || e != nil {
-		t.Errorf("expected (false, nil) and got (%v, %v)", ok, *e)
+		t.Errorf("expected (false, nil) and got (%v, %v)", ok, e)
 	}
 }
 
@@ -139,11 +139,11 @@ func TestBSTLevelTraverse(t *testing.T) {
 }
 func TestBSTRemove(t *testing.T) {
 
-	if e, ok := bst.Remove(4); !ok || (*e).(string) != "4" {
-		t.Errorf("expected (true, 4) and got (%v, %v)", ok, *e)
+	if e, ok := bst.Remove(4); !ok || e.(string) != "4" {
+		t.Errorf("expected (true, 4) and got (%v, %v)", ok, e)
 	}
 
 	if e, ok := bst.Search(4); ok || e != nil {
-		t.Errorf("expected (false, nil) and got (%v, %v)", ok, *e)
+		t.Errorf("expected (false, nil) and got (%v, %v)", ok, e)
 	}
 }
