@@ -99,13 +99,13 @@ func insertAVLNode(root **AVLNode, node *AVLNode, taller *bool) bool {
 }
 
 // Search returns true if node exists
-func (avl *AVL) Search(key int) (*Elem, bool) {
+func (avl *AVL) Search(key int) (Elem, bool) {
 	avl.lock.RLock()
 	defer avl.lock.RUnlock()
 	return searchAVL(avl.Root, key)
 }
 
-func searchAVL(node *AVLNode, key int) (*Elem, bool) {
+func searchAVL(node *AVLNode, key int) (Elem, bool) {
 	if node == nil {
 		return nil, false
 	}
@@ -241,7 +241,7 @@ func (avl *AVL) PreOrderTraverseIter(root interface{}, f func(Elem)) {
 		stack.Push(root)
 
 		for !stack.IsEmpty() {
-			node := (*stack.Pop()).(*AVLNode)
+			node := stack.Pop().(*AVLNode)
 			// visit along left subtree
 			for node != nil {
 				f(node.Data)
@@ -271,7 +271,7 @@ func (avl *AVL) InOrderTraverseIter(root interface{}, f func(Elem)) {
 				break
 			}
 
-			root := (*stack.Pop()).(*AVLNode)
+			root := stack.Pop().(*AVLNode)
 			f(root.Data)
 			node = root.RChild
 		}
@@ -288,7 +288,7 @@ func (avl *AVL) PostOrderTraverseIter(root interface{}, f func(Elem)) {
 		stack.Push(root)
 		var pre *AVLNode
 		for !stack.IsEmpty() {
-			cur := (*stack.GetTop()).(*AVLNode)
+			cur := stack.GetTop().(*AVLNode)
 			// traversing down the tree
 			if pre == nil || pre.LChild == cur || pre.RChild == cur {
 				if cur.LChild != nil {

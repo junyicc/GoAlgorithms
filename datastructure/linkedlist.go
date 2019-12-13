@@ -115,7 +115,7 @@ func (l *LinkedList) InsertAfter(p *ListNode, e Elem) error {
 }
 
 // Remove an element at k index
-func (l *LinkedList) Remove(k int) (*Elem, error) {
+func (l *LinkedList) Remove(k int) (Elem, error) {
 	if k < 0 || k >= l.length {
 		return nil, fmt.Errorf("index out of range")
 	}
@@ -137,7 +137,7 @@ func (l *LinkedList) Remove(k int) (*Elem, error) {
 	return &data, nil
 }
 
-func (l *LinkedList) DeleteNode(node *ListNode) (*Elem, error) {
+func (l *LinkedList) DeleteNode(node *ListNode) (Elem, error) {
 	if node == nil {
 		return nil, fmt.Errorf("invalid list node")
 	}
@@ -177,7 +177,7 @@ func (l *LinkedList) Clear() {
 }
 
 // Get the element at k index
-func (l *LinkedList) Get(k int) (*Elem, bool) {
+func (l *LinkedList) Get(k int) (Elem, bool) {
 	if k < 0 || k >= l.length {
 		return nil, false
 	}

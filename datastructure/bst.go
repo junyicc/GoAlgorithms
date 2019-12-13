@@ -62,13 +62,13 @@ func insertTreeNode(root, node *TreeNode) {
 }
 
 // Search returns true if node exists
-func (bst *BST) Search(key int) (*Elem, bool) {
+func (bst *BST) Search(key int) (Elem, bool) {
 	bst.lock.RLock()
 	defer bst.lock.RUnlock()
 	return searchBST(bst.Root, key)
 }
 
-func searchBST(node *TreeNode, key int) (*Elem, bool) {
+func searchBST(node *TreeNode, key int) (Elem, bool) {
 	if node == nil {
 		return nil, false
 	}
@@ -82,14 +82,14 @@ func searchBST(node *TreeNode, key int) (*Elem, bool) {
 }
 
 // Remove node
-func (bst *BST) Remove(key int) (*Elem, bool) {
+func (bst *BST) Remove(key int) (Elem, bool) {
 	bst.lock.Lock()
 	defer bst.lock.Unlock()
 
 	return remove(bst.Root, key)
 }
 
-func remove(node *TreeNode, key int) (*Elem, bool) {
+func remove(node *TreeNode, key int) (Elem, bool) {
 	if node == nil {
 		return nil, false
 	}
@@ -174,7 +174,7 @@ func (bst *BST) PreOrderTraverseIter(root interface{}, f func(Elem)) {
 		stack.Push(root)
 
 		for !stack.IsEmpty() {
-			node := (*stack.Pop()).(*TreeNode)
+			node := stack.Pop().(*TreeNode)
 			// visit along left subtree
 			for node != nil {
 				f(node.Data)
@@ -204,7 +204,7 @@ func (bst *BST) InOrderTraverseIter(root interface{}, f func(Elem)) {
 				break
 			}
 
-			root := (*stack.Pop()).(*TreeNode)
+			root := stack.Pop().(*TreeNode)
 			f(root.Data)
 			node = root.RChild
 		}
@@ -221,7 +221,7 @@ func (bst *BST) PostOrderTraverseIter(root interface{}, f func(Elem)) {
 		stack.Push(root)
 		var pre *TreeNode
 		for !stack.IsEmpty() {
-			cur := (*stack.GetTop()).(*TreeNode)
+			cur := stack.GetTop().(*TreeNode)
 			// traversing down the tree
 			if pre == nil || pre.LChild == cur || pre.RChild == cur {
 				if cur.LChild != nil {

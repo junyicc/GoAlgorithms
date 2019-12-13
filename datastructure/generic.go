@@ -6,7 +6,7 @@ import (
 )
 
 // Elem type of data structures
-type Elem interface{}
+type Elem = interface{}
 
 func String(e Elem) string {
 	if e == nil {

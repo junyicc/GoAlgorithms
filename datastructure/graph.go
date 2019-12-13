@@ -174,7 +174,7 @@ func (g *GraphAdjList) DFS(v *Vertex, f func(*Vertex)) {
 	s.Push(v)
 	discovered[v] = true
 	for !s.IsEmpty() {
-		v := (*s.Pop()).(*Vertex)
+		v := s.Pop().(*Vertex)
 		f(v)
 		near := g.E[v]
 		for _, e := range near {
@@ -313,7 +313,7 @@ func (g *GraphAdjMatrix) DFS(k int, f func(*Vertex)) {
 	discovered[k] = true
 
 	for !s.IsEmpty() {
-		i := (*s.Pop()).(int)
+		i := s.Pop().(int)
 		v := g.GetVertex(i)
 		f(v)
 		edge := g.E[i]

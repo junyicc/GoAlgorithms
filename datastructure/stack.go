@@ -105,7 +105,7 @@ func (s *DynamicStack) Push(e Elem) {
 }
 
 // Pop an element from stack
-func (s *DynamicStack) Pop() *Elem {
+func (s *DynamicStack) Pop() Elem {
 	if s.IsEmpty() {
 		return nil
 	}
@@ -123,7 +123,7 @@ func (s *DynamicStack) IsEmpty() bool {
 }
 
 // GetTop of the stack
-func (s *DynamicStack) GetTop() *Elem {
+func (s *DynamicStack) GetTop() Elem {
 	if s.IsEmpty() {
 		return nil
 	}
