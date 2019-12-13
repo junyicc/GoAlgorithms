@@ -114,7 +114,7 @@ func (s *DynamicStack) Pop() Elem {
 	e := s.data[n-1]
 	s.data = s.data[:n-1]
 	defer s.lock.Unlock()
-	return &e
+	return e
 }
 
 // IsEmpty returns true if the stack is empty
@@ -127,7 +127,7 @@ func (s *DynamicStack) GetTop() Elem {
 	if s.IsEmpty() {
 		return nil
 	}
-	return &s.data[len(s.data)-1]
+	return s.data[len(s.data)-1]
 }
 
 // Len returns the number of elements in the stack

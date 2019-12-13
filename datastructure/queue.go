@@ -213,7 +213,7 @@ func (q *DynamicQueue) Dequeue() Elem {
 	e := q.data[0]
 	q.data = q.data[1:]
 	q.lock.Unlock()
-	return &e
+	return e
 }
 
 // Front of queue
@@ -221,7 +221,7 @@ func (q *DynamicQueue) Front() Elem {
 	q.lock.RLock()
 	e := q.data[0]
 	q.lock.RUnlock()
-	return &e
+	return e
 }
 
 // IsEmpty returns true if the queue is empty
