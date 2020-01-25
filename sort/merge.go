@@ -7,22 +7,46 @@ func MergeSortRecur(arr []int) []int {
 	}
 
 	lo, hi := 0, len(arr)
-	mergeSortRecur(arr, arr, lo, hi)
+	mergeSortRecur(arr, lo, hi)
 	return arr
 }
 
-func mergeSortRecur(src, dst []int, lo, hi int) {
-	tmp := make([]int, len(src))
+func mergeSortRecur(arr []int, lo, hi int) {
 	if hi-lo < 2 {
-		dst[lo] = src[lo]
-	} else {
-		mi := (lo + hi) >> 1
-
-		mergeSortRecur(src, tmp, lo, mi)
-		mergeSortRecur(src, tmp, mi, hi)
-
-		merge(tmp, dst, lo, mi, hi)
+		return
 	}
+	mi := lo + (hi-lo)>>1
+
+	mergeSortRecur(arr, lo, mi)
+	mergeSortRecur(arr, mi, hi)
+
+	mergeRecur(arr, lo, mi, hi)
+
+}
+
+func mergeRecur(arr []int, lo, mi, hi int) {
+	tmp := make([]int, hi-lo)
+	i, j, k := lo, mi, 0
+	for ; i < mi && j < hi; k++ {
+		if arr[i] < arr[j] {
+			tmp[k] = arr[i]
+			i++
+		} else {
+			tmp[k] = arr[j]
+			j++
+		}
+	}
+	for i < mi {
+		tmp[k] = arr[i]
+		i++
+		k++
+	}
+	for j < hi {
+		tmp[k] = arr[j]
+		j++
+		k++
+	}
+	copy(arr[lo:hi], tmp)
 }
 
 // MergeSort algorithm iterative version

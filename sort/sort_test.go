@@ -109,7 +109,7 @@ func TestShellSort(t *testing.T) {
 func TestMergeSort(t *testing.T) {
 	data1 := []int{3, 1, 7, 0, 3, 5, 23, 56, 19, 59}
 	ans := []int{0, 1, 3, 3, 5, 7, 19, 23, 56, 59}
-	sortedResult1 := MergeSort(data1)
+	sortedResult1 := MergeSortRecur(data1)
 
 	for i := 0; i < len(sortedResult1); i++ {
 		if sortedResult1[i] != ans[i] {
@@ -118,14 +118,14 @@ func TestMergeSort(t *testing.T) {
 	}
 
 	var data2 []int
-	sortedResult2 := MergeSort(data2)
+	sortedResult2 := MergeSortRecur(data2)
 	if sortedResult2 != nil {
 		t.Errorf("expected nil and got %v", sortedResult2)
 	}
 
 	data3 := []int{3}
 	ans3 := []int{3}
-	sortedResult3 := MergeSort(data3)
+	sortedResult3 := MergeSortRecur(data3)
 	if sortedResult3[0] != 3 || len(sortedResult3) != 1 {
 		t.Errorf("expected %v\n got %v", ans3, sortedResult3)
 	}
