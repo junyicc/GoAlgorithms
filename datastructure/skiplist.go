@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+	"sync"
 )
 
 const MAX_LEVEL = 16
@@ -34,6 +35,7 @@ type SkipList struct {
 	// start from 1
 	level  int
 	length int
+	mu     sync.RWMutex
 }
 
 func NewSkipList() *SkipList {
@@ -50,6 +52,8 @@ func (sl *SkipList) Find(v interface{}, score int) *SkipListNode {
 	if v == nil || sl.length == 0 {
 		return nil
 	}
+	sl.mu.RLock()
+	defer sl.mu.RUnlock()
 	cur := sl.head
 	for i := sl.level - 1; i >= 0; i-- {
 		for cur.forwards[i] != nil {
@@ -70,10 +74,11 @@ func (sl *SkipList) Insert(v interface{}, score int) error {
 	if v == nil {
 		return fmt.Errorf("invalid value")
 	}
+	sl.mu.Lock()
+	defer sl.mu.Unlock()
 	cur := sl.head
-
-	// record update node
-	// TODO: why max level
+	// head has max level
+	// record update node from top to bottom
 	update := [MAX_LEVEL]*SkipListNode{}
 	for i := MAX_LEVEL - 1; i >= 0; i-- {
 		for cur.forwards[i] != nil {
@@ -115,6 +120,8 @@ func (sl *SkipList) Delete(v interface{}, score int) {
 	if v == nil {
 		return
 	}
+	sl.mu.Lock()
+	defer sl.mu.Unlock()
 	cur := sl.head
 	// record deleting node
 	update := make([]*SkipListNode, sl.level)
@@ -150,14 +157,20 @@ func (sl *SkipList) Delete(v interface{}, score int) {
 }
 
 func (sl *SkipList) Level() int {
+	sl.mu.RLock()
+	defer sl.mu.RUnlock()
 	return sl.level
 }
 
 func (sl *SkipList) Length() int {
+	sl.mu.RLock()
+	defer sl.mu.RUnlock()
 	return sl.length
 }
 
 func (sl *SkipList) String() string {
+	sl.mu.RLock()
+	defer sl.mu.RUnlock()
 	return fmt.Sprintf("level: %+v, length: %+v", sl.level, sl.length)
 }
 
