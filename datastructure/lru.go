@@ -178,6 +178,7 @@ func (lru *LRUCache) moveToTail(node *LRUNode) {
 	lru.tail = node
 }
 
+// hashFunc firstly calculate hash, and then use A % B = A & (B - 1) to decide index
 func hashFunc(input string) (int, error) {
 	if HOST_BIT {
 		// 64-bit
