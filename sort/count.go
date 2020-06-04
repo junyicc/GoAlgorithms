@@ -45,7 +45,7 @@ func simpleCountingSort(arr []int) []int {
 	for _, e := range arr {
 		cnts[e]++
 	}
-	res := make([]int, 0)
+	res := make([]int, 0, n)
 	for i, cnt := range cnts {
 		for ; cnt > 0; cnt-- {
 			res = append(res, i)
