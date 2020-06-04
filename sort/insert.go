@@ -36,3 +36,12 @@ func InsertSort2(arr []int) []int {
 	}
 	return arr
 }
+
+// insertionSort sorts arr that is [lo, hi)
+func insertionSort(arr []int, lo, hi int) {
+	for i := lo + 1; i < hi; i++ {
+		for pos := i; lo < pos && arr[pos] < arr[pos-1]; pos-- {
+			arr[pos], arr[pos-1] = arr[pos-1], arr[pos]
+		}
+	}
+}

@@ -4,38 +4,38 @@ package sort
 var MaxLengthInsertSort = 7
 
 // QuickSort algorithm
-func QuickSort(arr []int) []int {
-	if arr == nil || len(arr) < 2 {
-		return arr
+func QuickSort(arr []int) {
+	if len(arr) < 2 {
+		return
 	}
-	if len(arr) > MaxLengthInsertSort {
-		lo, hi := 0, len(arr)-1
-		quickSort(arr, lo, hi)
-		return arr
-	}
-
-	return InsertSort(arr)
-
+	lo, hi := 0, len(arr)
+	quickSort(arr, lo, hi)
 }
 
 func quickSort(arr []int, lo, hi int) {
-	var pivot int
-	for lo < hi {
-		pivot = partition(arr, lo, hi)
-		quickSort(arr, lo, pivot-1)
+	for hi-lo > MaxLengthInsertSort {
+		pivot := partition(arr, lo, hi)
+		quickSort(arr, lo, pivot)
 		lo = pivot + 1
+	}
+	if hi-lo > 1 {
+		insertionSort(arr, lo, hi)
 	}
 }
 
 func partition(arr []int, lo, hi int) int {
-	pivot := getPivot(arr, lo, hi)
+	mi := lo + (hi-lo)>>1
+	medianOfThree(arr, lo, mi, hi-1)
+
+	pivot := lo
 	leftMark := lo + 1
-	rightMark := hi
+	rightMark := hi - 1
+
 	for {
-		for leftMark <= rightMark && pivot <= arr[rightMark] {
+		for leftMark <= rightMark && arr[pivot] <= arr[rightMark] {
 			rightMark--
 		}
-		for leftMark <= rightMark && arr[leftMark] <= pivot {
+		for leftMark <= rightMark && arr[leftMark] <= arr[pivot] {
 			leftMark++
 		}
 		if rightMark < leftMark {
@@ -48,10 +48,8 @@ func partition(arr []int, lo, hi int) int {
 	return rightMark
 }
 
-// getPivot returns median of three
-func getPivot(arr []int, lo, hi int) int {
-	mi := (lo + hi) >> 1
-
+// medianOfThree sets lo with median value
+func medianOfThree(arr []int, lo, mi, hi int) {
 	if arr[lo] > arr[hi] {
 		arr[lo], arr[hi] = arr[hi], arr[lo]
 	}
@@ -61,5 +59,4 @@ func getPivot(arr []int, lo, hi int) int {
 	if arr[mi] > arr[lo] {
 		arr[mi], arr[lo] = arr[lo], arr[mi]
 	}
-	return arr[lo]
 }

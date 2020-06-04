@@ -134,25 +134,25 @@ func TestMergeSort(t *testing.T) {
 func TestQuickSort(t *testing.T) {
 	data1 := []int{3, 1, 7, 0, 3, 5, 23, 56, 19, 59}
 	ans := []int{0, 1, 3, 3, 5, 7, 19, 23, 56, 59}
-	sortedResult1 := QuickSort(data1)
+	QuickSort(data1)
 
-	for i := 0; i < len(sortedResult1); i++ {
-		if sortedResult1[i] != ans[i] {
-			t.Errorf("expected %v\n got %v", ans, sortedResult1)
+	for i := 0; i < len(data1); i++ {
+		if data1[i] != ans[i] {
+			t.Errorf("expected %v\n got %v", ans, data1)
 		}
 	}
 
 	var data2 []int
-	sortedResult2 := QuickSort(data2)
-	if sortedResult2 != nil {
-		t.Errorf("expected nil and got %v", sortedResult2)
+	QuickSort(data2)
+	if len(data2) > 1 {
+		t.Errorf("expected nil and got %v", data2)
 	}
 
 	data3 := []int{3}
 	ans3 := []int{3}
-	sortedResult3 := QuickSort(data3)
-	if sortedResult3[0] != 3 || len(sortedResult3) != 1 {
-		t.Errorf("expected %v\n got %v", ans3, sortedResult3)
+	QuickSort(data3)
+	if data3[0] != 3 || len(data3) != 1 {
+		t.Errorf("expected %v\n got %v", ans3, data3)
 	}
 }
 
