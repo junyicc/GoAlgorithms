@@ -1,4 +1,4 @@
-package algo
+package linkedlist
 
 import (
 	"fmt"
