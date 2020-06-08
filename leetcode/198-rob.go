@@ -52,3 +52,18 @@ func robII(nums []int) int {
 	}
 	return max(rob, notRob)
 }
+
+func robIII(nums []int) int {
+	if len(nums) < 1 {
+		return 0
+	}
+	n := len(nums)
+	states := make([]int, n+2)
+	// init state
+	copy(states[2:], nums)
+
+	for i := 2; i < n+2; i++ {
+		states[i] = max(states[i-2]+states[i], states[i-1])
+	}
+	return states[n+1]
+}
