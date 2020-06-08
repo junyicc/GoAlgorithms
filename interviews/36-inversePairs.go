@@ -6,41 +6,43 @@ func InversePairs(arr []int) int {
 		return 0
 	}
 
-	return inversePairs(arr, arr, 0, len(arr))
+	return inversePairs(arr, 0, len(arr))
 }
 
-func inversePairs(arr, dst []int, lo, hi int) int {
+func inversePairs(arr []int, lo, hi int) int {
 	if hi-lo < 2 {
-		dst[lo] = arr[lo]
 		return 0
 	}
 
-	tmp := make([]int, len(arr))
-	mi := (lo + hi) >> 1
-	lInvPairs := inversePairs(arr, tmp, lo, mi)
-	rInvPairs := inversePairs(arr, tmp, mi, hi)
+	mi := lo + (hi-lo)>>1
+	lInvPairs := inversePairs(arr, lo, mi)
+	rInvPairs := inversePairs(arr, mi, hi)
 
 	// merge tmp to dst
+	tmp := make([]int, hi-lo)
+	i, j, k := lo, mi, 0
 	invPairs := 0
-	i, j, k := mi-1, hi-1, hi-1
-	for ; i >= lo && j >= mi; k-- {
-		if tmp[i] > tmp[j] {
-			invPairs += (j - mi + 1)
-			dst[k] = tmp[i]
-			i--
+	for ; i < mi && j < hi; k++ {
+		if arr[i] <= arr[j] {
+			tmp[k] = arr[i]
+			i++
 		} else {
-			dst[k] = tmp[j]
-			j--
+			invPairs += mi - i
+			tmp[k] = arr[j]
+			j++
 		}
 	}
-	for ; i >= lo; i-- {
-		dst[k] = tmp[i]
-		k--
+	for i < mi {
+		tmp[k] = arr[i]
+		i++
+		k++
 	}
-	for ; j >= mi; j-- {
-		dst[k] = tmp[j]
-		k--
+	for j < hi {
+		tmp[k] = arr[j]
+		j++
+		k++
 	}
+	copy(arr[lo:hi], tmp)
 	return lInvPairs + rInvPairs + invPairs
 }
 
