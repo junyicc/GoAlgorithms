@@ -18,21 +18,21 @@ func (s *StackWithMin) Push(e datastructure.Elem) {
 
 	s.data.Push(e)
 
-	if s.min.Len() == 0 || datastructure.Less(e, *s.min.GetTop()) {
+	if s.min.Len() == 0 || datastructure.Less(e, s.min.GetTop()) {
 		s.min.Push(e)
 	} else {
-		s.min.Push(*s.min.GetTop())
+		s.min.Push(s.min.GetTop())
 	}
 }
 
 // Pop an element from stack
-func (s *StackWithMin) Pop() *datastructure.Elem {
+func (s *StackWithMin) Pop() datastructure.Elem {
 	s.min.Pop()
 	return s.data.Pop()
 }
 
 // Min of stack
-func (s *StackWithMin) Min() *datastructure.Elem {
+func (s *StackWithMin) Min() datastructure.Elem {
 	return s.min.GetTop()
 }
 
@@ -42,6 +42,6 @@ func (s *StackWithMin) Len() int {
 }
 
 // Top of stack
-func (s *StackWithMin) Top() *datastructure.Elem {
+func (s *StackWithMin) Top() datastructure.Elem {
 	return s.data.GetTop()
 }

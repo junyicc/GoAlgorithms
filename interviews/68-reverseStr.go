@@ -49,7 +49,7 @@ func ReverseStrByStack(s string) string {
 		stack.Push(c)
 	}
 	for !stack.IsEmpty() {
-		c := (*stack.Pop()).(byte)
+		c := (stack.Pop()).(byte)
 		buf.WriteByte(c)
 	}
 	return buf.String()

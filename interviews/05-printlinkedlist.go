@@ -20,6 +20,6 @@ func PrintLinkedlistReversely(list *datastructure.LinkedList) {
 	}
 
 	for !stack.IsEmpty() {
-		fmt.Println(*stack.Pop())
+		fmt.Println(stack.Pop())
 	}
 }

@@ -19,7 +19,7 @@ func PrintBiTreeInZ(root *datastructure.TreeNode) {
 	for !stack0.IsEmpty() || !stack1.IsEmpty() {
 		if flag == 0 {
 			for !stack0.IsEmpty() {
-				node := (*stack0.Pop()).(*datastructure.TreeNode)
+				node := (stack0.Pop()).(*datastructure.TreeNode)
 				fmt.Printf("%v\t", node.Data)
 				if node.LChild != nil {
 					stack1.Push(node.LChild)
@@ -30,7 +30,7 @@ func PrintBiTreeInZ(root *datastructure.TreeNode) {
 			}
 		} else {
 			for !stack1.IsEmpty() {
-				node := (*stack1.Pop()).(*datastructure.TreeNode)
+				node := (stack1.Pop()).(*datastructure.TreeNode)
 				fmt.Printf("%v\t", node.Data)
 				if node.RChild != nil {
 					stack0.Push(node.RChild)

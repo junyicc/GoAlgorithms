@@ -13,7 +13,7 @@ func PrintBinaryTree(root *datastructure.TreeNode) {
 	cnt := 0
 	toBePrinted := 1
 	for !queue.IsEmpty() {
-		node := (*queue.Dequeue()).(*datastructure.TreeNode)
+		node := (queue.Dequeue()).(*datastructure.TreeNode)
 		fmt.Printf("%v\t", node.Data)
 		toBePrinted--
 

@@ -18,11 +18,11 @@ func IsPopOrder(pushOrder, popOrder []int) bool {
 	stack := datastructure.DynamicStack{}
 	for popIndex < popLen {
 		p := popOrder[popIndex]
-		for stack.IsEmpty() || (!datastructure.Equal(*stack.GetTop(), p) && pushIndex < popLen) {
+		for stack.IsEmpty() || (!datastructure.Equal(stack.GetTop(), p) && pushIndex < popLen) {
 			stack.Push(pushOrder[pushIndex])
 			pushIndex++
 		}
-		if !datastructure.Equal(*stack.GetTop(), p) {
+		if !datastructure.Equal(stack.GetTop(), p) {
 			return false
 		}
 		stack.Pop()
@@ -50,11 +50,11 @@ func IsPopOrder2(pushOrder, popOrder []int) bool {
 	}
 	stack := datastructure.DynamicStack{}
 	for !popQ.IsEmpty() {
-		p := *popQ.Dequeue()
-		for stack.IsEmpty() || (!datastructure.Equal(*stack.GetTop(), p) && !pushQ.IsEmpty()) {
-			stack.Push(*pushQ.Dequeue())
+		p := popQ.Dequeue()
+		for stack.IsEmpty() || (!datastructure.Equal(stack.GetTop(), p) && !pushQ.IsEmpty()) {
+			stack.Push(pushQ.Dequeue())
 		}
-		if !datastructure.Equal(*stack.GetTop(), p) {
+		if !datastructure.Equal(stack.GetTop(), p) {
 			return false
 		}
 		stack.Pop()
