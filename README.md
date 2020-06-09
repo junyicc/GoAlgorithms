@@ -2,74 +2,30 @@
 
 All data structures and algorithms are implemented in Golang
 
-## Data structure
-
-### Linked List
-
-### Stack
-
-### Queue
-
-### Hash Table
-
-### Binary Search Tree
-
-### AVL Tree
-
-### Graph
+## [Data structure](./datastructure)
 
 ## Algorithms
 
-### Search
+### [Search](./search)
 
-#### Linear Search
+### [Sort](./sort)
 
-#### Binary Search
+### [String match](./string)
 
-#### Interpolation Search
+### [Linkedlist Algorithms](./linkedlist)
 
-#### Fib search
+### [Graph Algorithms](./graph)
 
-### Sort
+### [Backtracking Algorithms](./backtracking)
 
-#### Bubble Sort
+### [Dynamic Programming Algorithms](./dynamic_programming)
 
-#### Select Sort
+### [Design Patterns](./designpattern)
 
-#### Insert Sort
-
-#### Shell Sort
-
-#### Heap Sort
-
-#### Merge Sort
-
-#### Quick Sort
-
-#### Topo Sort
-
-### Graph Algorithms
-
-#### DFS
-
-#### BFS
-
-#### Minimum Spanning Tree
-
-##### Prim
-
-##### Kruskal
-
-#### Shortest Path
-
-##### Dijkstra
-
-##### Floyd
-
-##### Critical Path
+### [Math](./math)
 
 ## Interviews coding
 
-algorithms in the book named [剑指offer](http://zhedahht.blog.163.com/)
+[interview algorithms](./interviews) in the book named [剑指offer](http://zhedahht.blog.163.com/)
 
-algorithms on [leetcode](https://leetcode.com/)
+[leetcode algorithms](./leetcode) on [leetcode](https://leetcode.com/)
