@@ -5,32 +5,32 @@ func KnapsackWithWeight(items []int, w int) int {
 	if n < 1 {
 		return 0
 	}
-	states := make([][]int, n)
+	states := make([][]bool, n)
 	for i := 0; i < n; i++ {
-		states[i] = make([]int, w+1)
+		states[i] = make([]bool, w+1)
 	}
 
 	// init state
-	states[0][0] = 1
-	states[0][items[0]] = 1
+	states[0][0] = true
+	states[0][items[0]] = true
 
 	for i := 1; i < n; i++ {
 		// do no put item i into knapsack
 		for j := 0; j < w+1; j++ {
-			if states[i-1][j] == 1 {
+			if states[i-1][j] {
 				states[i][j] = states[i-1][j]
 			}
 		}
 		// put item i into knapsack
 		for j := 0; j < (w + 1 - items[i]); j++ {
-			if states[i-1][j] == 1 {
-				states[i][j+items[i]] = 1
+			if states[i-1][j] {
+				states[i][j+items[i]] = true
 			}
 		}
 	}
 
 	for j := w; j >= 0; j-- {
-		if states[n-1][j] == 1 {
+		if states[n-1][j] {
 			return j
 		}
 	}
