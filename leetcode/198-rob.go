@@ -39,7 +39,7 @@ func rob(nums []int) int {
 	return vals[houseNum-1]
 }
 
-func robII(nums []int) int {
+func rob2(nums []int) int {
 	if nums == nil || len(nums) < 1 {
 		return 0
 	}
@@ -53,7 +53,7 @@ func robII(nums []int) int {
 	return max(rob, notRob)
 }
 
-func robIII(nums []int) int {
+func rob3(nums []int) int {
 	if len(nums) < 1 {
 		return 0
 	}
