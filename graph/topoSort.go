@@ -18,7 +18,7 @@ func TopoSort(g *datastructure.GraphAdjList, f func(*datastructure.Vertex)) bool
 	}
 
 	for !stack.IsEmpty() {
-		v := (*stack.Pop()).(*datastructure.Vertex)
+		v := (stack.Pop()).(*datastructure.Vertex)
 		f(v)
 		cnt++
 
