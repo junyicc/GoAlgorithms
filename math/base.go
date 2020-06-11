@@ -23,7 +23,7 @@ func ConvertBase(num, base int) (string, error) {
 	}
 	var buf strings.Builder
 	for !stack.IsEmpty() {
-		digit := (*stack.Pop()).(byte)
+		digit := (stack.Pop()).(byte)
 		buf.WriteByte(digit)
 	}
 	return buf.String(), nil
