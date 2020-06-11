@@ -40,6 +40,7 @@ func SimpleBinarySearch(arr []int, e int) int {
 	return -1
 }
 
+// BinarySearchFirst search the first e, and multiple e may exist
 func BinarySearchFirst(arr []int, e int) int {
 	n := len(arr)
 	if n < 1 {
@@ -63,6 +64,7 @@ func BinarySearchFirst(arr []int, e int) int {
 	return -1
 }
 
+// BinarySearchLast search the last e, and multiple e may exist
 func BinarySearchLast(arr []int, e int) int {
 	n := len(arr)
 	if n < 1 {
@@ -86,6 +88,8 @@ func BinarySearchLast(arr []int, e int) int {
 	return -1
 }
 
+// BinarySearchFirstGt search the first element greater than e,
+// e may not exist
 func BinarySearchFirstGt(arr []int, e int) int {
 	n := len(arr)
 	if n < 1 {
@@ -107,6 +111,8 @@ func BinarySearchFirstGt(arr []int, e int) int {
 	return -1
 }
 
+// BinarySearchLastLt search the last element less than e,
+// e may not exist
 func BinarySearchLastLt(arr []int, e int) int {
 	n := len(arr)
 	if n < 1 {
