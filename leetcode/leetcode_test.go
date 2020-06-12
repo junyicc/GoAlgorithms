@@ -281,16 +281,16 @@ func Test166FindFirstCommonNode(t *testing.T) {
 }
 
 func Test198RobHouses(t *testing.T) {
-	if n := robIII([]int{1, 2, 3, 1}); n != 4 {
+	if n := rob3([]int{1, 2, 3, 1}); n != 4 {
 		t.Errorf("expected 4 and got %d\n", n)
 	}
-	if n := robIII([]int{2, 7, 9, 3, 1}); n != 12 {
+	if n := rob3([]int{2, 7, 9, 3, 1}); n != 12 {
 		t.Errorf("expected 12 and got %d\n", n)
 	}
-	if n := robIII([]int{6, 6, 4, 8, 4, 3, 3, 10}); n != 27 {
+	if n := rob3([]int{6, 6, 4, 8, 4, 3, 3, 10}); n != 27 {
 		t.Errorf("expected 27 and got %d\n", n)
 	}
-	if n := robIII([]int{2, 4, 8, 9, 9, 3}); n != 19 {
+	if n := rob3([]int{2, 4, 8, 9, 9, 3}); n != 19 {
 		t.Errorf("expected 19 and got %d\n", n)
 	}
 }
