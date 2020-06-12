@@ -169,3 +169,21 @@ func IsPalindrome(l *datastructure.LinkedList) bool {
 
 	return isPalindrome
 }
+
+func PrintFromTail(h *datastructure.ListNode, f func(datastructure.Elem)) {
+	if h == nil || h.Next == nil {
+		return
+	}
+
+	stack := datastructure.NewDynamicStack()
+	node := h.Next
+	for node != nil {
+		stack.Push(node.Data)
+	}
+
+	for !stack.IsEmpty() {
+		data := stack.GetTop()
+		f(data)
+		stack.Pop()
+	}
+}
