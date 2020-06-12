@@ -13,7 +13,7 @@ const (
 
 type LRU interface {
 	Get(string) interface{}
-	Put(string, interface{})
+	Put(string, interface{}) error
 }
 
 type LRUNode struct {
