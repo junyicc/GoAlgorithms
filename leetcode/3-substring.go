@@ -9,6 +9,10 @@ Given "bbbbb", the answer is "b", with the length of 1.
 Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 */
 
+// d = the distance between position of i char and the last position of i char
+// f(i) = f(i-1) + 1  // the first i or d > f(i-1)
+// f(i) = d  // d <= f(i-1), record the temporate max len, and update non-repeating length
+
 func lengthOfLongestSubstring(s string) int {
 	if s == "" {
 		return 0
@@ -22,20 +26,16 @@ func lengthOfLongestSubstring(s string) int {
 	noRepeatLen := 0
 	for i := 0; i < strLen; i++ {
 		c := s[i]
-		if strMap[c] == -1 {
-			strMap[c] = i
+		prePos := strMap[c]
+		if strMap[c] == -1 || i-prePos > noRepeatLen {
 			noRepeatLen++
 		} else {
 			if noRepeatLen > maxLen {
 				maxLen = noRepeatLen
 			}
-			prePos := strMap[c]
-			for j := i - noRepeatLen; j < prePos; j++ {
-				strMap[s[j]] = -1
-			}
-			strMap[c] = i
 			noRepeatLen = i - prePos
 		}
+		strMap[c] = i
 	}
 	if noRepeatLen > maxLen {
 		maxLen = noRepeatLen
