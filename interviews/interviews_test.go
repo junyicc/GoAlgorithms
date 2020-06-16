@@ -1610,3 +1610,35 @@ func TestMaxProfit(t *testing.T) {
 		})
 	}
 }
+
+func TestFirstByteAppearingOnce(t *testing.T) {
+	type args struct {
+		s []byte
+	}
+	tests := []struct {
+		name  string
+		args  args
+		want  byte
+		want1 bool
+	}{
+		{
+			name: "first byte",
+			args: args{
+				s: []byte("abaccdeff"),
+			},
+			want:  'b',
+			want1: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, got1 := FirstByteAppearingOnce(tt.args.s)
+			if got != tt.want {
+				t.Errorf("FirstByteAppearingOnce() got = %v, want %v", got, tt.want)
+			}
+			if got1 != tt.want1 {
+				t.Errorf("FirstByteAppearingOnce() got1 = %v, want %v", got1, tt.want1)
+			}
+		})
+	}
+}

@@ -7,10 +7,27 @@ import (
 	"os"
 )
 
-var occurrence [256]int
+// FirstByteAppearingOnce return the first byte appearing once
+func FirstByteAppearingOnce(s []byte) (byte, bool) {
+	if len(s) < 1 {
+		return '0', false
+	}
+	var occurrence [256]int
+	for _, b := range s {
+		occurrence[b]++
+	}
+
+	for _, b := range s {
+		if occurrence[b] == 1 {
+			return b, true
+		}
+	}
+	return '0', false
+}
 
 // PrintFirstAppearingOnce prints first appearing once char
 func PrintFirstAppearingOnce() {
+	var occurrence [256]int
 	// init occurrence
 	for i := 0; i < len(occurrence); i++ {
 		occurrence[i] = -1
