@@ -34,3 +34,30 @@ func findPath(node *datastructure.TreeNode, sum int, path *datastructure.Dynamic
 	// delete current node before back to parent node
 	path.Pop()
 }
+
+func FindPathToTreeNode(root *datastructure.TreeNode, dst *datastructure.TreeNode, f func(stack *datastructure.DynamicStack)) {
+	if root == nil || dst == nil {
+		return
+	}
+
+	stack := datastructure.NewDynamicStack()
+	findPathToTreeNode(root, dst, stack, f)
+}
+
+func findPathToTreeNode(node *datastructure.TreeNode, dst *datastructure.TreeNode, stack *datastructure.DynamicStack, f func(stack *datastructure.DynamicStack)) {
+	stack.Push(node.Data)
+
+	if datastructure.Equal(stack.GetTop(), dst.Data) {
+		f(stack)
+		return
+	}
+
+	if node.LChild != nil {
+		findPathToTreeNode(node.LChild, dst, stack, f)
+	}
+	if node.RChild != nil {
+		findPathToTreeNode(node.RChild, dst, stack, f)
+	}
+
+	stack.Pop()
+}
