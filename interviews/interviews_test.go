@@ -1584,3 +1584,29 @@ func TestLastRemaining2(t *testing.T) {
 		})
 	}
 }
+
+func TestMaxProfit(t *testing.T) {
+	type args struct {
+		arr []int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{
+			name: "max profit",
+			args: args{
+				arr: []int{9, 11, 8, 5, 7, 12, 16, 14},
+			},
+			want: 11,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := MaxProfit(tt.args.arr); got != tt.want {
+				t.Errorf("MaxProfit() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
