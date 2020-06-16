@@ -1550,3 +1550,37 @@ func TestFindNumAppearOnce(t *testing.T) {
 		})
 	}
 }
+
+func TestLastRemaining2(t *testing.T) {
+	type args struct {
+		n int
+		m int
+	}
+	tests := []struct {
+		name  string
+		args  args
+		want  int
+		want1 bool
+	}{
+		{
+			name: "last remaining num",
+			args: args{
+				n: 5,
+				m: 3,
+			},
+			want:  3,
+			want1: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, got1 := LastRemaining2(tt.args.n, tt.args.m)
+			if got != tt.want {
+				t.Errorf("LastRemaining2() got = %v, want %v", got, tt.want)
+			}
+			if got1 != tt.want1 {
+				t.Errorf("LastRemaining2() got1 = %v, want %v", got1, tt.want1)
+			}
+		})
+	}
+}
