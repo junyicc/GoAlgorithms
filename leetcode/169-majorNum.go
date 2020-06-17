@@ -1,7 +1,7 @@
 package leetcode
 
 func majorityElement(nums []int) int {
-	if nums == nil || len(nums) < 1 {
+	if len(nums) < 1 {
 		return 0
 	}
 	times := 1

@@ -2,6 +2,7 @@ package leetcode
 
 import (
 	"fmt"
+	"reflect"
 	"testing"
 )
 
@@ -356,6 +357,38 @@ func Test_mergeSortedArr(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			mergeSortedArr(tt.args.nums1, tt.args.m, tt.args.nums2, tt.args.n)
+		})
+	}
+}
+
+func Test_majorityElementII(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int
+	}{
+		{
+			name: "marjority element",
+			args: args{
+				nums: []int{3, 2, 3},
+			},
+			want: []int{3},
+		}, {
+			name: "marjority element2",
+			args: args{
+				nums: []int{1, 1, 1, 3, 3, 2, 2, 2},
+			},
+			want: []int{1, 2},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := majorityElementII(tt.args.nums); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("majorityElementII() = %v, want %v", got, tt.want)
+			}
 		})
 	}
 }
