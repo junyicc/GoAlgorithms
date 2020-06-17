@@ -8,11 +8,8 @@ import (
 // ThreeSumClosest Given an array nums of n integers and an integer target, find three integers in nums such that the sum is closest to target. Return the sum of the three integers.
 // You may assume that each input would have exactly one solution.
 func ThreeSumClosest(nums []int, target int) int {
-	if nums == nil || len(nums) < 3 {
-		return 0
-	}
-	if len(nums) == 3 {
-		return nums[0] + nums[1] + nums[2]
+	if len(nums) <= 3 {
+		return sumOfSlice(nums)
 	}
 
 	sort.Ints(nums)
@@ -38,12 +35,27 @@ func ThreeSumClosest(nums []int, target int) int {
 			if s == target {
 				return target
 			} else if s > target {
-				hi--
+				for lo < hi && nums[hi] == c {
+					hi--
+				}
 			} else {
-				lo++
+				for lo < hi && nums[lo] == b {
+					lo++
+				}
 			}
 
 		}
 	}
 	return minSum
+}
+
+func sumOfSlice(nums []int) int {
+	if len(nums) < 1 {
+		return 0
+	}
+	s := 0
+	for _, n := range nums {
+		s += n
+	}
+	return s
 }

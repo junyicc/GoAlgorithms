@@ -6,7 +6,7 @@ import (
 
 // ThreeSum Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
 func ThreeSum(nums []int) [][]int {
-	if nums == nil || len(nums) < 3 {
+	if len(nums) < 3 {
 		return nil
 	}
 
@@ -40,9 +40,13 @@ func ThreeSum(nums []int) [][]int {
 					hi--
 				}
 			} else if s > 0 {
-				hi--
+				for lo < hi && nums[hi] == c {
+					hi--
+				}
 			} else {
-				lo++
+				for lo < hi && nums[lo] == b {
+					lo++
+				}
 			}
 		}
 	}
