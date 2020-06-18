@@ -8,8 +8,8 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 		return l1
 	}
 
-	n := new(ListNode)
-	l, n1, n2 := n, l1, l2
+	l := new(ListNode)
+	n, n1, n2 := l, l1, l2
 	for n1 != nil && n2 != nil {
 		if n1.Val < n2.Val {
 			n.Next = n1
@@ -18,6 +18,7 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 			n.Next = n2
 			n2 = n2.Next
 		}
+		n = n.Next
 	}
 
 	if n1 != nil {
