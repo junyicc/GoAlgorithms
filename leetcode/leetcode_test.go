@@ -405,9 +405,9 @@ func Test_firstMissingPositive(t *testing.T) {
 		{
 			name: "first missing positive",
 			args: args{
-				nums: []int{0, 1, 2},
+				nums: []int{1, 2, 0},
 			},
-			want: 4,
+			want: 3,
 		}, {
 			name: "first missing positive",
 			args: args{
@@ -418,6 +418,12 @@ func Test_firstMissingPositive(t *testing.T) {
 			name: "first missing positive",
 			args: args{
 				nums: []int{7, 8, 9, 11, 12},
+			},
+			want: 1,
+		}, {
+			name: "first missing positive",
+			args: args{
+				nums: []int{1},
 			},
 			want: 2,
 		},

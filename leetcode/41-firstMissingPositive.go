@@ -20,7 +20,7 @@ package leetcode
 
 func firstMissingPositive(nums []int) int {
 	if len(nums) < 1 {
-		return 0
+		return 1
 	}
 
 	// check min positive 1 exists
@@ -53,18 +53,25 @@ func firstMissingPositive(nums []int) int {
 	// 	- use index 0 to represent n exists
 	for i := 0; i < n; i++ {
 		idx := nums[i]
+		if idx < 0 {
+			idx = -idx
+		}
 		if idx == n {
 			idx = 0
 		}
-		if idx >= 0 && nums[idx] > 0 {
+		if nums[idx] > 0 {
 			nums[idx] = -nums[idx]
 		}
 	}
 
-	for i := 0; i < n; i++ {
+	for i := 1; i < n; i++ {
 		if nums[i] > 0 {
 			return i
 		}
+	}
+
+	if nums[0] > 0 {
+		return n
 	}
 
 	return n + 1
