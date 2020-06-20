@@ -464,3 +464,50 @@ func Test_maxSlidingWindow(t *testing.T) {
 		})
 	}
 }
+
+func Test_mySqrtWithBinary(t *testing.T) {
+	type args struct {
+		x int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{
+			name: "my sqrt",
+			args: args{
+				x: 4,
+			},
+			want: 2,
+		},
+		{
+			name: "my sqrt",
+			args: args{
+				x: 8,
+			},
+			want: 2,
+		},
+		{
+			name: "my sqrt",
+			args: args{
+				x: 1,
+			},
+			want: 1,
+		},
+		{
+			name: "my sqrt",
+			args: args{
+				x: 2,
+			},
+			want: 1,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := mySqrtWithBinary(tt.args.x); got != tt.want {
+				t.Errorf("mySqrtWithBinary() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
