@@ -590,6 +590,16 @@ func Test_numIslands(t *testing.T) {
 				},
 			},
 			want: 3,
+		}, {
+			name: "num of island",
+			args: args{
+				grid: [][]byte{
+					{'1', '1', '1'},
+					{'0', '1', '0'},
+					{'1', '1', '1'},
+				},
+			},
+			want: 1,
 		},
 	}
 	for _, tt := range tests {

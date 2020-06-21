@@ -45,7 +45,7 @@ func numIslands(grid [][]byte) int {
 }
 
 func validIsland(grid [][]byte, states [][]byte, i, j int) int {
-	if grid[i][j] == '0' {
+	if grid[i][j] == '0' || states[i][j] == 1 {
 		return 0
 	}
 
@@ -57,32 +57,20 @@ func validIsland(grid [][]byte, states [][]byte, i, j int) int {
 
 	// update other states
 	// left
-	if j-1 >= 0 {
-		if grid[i][j-1] == '1' && states[i][j-1] == 0 {
-			states[i][j-1] = 1
-			landNum += validIsland(grid, states, i, j-1)
-		}
+	if j-1 >= 0 && grid[i][j-1] == '1' {
+		landNum += validIsland(grid, states, i, j-1)
 	}
 	// right
-	if j+1 < len(grid[0]) {
-		if grid[i][j+1] == '1' && states[i][j+1] == 0 {
-			states[i][j+1] = 1
-			landNum += validIsland(grid, states, i, j+1)
-		}
+	if j+1 < len(grid[0]) && grid[i][j+1] == '1' {
+		landNum += validIsland(grid, states, i, j+1)
 	}
 	// up
-	if i-1 >= 0 {
-		if grid[i-1][j] == '1' && states[i-1][j] == 0 {
-			states[i-1][j] = 1
-			landNum += validIsland(grid, states, i-1, j)
-		}
+	if i-1 >= 0 && grid[i-1][j] == '1' {
+		landNum += validIsland(grid, states, i-1, j)
 	}
 	// down
-	if i+1 < len(grid) {
-		if grid[i+1][j] == '1' && states[i+1][j] == 0 {
-			states[i+1][j] = 1
-			landNum += validIsland(grid, states, i+1, j)
-		}
+	if i+1 < len(grid) && grid[i+1][j] == '1' {
+		landNum += validIsland(grid, states, i+1, j)
 	}
 
 	return landNum
