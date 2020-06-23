@@ -676,12 +676,56 @@ func Test_lengthOfLIS(t *testing.T) {
 				nums: []int{4, 10, 4, 3, 8, 9},
 			},
 			want: 3,
+		}, {
+			name: "lengthOfLIS",
+			args: args{
+				nums: []int{2, 2, 2, 2, 2},
+			},
+			want: 1,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := lengthOfLIS(tt.args.nums); got != tt.want {
 				t.Errorf("lengthOfLIS() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_findNumberOfLIS(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{
+			name: "number of LIS",
+			args: args{
+				nums: []int{1, 3, 5, 4, 7},
+			},
+			want: 2,
+		}, {
+			name: "number of LIS",
+			args: args{
+				nums: []int{2, 2, 2, 2, 2},
+			},
+			want: 5,
+		}, {
+			name: "number of LIS",
+			args: args{
+				nums: []int{1, 2, 4, 3, 5, 4, 7, 2},
+			},
+			want: 3,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := findNumberOfLIS(tt.args.nums); got != tt.want {
+				t.Errorf("findNumberOfLIS() = %v, want %v", got, tt.want)
 			}
 		})
 	}
