@@ -809,3 +809,47 @@ func Test_coinChange(t *testing.T) {
 		})
 	}
 }
+
+func Test_maxProduct(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{
+			name: "max product",
+			args: args{
+				nums: []int{2, -5},
+			},
+			want: 2,
+		}, {
+			name: "max product",
+			args: args{
+				nums: []int{0, 2},
+			},
+			want: 2,
+		}, {
+			name: "max product",
+			args: args{
+				nums: []int{2, -5, -2, -4, 3},
+			},
+			want: 24,
+		}, {
+			name: "max product",
+			args: args{
+				nums: []int{-2, 0, -4},
+			},
+			want: 0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := maxProduct(tt.args.nums); got != tt.want {
+				t.Errorf("maxProduct() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
