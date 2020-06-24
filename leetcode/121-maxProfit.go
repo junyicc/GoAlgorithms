@@ -16,25 +16,26 @@ Output: 0
 */
 
 func maxProfit(prices []int) int {
-	if prices == nil || len(prices) < 2 {
+	if len(prices) < 2 {
 		return 0
 	}
 	n := len(prices)
-	dp := make([]int, n)
-	minPrice := prices[0]
+	min := prices[0]
+	profits := make([]int, n)
 	for i := 1; i < n; i++ {
-		dp[i] = prices[i] - minPrice
-		if prices[i] < minPrice {
-			minPrice = prices[i]
+		if prices[i] < min {
+			min = prices[i]
+		}
+		profits[i] = prices[i] - min
+	}
+
+	max := 0
+	for _, p := range profits {
+		if p > max {
+			max = p
 		}
 	}
-	maxDiff := dp[0]
-	for i := 1; i < n; i++ {
-		if dp[i] > maxDiff {
-			maxDiff = dp[i]
-		}
-	}
-	return maxDiff
+	return max
 }
 
 func maxProfitI(prices []int) int {
