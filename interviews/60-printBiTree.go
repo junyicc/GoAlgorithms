@@ -1,6 +1,7 @@
 package interviews
 
 import (
+	"container/list"
 	"fmt"
 
 	"github.com/CAIJUNYI/GoAlgorithms/datastructure"
@@ -31,5 +32,29 @@ func PrintBinaryTree(root *datastructure.TreeNode) {
 			toBePrinted = cnt
 			cnt = 0
 		}
+	}
+}
+
+func PrintBinaryTree2(root *datastructure.TreeNode) {
+	if root == nil {
+		return
+	}
+
+	queue := list.New()
+	queue.PushBack(root)
+	for queue.Len() > 0 {
+		l := queue.Len()
+		for i := 0; i < l; i++ {
+			node := queue.Remove(queue.Front()).(*datastructure.TreeNode)
+			fmt.Printf("%v\t", node.Data)
+
+			if node.LChild != nil {
+				queue.PushBack(node.LChild)
+			}
+			if node.RChild != nil {
+				queue.PushBack(node.RChild)
+			}
+		}
+		fmt.Println()
 	}
 }

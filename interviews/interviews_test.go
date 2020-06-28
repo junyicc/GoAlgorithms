@@ -1372,7 +1372,7 @@ func Test60PrintBiTree(t *testing.T) {
 	n6R := datastructure.TreeNode{Data: 6, LChild: &n7R, RChild: &n5R}
 	n8 := datastructure.TreeNode{Data: 8, LChild: &n6L, RChild: &n6R}
 
-	PrintBinaryTree(&n8)
+	PrintBinaryTree2(&n8)
 }
 
 func Test61PrintBiTreeInZ(t *testing.T) {
