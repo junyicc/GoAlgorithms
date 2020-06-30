@@ -12,6 +12,13 @@ type ListNode struct {
 	Next *ListNode
 }
 
+// ListNode with random node
+type Node struct {
+	Val    int
+	Next   *Node
+	Random *Node
+}
+
 // TreeNode is a binary tree node
 type TreeNode struct {
 	Val   int
