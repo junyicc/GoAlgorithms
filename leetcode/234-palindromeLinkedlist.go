@@ -1,26 +1,27 @@
 package leetcode
 
 func isPalindromeLinkedList(head *ListNode) bool {
-	if head == nil || (head != nil && head.Next == nil) {
+	if head == nil || head.Next == nil {
 		return true
 	}
-	slow, fast := head, head
-	for fast.Next != nil && fast.Next.Next != nil {
-		slow = slow.Next
-		fast = fast.Next.Next
-	}
-	if fast != nil {
-		slow = slow.Next
-	}
-	slow = reverseList(slow)
-	fast = head
 
-	for slow != nil {
-		if fast.Val != slow.Val {
+	slow, fast := head, head.Next
+	for fast != nil && fast.Next != nil {
+		fast = fast.Next.Next
+		slow = slow.Next
+	}
+
+	secondHead := slow.Next
+	slow.Next = nil
+
+	fromTail := reverseList(secondHead)
+	fromHead := head
+	for fromHead != nil && fromTail != nil {
+		if fromHead.Val != fromTail.Val {
 			return false
 		}
-		fast = fast.Next
-		slow = slow.Next
+		fromHead = fromHead.Next
+		fromTail = fromTail.Next
 	}
 	return true
 }
