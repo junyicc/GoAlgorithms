@@ -1129,6 +1129,12 @@ func Test_largestRectangleArea(t *testing.T) {
 		{
 			name: "largest react area",
 			args: args{
+				heights: []int{2},
+			},
+			want: 2,
+		}, {
+			name: "largest react area",
+			args: args{
 				heights: []int{2, 1, 5, 6, 2, 3},
 			},
 			want: 10,
@@ -1136,7 +1142,7 @@ func Test_largestRectangleArea(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := largestRectangleAreaSimple(tt.args.heights); got != tt.want {
+			if got := largestRectangleArea(tt.args.heights); got != tt.want {
 				t.Errorf("largestRectangleArea() = %v, want %v", got, tt.want)
 			}
 		})
