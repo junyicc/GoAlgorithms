@@ -26,6 +26,11 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+type Vertex struct {
+	Val       int
+	Neighbors []*Vertex
+}
+
 // Stack without limited size
 type Stack struct {
 	data []interface{}
