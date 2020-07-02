@@ -1182,3 +1182,35 @@ func Test_updateMatrix(t *testing.T) {
 		})
 	}
 }
+
+func Test_singleNumberII(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{
+			name: "single number II",
+			args: args{
+				nums: []int{1, 2, 2, 2, 5, 5, 5},
+			},
+			want: 1,
+		}, {
+			name: "single number II",
+			args: args{
+				nums: []int{2, 2, 3, 2},
+			},
+			want: 3,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := singleNumberII(tt.args.nums); got != tt.want {
+				t.Errorf("singleNumberII() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
