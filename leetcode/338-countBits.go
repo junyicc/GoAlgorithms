@@ -12,6 +12,24 @@ Input: 5
 Output: [0,1,1,2,1,2]
 */
 
+func countBitsWithBinary(num int) []int {
+	if num < 0 {
+		return nil
+	}
+
+	res := make([]int, num+1)
+	for i := 1; i <= num; i++ {
+		n := i
+		var cnt int
+		for n != 0 {
+			n = n & (n - 1)
+			cnt++
+		}
+		res[i] = cnt
+	}
+	return res
+}
+
 func countBits(num int) []int {
 	if num < 0 {
 		return []int{}
