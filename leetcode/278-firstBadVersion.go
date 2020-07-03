@@ -36,3 +36,11 @@ func firstBadVersion(n int) int {
 	}
 	return -1
 }
+
+func isBadVersion(n int) bool {
+	bad := 4
+	if n == bad {
+		return true
+	}
+	return false
+}
