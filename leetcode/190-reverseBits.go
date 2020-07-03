@@ -1,8 +1,32 @@
 package leetcode
 
+// Reverse bits of a given 32 bits unsigned integer.
+
+// Example 1:
+// Input: 00000010100101000001111010011100
+// Output: 00111001011110000010100101000000
+// Explanation: The input binary string 00000010100101000001111010011100 represents the unsigned integer 43261596, so return 964176192 which its binary representation is 00111001011110000010100101000000.
+
+func reverseBits(num uint32) uint32 {
+	if num == 0 {
+		return 0
+	}
+	var res uint32
+	pos := uint32(31)
+	for num != 0 {
+		// reverse bit by position
+		res |= (num & 1) << pos
+
+		num >>= 1
+
+		pos--
+	}
+	return res
+}
+
 // the process is as follow:
 // abcdefgh -> efghabcd -> ghefcdab -> hgfedcba
-func reverseBits(n uint32) uint32 {
+func reverseBitsII(n uint32) uint32 {
 	if n == 0 {
 		return 0
 	}
@@ -12,20 +36,4 @@ func reverseBits(n uint32) uint32 {
 	n = (n&0xcccccccc)>>2 | (n&0x33333333)<<2
 	n = (n&0xaaaaaaaa)>>1 | (n&0x55555555)<<1
 	return n
-}
-
-func reverseBitsII(n uint32) uint32 {
-	if n == 0 {
-		return 0
-	}
-	var res uint32
-	for i := uint32(0); i < 32; i++ {
-		res <<= 1
-		// res |= ((n >> i) & 1) // the same function as follow
-		if n&1 == 1 {
-			res++ // set bit 1
-		}
-		n >>= 1
-	}
-	return res
 }
