@@ -1282,6 +1282,38 @@ func Test_findMin(t *testing.T) {
 	}
 }
 
+func Test_findMinII(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{
+			name: "find min in rotated sorted nums with duplication",
+			args: args{
+				nums: []int{1, 1, 2},
+			},
+			want: 1,
+		}, {
+			name: "find min in rotated sorted nums",
+			args: args{
+				nums: []int{1, 0, 1, 1, 1, 1},
+			},
+			want: 0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := findMinII(tt.args.nums); got != tt.want {
+				t.Errorf("findMin() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
 func Test_searchInRotatedSortedArray(t *testing.T) {
 	type args struct {
 		nums   []int

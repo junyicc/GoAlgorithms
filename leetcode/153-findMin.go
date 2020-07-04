@@ -25,36 +25,17 @@ func findMin(nums []int) int {
 	}
 
 	lo, hi := 0, len(nums)-1
-	min := nums[lo]
-	for nums[hi] <= nums[lo] {
-		if hi-lo == 1 {
-			min = nums[hi]
-			break
-		}
-
+	for hi-lo > 1 {
 		mi := lo + (hi-lo)>>1
-
-		// handle duplication
-		if nums[lo] == nums[mi] && nums[mi] == nums[hi] {
-			return minOfSlice(nums)
-		}
-
-		if nums[mi] >= nums[lo] {
-			lo = mi
-		} else if nums[mi] <= nums[hi] {
+		if nums[mi] <= nums[hi] {
 			hi = mi
+		} else if nums[mi] >= nums[lo] {
+			lo = mi
 		}
 	}
-
-	return min
-}
-
-func minOfSlice(nums []int) int {
-	min := nums[0]
-	for i := 1; i < len(nums); i++ {
-		if nums[i] < min {
-			min = nums[i]
-		}
+	if nums[hi] < nums[lo] {
+		return nums[hi]
 	}
-	return min
+
+	return nums[lo]
 }
