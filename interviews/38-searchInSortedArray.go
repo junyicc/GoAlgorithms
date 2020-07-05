@@ -80,3 +80,27 @@ func missingNumber(nums []int) int {
 	}
 	return -1
 }
+
+// 数组中数值和下标相等的元素
+//
+// 示例：
+// [-3, -1, 1, 3, 5]中，数字3和它的下标相等
+
+func findNumEqualToIndex(nums []int) int {
+	if len(nums) < 1 {
+		return 0
+	}
+
+	lo, hi := 0, len(nums)-1
+	for lo <= hi {
+		mi := lo + (hi-lo)>>1
+		if nums[mi] == mi {
+			return mi
+		} else if nums[mi] < mi {
+			lo = mi + 1
+		} else {
+			hi = mi - 1
+		}
+	}
+	return -1
+}
