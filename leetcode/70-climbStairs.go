@@ -11,12 +11,12 @@ func climbStairs(n int) int {
 		return 0
 	}
 
-	if n == 1 {
-		return 1
+	if n <= 2 {
+		return n
 	}
 
-	a, b := 1, 1
-	for i := 1; i < n; i++ {
+	a, b := 1, 2
+	for i := 3; i <= n; i++ {
 		a, b = b, a+b
 	}
 	return b
