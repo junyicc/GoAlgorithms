@@ -1,5 +1,7 @@
 package leetcode
 
+import "math"
+
 // Given an array of non-negative integers, you are initially positioned at the first index of the array.
 // Each element in the array represents your maximum jump length at that position.
 // Your goal is to reach the last index in the minimum number of jumps.
@@ -29,4 +31,28 @@ func jumpnext(nums []int, n int) int {
 		curMax = nextMax
 	}
 	return -1
+}
+
+func jump(nums []int) int {
+	if len(nums) < 1 {
+		return 0
+	}
+
+	n := len(nums)
+
+	states := make([]int, n)
+	// init states
+	for i := 1; i < n; i++ {
+		states[i] = math.MaxInt32
+	}
+	for i := 1; i < n; i++ {
+		for j := 0; j < i; j++ {
+			if states[j] >= 0 && nums[j]+j >= i {
+				if states[j]+1 < states[i] {
+					states[i] = states[j] + 1
+				}
+			}
+		}
+	}
+	return states[n-1]
 }
