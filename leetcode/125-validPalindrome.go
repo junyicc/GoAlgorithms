@@ -41,3 +41,34 @@ func validPalindrome(s string) bool {
 	}
 	return true
 }
+
+func isPalindromeString(s string) bool {
+	if s == "" {
+		return true
+	}
+
+	lo, hi := 0, len(s)-1
+	s = strings.ToLower(s)
+	for lo <= hi {
+		if !charNum(s[lo]) {
+			lo++
+			continue
+		}
+
+		if !charNum(s[hi]) {
+			hi--
+			continue
+		}
+
+		if s[lo] != s[hi] {
+			return false
+		}
+		lo++
+		hi--
+	}
+	return true
+}
+
+func charNum(b byte) bool {
+	return (b >= 'A' && b <= 'Z') || (b >= 'a' && b <= 'z') || (b >= '0' && b <= '9')
+}
