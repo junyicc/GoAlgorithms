@@ -22,40 +22,30 @@ func minDistance(word1 string, word2 string) int {
 		return len(word1)
 	}
 
-	n, m := len(word1), len(word2)
-	states := make([][]int, n)
-	for i := 0; i < n; i++ {
-		states[i] = make([]int, m)
+	m, n := len(word1), len(word2)
+	states := make([][]int, m+1)
+	for i := 0; i < m+1; i++ {
+		states[i] = make([]int, n+1)
 	}
 	// init states
-	if word1[0] != word2[0] {
-		states[0][0] = 1
+	for j := 1; j < n+1; j++ {
+		states[0][j] = j
+
 	}
-	for j := 1; j < m; j++ {
-		if word1[0] == word2[j] {
-			states[0][j] = j
-		} else {
-			states[0][j] = states[0][j-1] + 1
-		}
-	}
-	for i := 1; i < n; i++ {
-		if word2[0] == word1[i] {
-			states[i][0] = i
-		} else {
-			states[i][0] = states[i-1][0] + 1
-		}
+	for i := 1; i < m+1; i++ {
+		states[i][0] = i
 	}
 	// update states
-	for i := 1; i < n; i++ {
-		for j := 1; j < m; j++ {
-			if word1[i] == word2[j] {
-				states[i][j] = minOfThree(states[i-1][j-1], states[i-1][j]+1, states[i][j-1]+1)
+	for i := 1; i < m+1; i++ {
+		for j := 1; j < n+1; j++ {
+			if word1[i-1] == word2[j-1] {
+				states[i][j] = states[i-1][j-1]
 			} else {
-				states[i][j] = minOfThree(states[i-1][j-1]+1, states[i-1][j]+1, states[i][j-1]+1)
+				states[i][j] = minOfThree(states[i-1][j-1], states[i-1][j], states[i][j-1]) + 1
 			}
 		}
 	}
-	return states[n-1][m-1]
+	return states[m][n]
 }
 
 func minOfThree(x, y, z int) int {
