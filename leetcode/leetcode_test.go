@@ -25,22 +25,6 @@ func TestFourSum(t *testing.T) {
 	fmt.Println(result)
 }
 
-func TestProducerConsumer(t *testing.T) {
-	data := make(chan int, 5)
-	ProducerWG.Add(1)
-	go Producer("P1", data)
-	ConsumerWG.Add(1)
-	go Consumer("U1", data)
-	ProducerWG.Add(1)
-	go Producer("P2", data)
-	ConsumerWG.Add(1)
-	go Consumer("U2", data)
-
-	ProducerWG.Wait()
-	close(data)
-	ConsumerWG.Wait()
-}
-
 func Test45JumpGames(t *testing.T) {
 	input := []int{2, 3, 1, 1, 4}
 	expected := 2

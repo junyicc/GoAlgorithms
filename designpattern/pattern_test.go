@@ -1,6 +1,7 @@
 package designpattern
 
 import (
+	"sync"
 	"testing"
 )
 
@@ -29,4 +30,23 @@ func TestMediator(t *testing.T) {
 	if wtw.PotableWater != 450 || wsw.Storage != 150 {
 		t.Errorf("failed to transfer water")
 	}
+}
+
+func TestProducerConsumer(t *testing.T) {
+	data := make(chan int, 5)
+	var producerWg sync.WaitGroup
+	var consumerWg sync.WaitGroup
+
+	producerWg.Add(1)
+	go Producer("P1", data, &producerWg)
+	consumerWg.Add(1)
+	go Consumer("U1", data, &consumerWg)
+	producerWg.Add(1)
+	go Producer("P2", data, &producerWg)
+	consumerWg.Add(1)
+	go Consumer("U2", data, &consumerWg)
+
+	producerWg.Wait()
+	close(data)
+	consumerWg.Wait()
 }

@@ -1,4 +1,4 @@
-package leetcode
+package designpattern
 
 import (
 	"fmt"
@@ -6,26 +6,26 @@ import (
 )
 
 // ProducerWG wait group
-var ProducerWG sync.WaitGroup
+// var ProducerWG sync.WaitGroup
 
 // ConsumerWG wait group
-var ConsumerWG sync.WaitGroup
+// var ConsumerWG sync.WaitGroup
 
 // Producer side
-func Producer(name string, data chan int) {
+func Producer(name string, data chan int, wg *sync.WaitGroup) {
 	for i := 0; i < 5; i++ {
 		fmt.Printf("[Producer %s]: producing %d\n", name, i)
 		data <- i
 	}
 	fmt.Println(name, "closed")
-	ProducerWG.Done()
+	wg.Done()
 }
 
 // Consumer side
-func Consumer(name string, data chan int) {
+func Consumer(name string, data chan int, wg *sync.WaitGroup) {
 	for i := range data {
 		fmt.Printf("[Consumer %s]: consuming %d\n", name, i)
 	}
 	fmt.Println(name, "closed")
-	ConsumerWG.Done()
+	wg.Done()
 }
