@@ -1,18 +1,16 @@
 package leetcode
 
-func reverseString(s string) string {
-	if s == "" || len(s) < 2 {
-		return s
+func reverseString(s []byte) {
+	if len(s) < 2 {
+		return
 	}
 
-	sb := []byte(s)
-	lo, hi := 0, len(sb)-1
+	lo, hi := 0, len(s)-1
 	for lo < hi {
-		sb[lo] = sb[lo] ^ sb[hi]
-		sb[hi] = sb[lo] ^ sb[hi]
-		sb[lo] = sb[lo] ^ sb[hi]
+		s[lo] = s[lo] ^ s[hi]
+		s[hi] = s[lo] ^ s[hi]
+		s[lo] = s[lo] ^ s[hi]
 		lo++
 		hi--
 	}
-	return string(sb)
 }
