@@ -35,18 +35,37 @@ func TestMediator(t *testing.T) {
 func TestProducerConsumer(t *testing.T) {
 	data := make(chan int, 5)
 	var producerWg sync.WaitGroup
-	var consumerWg sync.WaitGroup
 
-	producerWg.Add(1)
-	go Producer("P1", data, &producerWg)
-	consumerWg.Add(1)
-	go Consumer("U1", data, &consumerWg)
-	producerWg.Add(1)
-	go Producer("P2", data, &producerWg)
-	consumerWg.Add(1)
-	go Consumer("U2", data, &consumerWg)
+	// Consumer
+	c1 := Consumer{
+		Name: "C1",
+		Data: data,
+	}
+	c2 := Consumer{
+		Name: "C2",
+		Data: data,
+	}
+	go c1.Consume()
+	go c2.Consume()
+
+	// produce
+	quit := make(chan struct{})
+	p1 := Producer{
+		Name: "P1",
+		Data: data,
+		Wg:   &producerWg,
+	}
+	p2 := Producer{
+		Name: "P2",
+		Data: data,
+		Wg:   &producerWg,
+	}
+	producerWg.Add(2)
+	go p1.Produce(quit)
+	go p2.Produce(quit)
 
 	producerWg.Wait()
+	// notify producer to quit
+	quit <- struct{}{}
 	close(data)
-	consumerWg.Wait()
 }
