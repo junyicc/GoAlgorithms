@@ -47,25 +47,45 @@ func largestRectangleAreaSimple(heights []int) int {
 		return 0
 	}
 	n := len(heights)
-	var maxRectArea int
-	for i := 0; i < n; i++ {
-		h := heights[i]
+	stackFromBack := make([]int, 0, n)
+	nextFromBack := make([]int, n)
+	for i := n - 1; i >= 0; i-- {
+		// pop
+		for len(stackFromBack) > 0 && heights[stackFromBack[len(stackFromBack)-1]] >= heights[i] {
+			stackFromBack = stackFromBack[:len(stackFromBack)-1]
+		}
 
-		// check left side
-		leftCnt := 0
-		for left := i - 1; left >= 0 && heights[left] >= h; left-- {
-			leftCnt++
+		if len(stackFromBack) == 0 {
+			nextFromBack[i] = n
+		} else {
+			nextFromBack[i] = stackFromBack[len(stackFromBack)-1]
 		}
-		// check right side
-		rightCnt := 0
-		for right := i + 1; right < n && heights[right] >= h; right++ {
-			rightCnt++
+
+		stackFromBack = append(stackFromBack, i)
+	}
+
+	stackFromFront := make([]int, 0, n)
+	nextFromFront := make([]int, n)
+	for i := 0; i < n; i++ {
+		for len(stackFromFront) > 0 && heights[stackFromFront[len(stackFromFront)-1]] >= heights[i] {
+			stackFromFront = stackFromFront[:len(stackFromFront)-1]
 		}
-		area := (leftCnt + rightCnt + 1) * h
-		if area > maxRectArea {
-			maxRectArea = area
+
+		if len(stackFromFront) == 0 {
+			nextFromFront[i] = -1
+		} else {
+			nextFromFront[i] = stackFromFront[len(stackFromFront)-1]
+		}
+		stackFromFront = append(stackFromFront, i)
+	}
+
+	maxArea := -1
+	for i := 0; i < n; i++ {
+		area := heights[i] * (nextFromBack[i] - nextFromFront[i] - 1)
+		if area > maxArea {
+			maxArea = area
 		}
 	}
 
-	return maxRectArea
+	return maxArea
 }
