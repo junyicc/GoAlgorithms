@@ -113,3 +113,63 @@ func Test_sortString(t *testing.T) {
 		})
 	}
 }
+
+func Test_match(t *testing.T) {
+	type args struct {
+		s       string
+		pattern string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			name: "string regexp0",
+			args: args{
+				s:       "aab",
+				pattern: "c*a*b",
+			},
+			want: true,
+		},
+		{
+			name: "string regexp1",
+			args: args{
+				s:       "a",
+				pattern: "ab*",
+			},
+			want: true,
+		},
+		{
+			name: "string regexp2",
+			args: args{
+				s:       "abcd",
+				pattern: ".*..",
+			},
+			want: true,
+		},
+		{
+			name: "string regexp3",
+			args: args{
+				s:       "abcd",
+				pattern: ".*",
+			},
+			want: true,
+		},
+		{
+			name: "string regexp4",
+			args: args{
+				s:       "abcd",
+				pattern: ".*c",
+			},
+			want: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := match(tt.args.s, tt.args.pattern); got != tt.want {
+				t.Errorf("match() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
