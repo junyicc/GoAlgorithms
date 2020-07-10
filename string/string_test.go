@@ -81,3 +81,35 @@ func TestKMP(t *testing.T) {
 		})
 	}
 }
+
+func Test_sortString(t *testing.T) {
+	type args struct {
+		s string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "sort single string",
+			args: args{
+				s: "dcba",
+			},
+			want: "abcd",
+		}, {
+			name: "sort single string",
+			args: args{
+				s: "dcbbba",
+			},
+			want: "abbbcd",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := sortString(tt.args.s); got != tt.want {
+				t.Errorf("sortString() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
