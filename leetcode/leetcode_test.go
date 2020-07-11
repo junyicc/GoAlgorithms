@@ -1419,3 +1419,35 @@ func Test_nextGreaterElements(t *testing.T) {
 		})
 	}
 }
+
+func Test_maxProfitIII(t *testing.T) {
+	type args struct {
+		prices []int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{
+			name: "max profit at most two transactions",
+			args: args{
+				prices: []int{1, 2, 3, 4, 5},
+			},
+			want: 4,
+		}, {
+			name: "max profit at most two transactions",
+			args: args{
+				prices: []int{3, 3, 5, 0, 0, 3, 1, 4},
+			},
+			want: 6,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := maxProfitIII(tt.args.prices); got != tt.want {
+				t.Errorf("maxProfitIII() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
