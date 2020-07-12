@@ -109,12 +109,12 @@ func Test5LongestPalindrome(t *testing.T) {
 		t.Errorf("expected bb and got %s\n", subString)
 	}
 
-	if subString := longestPalindrome("babad"); subString != "aba" {
+	if subString := longestPalindrome("babad"); subString != "aba" && subString != "bab" {
 		t.Errorf("expected aba and got %s\n", subString)
 	}
 
-	if subString := longestPalindrome("ac"); subString != "c" {
-		t.Errorf("expected c and got %s\n", subString)
+	if subString := longestPalindrome("ac"); subString != "a" && subString != "c" {
+		t.Errorf("expected a and got %s\n", subString)
 	}
 }
 

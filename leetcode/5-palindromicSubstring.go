@@ -14,26 +14,29 @@ Output: "bb"
 */
 
 func longestPalindrome(s string) string {
-	if s == "" || len(s) < 2 {
+	if len(s) < 2 {
 		return s
 	}
-	strLen := len(s)
-	lo, maxLen := 0, 1
-	for i := 0; i < strLen; i++ {
-		extendPalindrome(s, i, i, &lo, &maxLen)   // odd
-		extendPalindrome(s, i, i+1, &lo, &maxLen) // even
+
+	n := len(s)
+	var res string
+	for i := 0; i < n; i++ {
+		s1 := extendPalindromeString(s, i, i)
+		s2 := extendPalindromeString(s, i, i+1)
+		if len(s1) > len(res) {
+			res = s1
+		}
+		if len(s2) > len(res) {
+			res = s2
+		}
 	}
-	return s[lo : lo+maxLen]
+	return res
 }
 
-func extendPalindrome(s string, l, r int, lo, maxLen *int) {
-	strLen := len(s)
-	for l >= 0 && r < strLen && s[l] == s[r] {
+func extendPalindromeString(s string, l, r int) string {
+	for l >= 0 && r < len(s) && s[l] == s[r] {
 		l--
 		r++
 	}
-	if *maxLen <= r-l-1 {
-		*lo = l + 1
-		*maxLen = r - l - 1
-	}
+	return s[l+1 : r]
 }
