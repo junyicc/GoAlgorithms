@@ -20,6 +20,32 @@ func longestPalindrome(s string) string {
 
 	n := len(s)
 	var res string
+	// why is 2*n-1:
+	// 	- n: every i as a center
+	// 	- n-1: every (i, i+1) as a center
+	for i := 0; i < 2*n-1; i++ {
+		lo := i >> 1
+		hi := lo + i%2
+
+		for lo >= 0 && hi < n && s[lo] == s[hi] {
+			tmp := s[lo : hi+1]
+			if len(tmp) > len(res) {
+				res = tmp
+			}
+			lo--
+			hi++
+		}
+	}
+	return res
+}
+
+func longestPalindrome2(s string) string {
+	if len(s) < 2 {
+		return s
+	}
+
+	n := len(s)
+	var res string
 	for i := 0; i < n; i++ {
 		s1 := extendPalindromeString(s, i, i)
 		s2 := extendPalindromeString(s, i, i+1)
