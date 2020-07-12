@@ -1477,3 +1477,32 @@ func Test_countSubstrings(t *testing.T) {
 		})
 	}
 }
+
+func Test_partitionPalindrome(t *testing.T) {
+	type args struct {
+		s string
+	}
+	tests := []struct {
+		name string
+		args args
+		want [][]string
+	}{
+		{
+			name: "partition palindrome",
+			args: args{
+				s: "aab",
+			},
+			want: [][]string{
+				{"aa", "b"},
+				{"a", "a", "b"},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := partitionPalindrome(tt.args.s); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("partitionPalindrome() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
