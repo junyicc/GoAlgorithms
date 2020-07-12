@@ -187,3 +187,13 @@ func PrintFromTail(h *datastructure.ListNode, f func(datastructure.Elem)) {
 		stack.Pop()
 	}
 }
+
+func TraverseFromTail(head *datastructure.ListNode, f func(node *datastructure.ListNode)) {
+	if head == nil {
+		return
+	}
+
+	TraverseFromTail(head.Next, f)
+
+	f(head)
+}
