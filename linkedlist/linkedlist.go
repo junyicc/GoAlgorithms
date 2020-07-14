@@ -179,6 +179,7 @@ func PrintFromTail(h *datastructure.ListNode, f func(datastructure.Elem)) {
 	node := h.Next
 	for node != nil {
 		stack.Push(node.Data)
+		node = node.Next
 	}
 
 	for !stack.IsEmpty() {
