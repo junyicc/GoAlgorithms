@@ -27,11 +27,16 @@ func coinChange(coins []int, amount int) int {
 		count[i] = math.MaxInt32
 	}
 	count[0] = 0
-	for _, coin := range coins {
-		for i := coin; i < amount+1; i++ {
+
+	for i := 1; i < amount+1; i++ {
+		for _, coin := range coins {
+			if i-coin < 0 {
+				continue
+			}
 			count[i] = min(count[i], count[i-coin]+1)
 		}
 	}
+
 	if count[amount] == math.MaxInt32 {
 		return -1
 	}
