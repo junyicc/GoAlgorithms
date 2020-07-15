@@ -18,8 +18,12 @@ func calcNQueen(res []int, row int, f func([]int)) {
 	}
 	for col := 0; col < len(res); col++ {
 		if ok(res, row, col) {
+			// make choice
 			res[row] = col
+			// backtracking
 			calcNQueen(res, row+1, f)
+			// cancel choice
+			res[row] = 0
 		}
 	}
 }
