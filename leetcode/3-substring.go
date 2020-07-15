@@ -42,3 +42,32 @@ func lengthOfLongestSubstring(s string) int {
 	}
 	return maxLen
 }
+
+func lengthOfLongestSubstringWithSlidingWin(s string) int {
+	if len(s) < 2 {
+		return len(s)
+	}
+
+	var res int
+	left, right := 0, 0
+	win := make(map[byte]int)
+	for right < len(s) {
+		// expand win on right-side
+		c := s[right]
+		right++
+		win[c]++
+
+		// shrink win on left-side when there is repeating byte
+		for win[c] > 1 {
+			d := s[left]
+			left++
+			win[d]--
+		}
+
+		// record result when there is no repeating byte
+		if right-left > res {
+			res = right - left
+		}
+	}
+	return res
+}
