@@ -471,7 +471,7 @@ func Test_maxSlidingWindow(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := maxSlidingWindow(tt.args.nums, tt.args.k); !reflect.DeepEqual(got, tt.want) {
+			if got := maxSlidingWindowWithMonoQueue(tt.args.nums, tt.args.k); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("maxSlidingWindow() = %v, want %v", got, tt.want)
 			}
 		})

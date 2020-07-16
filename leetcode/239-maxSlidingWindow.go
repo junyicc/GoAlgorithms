@@ -58,3 +58,54 @@ func maxSlidingWindow(nums []int, k int) []int {
 
 	return res
 }
+
+type MonoQueue struct {
+	data []int
+}
+
+func NewMonoQueue(k int) *MonoQueue {
+	return &MonoQueue{data: make([]int, 0, k)}
+}
+
+func (mq *MonoQueue) PushBack(n int) {
+	// make sure the queue is mono-decreasing
+	for len(mq.data) > 0 && mq.data[len(mq.data)-1] < n {
+		mq.data = mq.data[:len(mq.data)-1]
+	}
+	mq.data = append(mq.data, n)
+}
+
+func (mq *MonoQueue) PopFront(n int) {
+	if len(mq.data) > 0 && mq.data[0] == n {
+		mq.data = mq.data[1:]
+	}
+}
+
+func (mq *MonoQueue) Max() int {
+	if len(mq.data) > 0 {
+		return mq.data[0]
+	}
+	return 0
+}
+
+func maxSlidingWindowWithMonoQueue(nums []int, k int) []int {
+	if len(nums) < 1 || k < 1 {
+		return nil
+	}
+	var res []int
+	mq := NewMonoQueue(k)
+
+	// push back the 0~k-1 element
+	for i := 0; i < k-1; i++ {
+		mq.PushBack(nums[i])
+	}
+
+	for i := k - 1; i < len(nums); i++ {
+		mq.PushBack(nums[i])
+		// get max
+		res = append(res, mq.Max())
+
+		mq.PopFront(nums[i-k+1])
+	}
+	return res
+}
