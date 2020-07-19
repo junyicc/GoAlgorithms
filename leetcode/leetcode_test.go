@@ -1758,3 +1758,45 @@ func Test_combinationSum(t *testing.T) {
 		})
 	}
 }
+
+func Test_superEggDrop(t *testing.T) {
+	type args struct {
+		K int
+		N int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{
+			name: "egg drop",
+			args: args{
+				K: 1,
+				N: 2,
+			},
+			want: 2,
+		}, {
+			name: "egg drop",
+			args: args{
+				K: 2,
+				N: 6,
+			},
+			want: 3,
+		}, {
+			name: "egg drop",
+			args: args{
+				K: 3,
+				N: 14,
+			},
+			want: 4,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := superEggDrop(tt.args.K, tt.args.N); got != tt.want {
+				t.Errorf("superEggDrop() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
