@@ -45,7 +45,7 @@ func superEggDrop(K int, N int) int {
 		N: N,
 		K: K,
 	}
-	return eggDrop(fe, mem)
+	return eggDropWithDichotomy(fe, mem)
 }
 
 func eggDrop(fe FloorEgg, mem map[FloorEgg]int) int {
@@ -78,5 +78,47 @@ func eggDrop(fe FloorEgg, mem map[FloorEgg]int) int {
 		K: fe.K,
 	}
 	mem[floorEgg] = res
+	return res
+}
+
+func eggDropWithDichotomy(fe FloorEgg, mem map[FloorEgg]int) int {
+	if fe.N == 0 {
+		return 0
+	}
+	if fe.K == 1 {
+		return fe.N
+	}
+
+	if res, ok := mem[fe]; ok {
+		return res
+	}
+
+	res := math.MaxInt32
+	lo, hi := 1, fe.N
+	for lo <= hi {
+		mi := lo + (hi-lo)>>1
+
+		// broken
+		broken := eggDropWithDichotomy(FloorEgg{
+			N: mi - 1,
+			K: fe.K - 1,
+		}, mem)
+		// not broken
+		notBroken := eggDropWithDichotomy(FloorEgg{
+			N: fe.N - mi,
+			K: fe.K,
+		}, mem)
+
+		// res = min(max(broken，not_broken) + 1)
+		if broken > notBroken {
+			res = min(res, broken+1)
+			hi = mi - 1
+		} else {
+			res = min(res, notBroken+1)
+			lo = mi + 1
+		}
+	}
+
+	mem[fe] = res
 	return res
 }
