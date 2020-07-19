@@ -1800,3 +1800,29 @@ func Test_superEggDrop(t *testing.T) {
 		})
 	}
 }
+
+func Test_equationsPossible(t *testing.T) {
+	type args struct {
+		equations []string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			name: "equations",
+			args: args{
+				equations: []string{"a==b", "b!=a"},
+			},
+			want: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := equationsPossible(tt.args.equations); got != tt.want {
+				t.Errorf("equationsPossible() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
