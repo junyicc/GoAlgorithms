@@ -44,11 +44,27 @@ func TestKnapsackWithValue(t *testing.T) {
 		{
 			name: "0-1 knapsack with value",
 			args: args{
+				itemWeight: []int{2, 1, 3},
+				itemValue:  []int{4, 2, 3},
+				w:          4,
+			},
+			want: 6,
+		}, {
+			name: "0-1 knapsack with value",
+			args: args{
 				itemWeight: []int{2, 2, 4, 6, 3},
 				itemValue:  []int{3, 4, 8, 9, 6},
 				w:          9,
 			},
-			want: 17,
+			want: 18,
+		}, {
+			name: "0-1 knapsack with value",
+			args: args{
+				itemWeight: []int{3, 2, 4},
+				itemValue:  []int{5, 4, 2},
+				w:          6,
+			},
+			want: 9,
 		},
 	}
 	for _, tt := range tests {
