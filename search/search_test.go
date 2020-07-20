@@ -62,3 +62,39 @@ func TestFibSearch(t *testing.T) {
 		t.Errorf("expected 1 and got %d", i)
 	}
 }
+
+func Test_findMaxMin(t *testing.T) {
+	type args struct {
+		nums []int
+		lo   int
+		hi   int
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantMax int
+		wantMin int
+	}{
+		{
+			name: "find max min",
+			args: args{
+				nums: []int{3, 5, 1, 7, 8, 33, 2},
+				lo:   0,
+				hi:   7,
+			},
+			wantMax: 33,
+			wantMin: 1,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			gotMax, gotMin := findMaxMin(tt.args.nums, tt.args.lo, tt.args.hi)
+			if gotMax != tt.wantMax {
+				t.Errorf("findMaxMin() gotMax = %v, want %v", gotMax, tt.wantMax)
+			}
+			if gotMin != tt.wantMin {
+				t.Errorf("findMaxMin() gotMin = %v, want %v", gotMin, tt.wantMin)
+			}
+		})
+	}
+}
