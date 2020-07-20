@@ -1908,3 +1908,35 @@ func Test_shipWithinDays(t *testing.T) {
 		})
 	}
 }
+
+func Test_pancakeSort(t *testing.T) {
+	type args struct {
+		A []int
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int
+	}{
+		{
+			name: "pancake sort",
+			args: args{
+				A: []int{1, 2, 3},
+			},
+			want: nil,
+		}, {
+			name: "pancake sort",
+			args: args{
+				A: []int{3, 2, 4, 1},
+			},
+			want: []int{3, 4, 2, 3, 1, 2},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := pancakeSort(tt.args.A); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("pancakeSort() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
