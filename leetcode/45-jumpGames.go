@@ -56,3 +56,21 @@ func jump(nums []int) int {
 	}
 	return states[n-1]
 }
+
+func jumpWithGreed(nums []int) int {
+	if len(nums) < 1 {
+		return 0
+	}
+
+	n := len(nums)
+	steps, farthest, ends := 0, 0, 0
+	for i := 0; i < n-1; i++ {
+		farthest = max(farthest, nums[i]+i)
+
+		if ends == i {
+			steps++
+			ends = farthest
+		}
+	}
+	return steps
+}
