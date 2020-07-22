@@ -30,6 +30,36 @@ func missingNumberII(nums []int) (ret int) {
 	for _, v := range nums {
 		sum += v
 	}
-
+	// may overflow
 	return (n+1)*n/2 - sum
+}
+
+func missingNumberIII(nums []int) int {
+	n := len(nums)
+	if n < 1 {
+		return 0
+	}
+
+	var res int
+	res += n
+	for i, v := range nums {
+		// add i
+		// minus v
+		res += i - v
+	}
+	return res
+}
+
+func missingNumberIV(nums []int) int {
+	n := len(nums)
+	if n < 1 {
+		return 0
+	}
+
+	var res int
+	res ^= n
+	for i, v := range nums {
+		res ^= i ^ v
+	}
+	return res
 }
