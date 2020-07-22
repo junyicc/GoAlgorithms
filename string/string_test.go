@@ -167,8 +167,43 @@ func Test_match(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := match(tt.args.s, tt.args.pattern); got != tt.want {
+			if got := isMatch(tt.args.s, tt.args.pattern); got != tt.want {
 				t.Errorf("match() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_multiply(t *testing.T) {
+	type args struct {
+		a string
+		b string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "multiply",
+			args: args{
+				a: "123",
+				b: "45",
+			},
+			want: "5535",
+		}, {
+			name: "multiply",
+			args: args{
+				a: "123",
+				b: "0",
+			},
+			want: "0",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := multiply(tt.args.a, tt.args.b); got != tt.want {
+				t.Errorf("multiply() = %v, want %v", got, tt.want)
 			}
 		})
 	}
