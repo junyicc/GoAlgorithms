@@ -2193,3 +2193,41 @@ func Test_maxProfitWithCooldown(t *testing.T) {
 		})
 	}
 }
+
+func Test_robII(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{
+			name: "rob II",
+			args: args{
+				nums: []int{1, 2, 3, 1},
+			},
+			want: 4,
+		}, {
+			name: "rob II",
+			args: args{
+				nums: []int{2, 3, 2},
+			},
+			want: 3,
+		}, {
+			name: "rob II",
+			args: args{
+				nums: []int{3},
+			},
+			want: 3,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := robInCycle(tt.args.nums); got != tt.want {
+				t.Errorf("robII() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
