@@ -34,3 +34,18 @@ func getIntersectionNode(headA, headB *ListNode) *ListNode {
 	}
 	return nodeA
 }
+
+func getIntersectionNodeWithLoop(headA, headB *ListNode) *ListNode {
+	// find the entry of loop in list A
+	// find the entry of loop in list B
+
+	// if entryA == entryB {
+	// 	the intersection node is not in the loop
+	// 	use the entry as the last node
+	// 	find the intersection node between head and entry
+	// } else {
+	// 	the intersection node is in the loop
+	// }
+
+	return nil
+}
