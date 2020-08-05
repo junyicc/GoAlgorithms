@@ -1,5 +1,32 @@
 package interviews
 
+func replaceSpace(s string) string {
+	bs := []byte(s)
+	spaceCnt := 0
+	for _, c := range bs {
+		if c == ' ' {
+			spaceCnt++
+		}
+	}
+
+	newN := len(bs) + 2*spaceCnt
+	newStr := make([]byte, newN)
+	newIdx := newN - 1
+	for i := len(bs) - 1; i >= 0; i-- {
+		if bs[i] == ' ' {
+			newStr[newIdx] = '0'
+			newIdx--
+			newStr[newIdx] = '2'
+			newIdx--
+			newStr[newIdx] = '%'
+		} else {
+			newStr[newIdx] = bs[i]
+		}
+		newIdx--
+	}
+	return string(newStr)
+}
+
 // ReplaceBlank blank with %20
 func ReplaceBlank(str string) string {
 	if str == "" || len(str) < 1 {

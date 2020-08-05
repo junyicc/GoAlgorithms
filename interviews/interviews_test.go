@@ -96,12 +96,6 @@ func Test08MinOfRotatedArray(t *testing.T) {
 	}
 }
 
-func Test09Fib(t *testing.T) {
-	if n, ok := Fib(3); !ok || n != 2 {
-		t.Errorf("expected 2 and got %v", n)
-	}
-}
-
 func Test10NumOf1(t *testing.T) {
 	cnt1 := NumOf1(1)
 	if cnt1 != 1 {
@@ -1312,15 +1306,15 @@ func Test57UniqueLinkedlist(t *testing.T) {
 }
 
 func Test58Successor(t *testing.T) {
-	a := TreeNode{Data: "a"}
-	b := TreeNode{Data: "b"}
-	c := TreeNode{Data: "c"}
-	d := TreeNode{Data: "d"}
-	e := TreeNode{Data: "e"}
-	f := TreeNode{Data: "f"}
-	g := TreeNode{Data: "g"}
-	h := TreeNode{Data: "h"}
-	i := TreeNode{Data: "i"}
+	a := treeNode{Data: "a"}
+	b := treeNode{Data: "b"}
+	c := treeNode{Data: "c"}
+	d := treeNode{Data: "d"}
+	e := treeNode{Data: "e"}
+	f := treeNode{Data: "f"}
+	g := treeNode{Data: "g"}
+	h := treeNode{Data: "h"}
+	i := treeNode{Data: "i"}
 	a.LChild = &b
 	a.RChild = &c
 	b.LChild = &d

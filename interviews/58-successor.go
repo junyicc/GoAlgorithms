@@ -2,20 +2,20 @@ package interviews
 
 import "github.com/CAIJUNYI/GoAlgorithms/datastructure"
 
-// TreeNode struct
-type TreeNode struct {
+// treeNode struct
+type treeNode struct {
 	Data   datastructure.Elem
-	LChild *TreeNode
-	RChild *TreeNode
-	Parent *TreeNode
+	LChild *treeNode
+	RChild *treeNode
+	Parent *treeNode
 }
 
 // Succeesor returns the next node in the in-order sequence
-func Succeesor(node *TreeNode) *TreeNode {
+func Succeesor(node *treeNode) *treeNode {
 	if node == nil {
 		return nil
 	}
-	var successor *TreeNode
+	var successor *treeNode
 	if node.RChild != nil {
 		child := node.RChild
 		for child.LChild != nil {

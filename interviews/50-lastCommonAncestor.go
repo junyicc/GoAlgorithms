@@ -19,7 +19,7 @@ func GetLastCommonAncestorForBST(root, n1, n2 *datastructure.TreeNode) *datastru
 	}
 }
 
-// GetLastCommonAncestorForTree returns the last common ancestor of two TreeNode
+// GetLastCommonAncestorForTree returns the last common ancestor of two treeNode
 // equal to get last common node of two list
 func GetLastCommonAncestorForTree(root, n1, n2 *datastructure.TreeNode) *datastructure.TreeNode {
 	if root == nil || n1 == nil || n2 == nil {

@@ -23,3 +23,22 @@ func PrintLinkedlistReversely(list *datastructure.LinkedList) {
 		fmt.Println(stack.Pop())
 	}
 }
+
+func reversePrint(head *ListNode) []int {
+	if head == nil {
+		return nil
+	}
+	res := make([]int, 0)
+	reverseListNode(head, &res)
+	return res
+}
+
+func reverseListNode(node *ListNode, res *[]int) {
+	if node == nil {
+		return
+	}
+
+	reverseListNode(node.Next, res)
+
+	*res = append(*res, node.Val)
+}

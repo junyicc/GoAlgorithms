@@ -42,3 +42,32 @@ func construct(preorder, inorder []int) *datastructure.TreeNode {
 
 	return &root
 }
+
+func buildTree(preorder []int, inorder []int) *TreeNode {
+	if len(preorder) < 1 || len(inorder) < 1 {
+		return nil
+	}
+
+	rootVal := preorder[0]
+	root := TreeNode{Val: rootVal}
+
+	var rootIdx int
+	var leftLen, rightLen int
+	for i := 0; i < len(inorder); i++ {
+		if inorder[i] == rootVal {
+			rootIdx = i
+			break
+		}
+		leftLen++
+	}
+	rightLen = len(inorder) - leftLen - 1
+
+	if leftLen > 0 {
+		root.Left = buildTree(preorder[1:leftLen+1], inorder[:rootIdx])
+	}
+	if rightLen > 0 {
+		root.Right = buildTree(preorder[leftLen+1:], inorder[rootIdx+1:])
+	}
+
+	return &root
+}
