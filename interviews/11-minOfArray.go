@@ -1,5 +1,39 @@
 package interviews
 
+func minArray(numbers []int) int {
+	if len(numbers) < 1 {
+		return 0
+	}
+
+	if len(numbers) == 1 {
+		return numbers[0]
+	}
+
+	lo, hi := 0, len(numbers)-1
+	for lo+1 < hi {
+		for lo < hi && numbers[lo] == numbers[lo+1] {
+			lo++
+		}
+		for lo < hi && numbers[hi] == numbers[hi-1] {
+			hi--
+		}
+
+		mi := lo + (hi-lo)>>1
+		// update hi in the first place
+		if numbers[mi] <= numbers[hi] {
+			hi = mi
+		} else if numbers[mi] >= numbers[lo] {
+			lo = mi
+		}
+	}
+
+	if numbers[hi] < numbers[lo] {
+		return numbers[hi]
+	}
+
+	return numbers[lo]
+}
+
 // MinOfRotatedArray where min of first ascending part >= max of second ascending part
 func MinOfRotatedArray(arr []int) (int, bool) {
 	if arr == nil || len(arr) < 1 {
