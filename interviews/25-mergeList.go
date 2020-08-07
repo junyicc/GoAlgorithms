@@ -1,5 +1,7 @@
 package interviews
 
+import "github.com/CAIJUNYI/GoAlgorithms/datastructure"
+
 // 输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。
 //
 // 示例1：
@@ -37,4 +39,24 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	}
 
 	return sentinel.Next
+}
+
+// mergeLinkedlist merge sorted linkedlist recursively
+func mergeLinkedlist(h1, h2 *datastructure.ListNode) *datastructure.ListNode {
+	if h1 == nil {
+		return h2
+	}
+	if h2 == nil {
+		return h1
+	}
+
+	var h *datastructure.ListNode
+	if h1.Less(h2) {
+		h = h1
+		h.Next = mergeLinkedlist(h1.Next, h2)
+	} else {
+		h = h2
+		h.Next = mergeLinkedlist(h1, h2.Next)
+	}
+	return h
 }
